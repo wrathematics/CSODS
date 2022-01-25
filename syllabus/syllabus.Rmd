@@ -24,7 +24,9 @@ Last updated: 2022-1-24
 * Instructors: Please add "[DSE512]" to the subject line
     - Drew Schmidt mschmid3@utk.edu
     - Dr. Russell Zaretzki rzaretzk@utk.edu
-* Office Hours: Online by appointment
+* Office Hours:
+    - Instructors: Online by appointment
+    - ISAAC: TRF 11:00am-11:59am https://oit.utk.edu/hpsc/
 * Textbook: None
 
 ### Course Description
