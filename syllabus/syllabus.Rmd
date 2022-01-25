@@ -1,0 +1,109 @@
+---
+title: "DES 512 Course Syllabus"
+subtitle: "Spring 2022"
+output: 
+    - pdf_document
+urlcolor: blue
+linkcolor: blue
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{\begin{center}
+    \includegraphics[width=2in,height=2in]{logo.png}\LARGE\\}
+  - \posttitle{\end{center}}
+---
+
+Last updated: 2022-1-24
+
+* Meeting Time: TR 4:30 PM – 5:45 PM
+  - First day of class T 2022-1-25
+  - Holidays T 2022-3-15, R 2022-3-17, R 2022-4-14
+  - Last day of class T 2022-5-10
+* Place: Canvas/Zoom
+* Credit Hours: 3
+* Prerequisites: DSE511
+* Instructors: Please add "[DSE512]" to the subject line
+    - Drew Schmidt mschmid3@utk.edu
+    - Dr. Russell Zaretzki rzaretzk@utk.edu
+* Office Hours: Online by appointment
+* Textbook: None
+
+### Course Description
+This course is an introduction to parallel and distributed computing from the perspective of data science. Our focus will be on using computing techniques to remove bottlenecks in iterative scientific workflows. We will discuss paradigms for cluster- and cloud-based computing as well as practical tools for diagnosing and improving performance issues. Students will get practical experience using a shared Linux HPC cluster for distributed data analysis.
+
+Topics include: platforms for scalable computing including Map Reduce, Hadoop, Spark, and HPC, setting up computing in cloud, and modern data science work flows.
+
+### Course Content
+The tentative list of topics we will cover is as follows:
+
+* Introduction
+    - Course introduction
+    - ISAAC cluster overview and registration
+    - Review
+* Overview of HPC and the Cloud
+    - History
+    - Jargon, centers, benchmarks, etc.
+* Computing on remote systems
+    - Cloud vs HPC
+    - Remote computing basics
+    - Shared file systems
+    - Submitting jobs
+* Software Management
+    - Modules
+    - Conda
+    - Containers
+* Single-node performance
+    - Numerical linear algebra
+    - C, C++, Fortran, etc.
+    - HLL considerations
+    - SIMD
+* Models of parallel and distributed computing
+    - Batch, SPMD
+    - MPI
+    - MapReduce
+* Profiling
+    - Wallclock timing and scalability
+    - Advanced profiling
+    - Distributed profiling
+* Deep learning
+    - Basic intro
+    - Data vs model parallelism
+    - Distributed training
+
+### Assessments and Grading
+Course materials will be posted on Canvas. Your course grade will be determined by performance on assignments. Late assignments will have a 10% penalty per day. If you anticipate requiring extra time to complete an assignment (e.g. a conference/paper deadline), notify the instructors at least one week in advance.
+
+Your letter grade will be determined by the following table:
+
+| Letter Grade | Minimum percentage |
+|:--------------:|:--------------------:|
+| A | 90 |
+| B | 80 |
+| C | 70 |
+| D | 60 |
+| F | 0 |
+
+### Attendance and Participation
+Important announcements will be given in class, and we will regularly use class time to collaboratively work on tasks as demonstrations of key concepts from the lecture. As such, attendance is strongly encouraged. No make-up assessments can be scheduled for non-emergency absences. See the university's policy on valid/excused absences here: https://dos.utk.edu/absence-notifications/
+
+### Academic Integrity
+"An essential feature of the University of Tennessee, Knoxville is a commitment to maintaining an atmosphere of intellectual integrity and academic honesty. As a student of the university, I pledge that I will neither knowingly give nor receive any inappropriate assistance in academic work, thus affirming my own personal commitment to honor and integrity."
+
+Cheating, plagiarism, or any other type of academic dishonesty will result in a failing grade.
+
+### Disability Services
+Any student who feels s/he may need an accommodation based on the
+impact of a disability should contact Student Disability Services in Dunford Hall, at 865-974-6087, or by video relay at, 865-622-6566, to coordinate reasonable academic accommodations.
+
+### University Civility Statement
+Civility is genuine respect and regard for others: politeness, consideration, tact, good manners, graciousness, cordiality, affability, amiability and courteousness. Civility enhances academic freedom and integrity, and is a prerequisite to the free exchange of ideas and knowledge in the learning community. Our community consists of students, faculty, staff, alumni, and campus visitors. Community members affect each other’s well-being and have a shared interest in creating and sustaining an environment where all community members and their points of view are valued and respected. Affirming the value of each member of the university community, the campus asks that all its members adhere to the principles of civility and community adopted by the campus: http://civility.utk.edu/.
+
+### Your Role in Improving Teaching and Learning Through Course Assessment
+At UT, it is our collective responsibility to improve the state of teaching and learning. During the semester, you may be requested to assess aspects of this course either during class or at the completion of the class. You are encouraged to respond to these various forms of assessment as a means of continuing to improve the quality of the UT learning experience.
+
+### Key Campus Resources for Students
+* [Center for Career Development](career.utk.edu): Career counseling and resources
+* [Hilltopics](hilltopics.utk.edu): Campus and academic policies, procedures and standards of conduct
+* [Student Success Center](studentsuccess.utk.edu): Academic support resources
+* [University Libraries](www.lib.utk.edu): Library resources, databases, course reserves, and services
+
+The instructor reserves the right to revise, alter or amend this syllabus as necessary. Students will be notified of any such changes.
