@@ -1,0 +1,42 @@
+---
+title: "Assignment 1"
+subtitle: "DSE 512"
+date: "Assigned 2022-1-25 --- Due 2022-1-27 11:59pm"
+output: 
+    - pdf_document
+---
+
+## Response
+
+For each question, give a brief response (no more than a paragraph). Generally a sentence or two is all I'm looking for.
+
+1. (Background) What is your 
+    * name (legal and preferred)
+    * area of study
+    * undergraduate degree
+    Feel free to provide any other relevant information you think I need.
+
+2. (Computing Experience) Briefly describe your background with computing, programming, the cloud, HPC, etc.
+
+3. What are you most hoping to learn about from this course? If you don't know or are unsure, that's fine; just say that.
+
+## Accounts
+
+Read all questions before proceeding.
+
+1. Getting set up with Amazon
+    1. Create an AWS account https://aws.amazon.com/
+    2. Bonus (highly recommended but not required) Create a test EC2 image
+        1. Create an Ubuntu 20.04 t2.micro instance in EC2 with 30GB of storage
+        2. You will need to create a key (the .pem file) for use with your AWS images. Save your key somewhere on your hard drive where you will not forget it, as you will need this in the future.
+        3. Terminate the instance (click the check box, then from the "Instance State" dropdown menu, select "Terminate Instance")
+    3. If you did not perform the "bonus" above, carefully read it for context. Leaving an instance running will eventually (potentially immediately) lead to charges on your credit card. We are working to get credits from Amazon that will cover your use within the course. And our usage will live within the confines of the "free tier", so if your account is new then you may be eligible for that as well. We will do everything we can to keep costs near zero for you for *correct* usage of the resource within the course. All the same, leaving instances running can potentially lead to charges on your credit card. Write a sentence in your own words explaining that you understand that this could lead to fees.
+
+2. Getting set up with ISAAC
+    1. Sign up for an account here https://oit.utk.edu/hpsc/isaac-open/
+    2. It will take a few days for OIT to set everything up. You should be able to log in late this week or early next week. It's critical that everying sign up as soon as possible!
+
+3. Local software set up (ssh client)
+    1. Linux: Install the ssh client (e.g. `ssh-client` in apt)
+    2. Mac: Install Xcode from the App Store
+    3. Windows: you will need to install an ssh client. We recommend putty https://www.chiark.greenend.org.uk/~sgtatham/putty/
