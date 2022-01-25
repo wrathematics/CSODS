@@ -1,8 +1,8 @@
 ---
-title: Lecture 1 -
+title: "Lecture 1 - Introduction"
 subtitle: "DSE 512"
 author: "Drew Schmidt"
-date: "2022-01-25"
+date: "2021-01-25"
 output:
   xaringan::moon_reader:
     css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
@@ -19,9 +19,61 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-# First Slide
-Content
+# About Me
+* Taught Math/Stats many years ago
+* Worked in supercomputing for 10 years
+* Supported hundreds of projects at large scale
+* Currently work at small startup
+* Very active R developer
 
 ---
-# Second Slide
-Content
+# Software
+* pbdR https://pbdr.org
+* fml Project
+  - Code https://github.com/fml-fam
+  - Blog https://fml-fam.github.io/blog/
+* HPCRAN https://hpcran.org/
+* GitHub https://github.com/wrathematics
+
+---
+# Publications
+* Schmidt, D., 2020, November. A Survey of Singular Value Decomposition Methods for Distributed Tall/Skinny Data. In 2020 [IEEE/ACM 11th Workshop on Latest Advances in Scalable Algorithms for Large-Scale Systems (ScalA) (pp. 27-34)](https://ieeexplore.ieee.org/abstract/document/9308812/). IEEE.
+* Hasan, S.S., Schmidt, D., Kannan, R. and Imam, N., 2019, December. A Scalable Graph Analytics Framework for Programming with Big Data in R (pbdR). In 2019 [IEEE International Conference on Big Data (Big Data) (pp. 4783-4792)](https://ieeexplore.ieee.org/abstract/document/9006155/). IEEE.
+* Schmidt, D., Chen, W.C., Matheson, M.A. and Ostrouchov, G., 2017. Programming with BIG data in R: Scaling analytics from one to thousands of nodes. [Big Data Research, 8, pp.1-11.](https://www.sciencedirect.com/science/article/abs/pii/S221457961630065X)
+
+---
+# About the Course
+* Title: Introduction to Data Science and Computing II
+* Description: Topics include: platforms for scalable computing including Map Reduce, Hadoop, Spark, and HPC, setting up computing in cloud, and modern data science work flows.
+
+---
+# About the Course
+*The computer science of data science.*
+
+---
+# Course Content
+* HPC and the Cloud
+  - Remote computing
+  - Shared file systems
+  - Batch programming
+* Software Management and Running Jobs
+  - Modules
+  - Containers
+* Performance Acceleration and Parallelism
+  - GPGPU
+  - Distributed Programming
+
+---
+# Course Structure
+## Class Hours
+* Lecture component
+* Interactive component
+
+## Outside of Class
+* A homework assignment every few weeks
+* A project?
+
+---
+# Next Time
+* Overview of HPC and the Cloud
+* Assignment 1 - due Thursday

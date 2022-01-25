@@ -1,8 +1,8 @@
 ---
-title: Lecture 2 -
+title: Lecture 2 - Overview of HPC and the Cloud
 subtitle: "DSE 512"
 author: "Drew Schmidt"
-date: "2022-01-27"
+date: "2021-01-27"
 output:
   xaringan::moon_reader:
     css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
@@ -19,9 +19,306 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-# First Slide
-Content
+class: clear, inverse, middle, center
+# HPC
 
 ---
-# Second Slide
-Content
+# HPC
+.pull-left[
+* High Performance Computing
+* Usually used interchangeably with "supercomputing"
+* Summit, ISAAC, ...
+* The Cloud?
+* Your desktop???
+* Your phone?????
+]
+.pull-right[![](pics/02/hpc.png)]
+
+---
+# High Performance?
+.center[![](pics/02/high_performance.png)]
+
+---
+# Supercomputing
+.pull-left[
+Characteristics
+* Big
+* Parallel file system
+* Multiple nodes
+* High speed interconnect
+* Batch programming
+
+Non-characteristics
+* Heterogeneous/homogeneous
+* Big FLOPS
+]
+.pull-right[![](pics/02/iphone.jpg)]
+
+---
+# Summit
+.pull-left[
+* 4608 Nodes
+  - 2x22-core IBM P9 CPUs
+  - 6 NVIDIA V100 GPUs
+* 250 PB storage
+* Mellanox interconnect
+  - 200 Gb/s InfiniBand
+  - Non-blocking fat-tree
+* 13 MW of power
+]
+.pull-right[![](pics/02/summit.jpg)]
+
+---
+# Interactive vs Batch
+.pull-left[
+```
+$ python
+>>> 1+1
+
+2
+
+>>> exit()
+
+$
+```
+]
+.pull-right[
+```
+$ bsub myjob.bs
+
+<time passes>
+
+$ cat myjob.out
+
+2
+
+$
+```
+]
+
+---
+# "AI"
+.pull-left[![](pics/02/ai02.jpg)]
+.pull-right[
+![](pics/02/ai01.jpg)
+![](pics/02/ai03.jpg)
+]
+
+---
+# Some Common Terms
+.pull-left[
+* **gemm** - matrix-matrix multiply
+* **BLAS** - Basic Linear Algebra Subprograms; matrix library
+* **FLOPS** - Floating Point Operations Per Second (adds and multiplies)
+* **LINPACK** - important benchmark
+* **TOP500** - list of computers ranked by LINPACK benchmark
+]
+.pull-right[![](pics/02/everest.jpg)]
+
+---
+# Some Notable Benchmarks
+.pull-left[
+* **TOP500** - solve `\\(Ax=b\\)`
+* **Green500** - LINPACK, sorted by energy efficiency ("FLOPS per watt")
+* **Graph500** - Graph benchmark; BFS and SSSP
+* **HPCG** - High Performance Conjugate Gradient; SpMV, dot product, ...
+]
+.pull-right[![](pics/02/top500.png)]
+
+---
+# MPI
+.pull-left[
+* Message Passing Interface
+* Distributed programming standard
+* Implementations
+  - OpenMPI
+  - MPICH
+  - MPT
+  - Spectrum
+* NCCL
+* HPC/Data convergence
+]
+.pull-right[![](pics/02/comm.png)]
+
+---
+# Using Video Game Hardware to Multiply Matrices
+.pull-left[
+* AKA GPGPU
+* Not just for video games and mining bitcoin anymore!
+* Major players
+  - NVIDIA
+  - AMD
+  - Intel…?!?!
+* Pros:
+  - Fast
+  - When you give up, you can mine bitcoin
+Cons:
+  - Hard to program
+  - Expensive
+]
+.pull-right[![](pics/02/kon_gpu.jpg)]
+
+---
+# DOE Jargon
+.pull-left[
+* leadership - really big jobs
+* capability - big jobs
+* capacity - many jobs
+* Allocations
+  - INCITE - leadership
+  - ALCC - things DOE likes
+  - DD - small jobs the center likes
+]
+.pull-right[![](pics/02/doe.png)]
+
+---
+# Some Resources
+* https://www.hpcwire.com/
+* https://insidehpc.com/
+* https://twitter.com/HPC_Guru
+
+
+---
+# Linear Algebra
+.pull-left[
+* LA dominates scientific and data computing
+* Some uses in data:
+  - PCA - SVD
+  - Linear Models - QR
+  - Covariance/correlation - gemm/syrk
+  - Inverse - Cholesky, LU
+* 70's: LINPACK (no not that one)
+* 80's: BLAS, LAPACK
+* 90's: ScaLAPACK
+* 00's: PLASMA, MAGMA
+* 10's: ~~DPLASMA~~ SLATE
+]
+.pull-right[![](pics/02/manga_linalg.png)]
+
+---
+# The LINPACK Benchmark
+* Solve the system $Ax=b$
+  - A- $n\times n$ matrix (you choose $n$)
+  - Double precision
+  - Must use LU with partial pivoting
+      - $A = LU$
+      - $b = Ax = LUx$
+* $\frac{2}{3} n^3 + 2n^2$ operations
+* Solution must satisfy some accuracy conditions.
+
+---
+# Top 500 Rankings
+.pull-left[![](pics/02/top500_linear.png)]
+.pull-right[![](pics/02/top500_log.png)]
+
+---
+# LINPACK on my Desktop
+.pull-left[
+## CPU
+* double
+  - Best n=39000 t=200.030
+  - Theoretical Peak 217 GFLOPS
+  - LINPACK 197.715 GFLOPS
+* float
+  - Best n=45000 t=156.066
+  - Theoretical Peak 434 GFLOPS
+  - LINPACK 389.285 GFLOPS
+]
+.pull-right[
+## GPU
+* double n=28000 t=58.444 GFLOPS=250.433
+* float n=36000 t=4126.614 GFLOPS=4126.614
+]
+
+This means Summit is 487,156x more powerful than my desktop!
+
+---
+# LINPACK on my Desktop
+.center[![:scale 60%](pics/02/linpack_me.png )]
+
+---
+# How Do We Rank?
+.center[![:scale 60%](pics/02/top500_logo.png )]
+
+---
+# How Do We Rank?
+.pull-left[![](pics/02/top500_linear_me.png)]
+.pull-right[![](pics/02/top500_log_me.png)]
+
+
+
+---
+class: clear, inverse, middle, center
+# The Cloud
+
+---
+# 
+.pull-left[
+* 
+]
+.pull-right[![](pics/02/.png)]
+
+---
+# SERVICES, SERVICES, SERVICES!
+* Think of a sequence of letters and numbers
+* It's probably an Amazon product
+* (Ungraded) Homework:
+  - Find a random AWS service
+  - Try to understand what it does
+  - (Bonus) No crying
+
+---
+# 
+.pull-left[
+* 
+]
+.pull-right[![](pics/02/.png)]
+
+---
+# 
+.pull-left[
+* 
+]
+.pull-right[![](pics/02/.png)]
+
+---
+# 
+.pull-left[
+* 
+]
+.pull-right[![](pics/02/.png)]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# HPC vs The Cloud
+
+---
+# How Are They Similar?
+* Somebody else's computer
+* Lots of jargon
+* Career paths
+* Can be hard to use
+* Tech stacks more similar than most realize
+
+---
+# How Are They Different?
+* Privileges (user vs root)
+* Salaries, job growth, potential, etc
+* Academia vs Industry
+* "Free" (taxes) vs you pay
+* Big divergences in tech stacks
+    - cloud: HDFS, databases, web, ...
+    - HPC: HDF5, binary files, Fortran, ...
+
+---
+# Other Models
+* Your laptop
+* "The office quasi-cluster"
+* Edge computing
+
+---
+# Next Time
+Computing on remote systems
