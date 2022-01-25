@@ -42,6 +42,13 @@ options(htmltools.dir.version = FALSE)
 * Schmidt, D., Chen, W.C., Matheson, M.A. and Ostrouchov, G., 2017. Programming with BIG data in R: Scaling analytics from one to thousands of nodes. [Big Data Research, 8, pp.1-11.](https://www.sciencedirect.com/science/article/abs/pii/S221457961630065X)
 
 ---
+# Course Files
+* Syllabus, slides, assignments posted on Canvas
+* Assignment 1 is live (it's short)
+* Slides will be posted after presentation
+* 2021's files including recordings (different instructor) are also available
+
+---
 # About the Course
 * Title: Introduction to Data Science and Computing II
 * Description: Topics include: platforms for scalable computing including Map Reduce, Hadoop, Spark, and HPC, setting up computing in cloud, and modern data science work flows.
@@ -64,6 +71,19 @@ options(htmltools.dir.version = FALSE)
   - Distributed Programming
 
 ---
+# Technologies
+* Assume you're comfortable with
+  - a HLL (probably R or Python)
+  - basic shell stuff
+* Homeworks can use any *reasonable* programming language (I strongly recommend R or Python)
+* Some things we will use in various capacities:
+  - ssh, sftp/scp, parallel file systems, job schedulers, ...
+  - AWS EC2 and ISAAC
+  - Containers: Docker and Singularity
+  - Some basic GPGPU
+  - MPI
+
+---
 # Course Structure
 ## Class Hours
 * Lecture component
@@ -71,9 +91,13 @@ options(htmltools.dir.version = FALSE)
 
 ## Outside of Class
 * A homework assignment every few weeks
-* A project?
+* Maybe a "super homework" (a project)
 
 ---
 # Next Time
 * Overview of HPC and the Cloud
-* Assignment 1 - due Thursday
+* Assignment 1 - due this Thursday 11:59pm
+
+---
+class: clear, inverse, middle, center
+# Questions?
