@@ -2,9 +2,9 @@
 
 to_date = function(d) as.Date(d, format="%m/%d/%Y")
 
-start = "1/25/2021"
-end = "5/10/2021"
-skip = c("3/15/2021", "3/17/2021", "4/14/2021")
+start = "1/25/2022"
+end = "5/10/2022"
+skip = c("3/15/2022", "3/17/2022", "4/14/2022")
 
 start = to_date(start)
 end = to_date(end)

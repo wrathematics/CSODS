@@ -2,7 +2,7 @@
 title: Lecture 15 -
 subtitle: "DSE 512"
 author: "Drew Schmidt"
-date: "2021-03-22"
+date: "2022-03-22"
 output:
   xaringan::moon_reader:
     css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
