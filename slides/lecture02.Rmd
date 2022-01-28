@@ -2,7 +2,7 @@
 title: Lecture 2 - Overview of HPC and the Cloud
 subtitle: "DSE 512"
 author: "Drew Schmidt"
-date: "2021-01-27"
+date: "2022-01-27"
 output:
   xaringan::moon_reader:
     css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
@@ -19,6 +19,10 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
+# From Last Time
+* Assignment 1 due tonight
+
+---
 class: clear, inverse, middle, center
 # HPC
 
@@ -187,11 +191,11 @@ Cons:
   - Linear Models - QR
   - Covariance/correlation - gemm/syrk
   - Inverse - Cholesky, LU
-* 70's: LINPACK (no not that one)
-* 80's: BLAS, LAPACK
-* 90's: ScaLAPACK
-* 00's: PLASMA, MAGMA
-* 10's: ~~DPLASMA~~ SLATE
+* 1970's: LINPACK (not that one)
+* 1980's: BLAS, LAPACK
+* 1990's: ScaLAPACK
+* 2000's: PLASMA, MAGMA
+* 2010's: ~~DPLASMA~~ SLATE
 ]
 .pull-right[![](pics/02/manga_linalg.png)]
 
@@ -252,11 +256,32 @@ class: clear, inverse, middle, center
 # The Cloud
 
 ---
-# 
+# History
 .pull-left[
-* 
+* 1960's: Mainframe time sharing
+* 1970-80's: Dumb terminals
+* 1990's: Virtualization invented
+* 2006: AWS launched
+* 2015: Docker created
 ]
-.pull-right[![](pics/02/.png)]
+.pull-right[![](pics/02/mainframe.jpeg)]
+
+We will discuss virtualization and Docker in depth in a later lesson.
+
+---
+# So What Even Is The Cloud?
+.pull-left[
+## Someone else's computer?
+![](pics/02/cloud1.png)
+]
+.pull-right[
+## Something else?
+![](pics/02/cloud2.jpg)
+]
+
+---
+# SERVICES, SERVICES, SERVICES!
+.center[![](pics/02/services.jpg)]
 
 ---
 # SERVICES, SERVICES, SERVICES!
@@ -268,26 +293,8 @@ class: clear, inverse, middle, center
   - (Bonus) No crying
 
 ---
-# 
-.pull-left[
-* 
-]
-.pull-right[![](pics/02/.png)]
-
----
-# 
-.pull-left[
-* 
-]
-.pull-right[![](pics/02/.png)]
-
----
-# 
-.pull-left[
-* 
-]
-.pull-right[![](pics/02/.png)]
-
+# In This Class
+We will restrict attention to EC2 ("someone else's computer")
 
 
 
@@ -297,28 +304,39 @@ class: clear, inverse, middle, center
 
 ---
 # How Are They Similar?
+.pull-left[
 * Somebody else's computer
 * Lots of jargon
-* Career paths
+* Entire career paths
 * Can be hard to use
 * Tech stacks more similar than most realize
+]
+.pull-right[![](pics/02/the_same.jpg)]
 
 ---
 # How Are They Different?
 * Privileges (user vs root)
-* Salaries, job growth, potential, etc
+* Salaries, job growth/potential, etc
 * Academia vs Industry
 * "Free" (taxes) vs you pay
-* Big divergences in tech stacks
+* Some non-intersecting tech stacks
     - cloud: HDFS, databases, web, ...
     - HPC: HDF5, binary files, Fortran, ...
 
 ---
-# Other Models
-* Your laptop
+# Other Compute Models
+* Your computer
 * "The office quasi-cluster"
 * Edge computing
 
 ---
 # Next Time
-Computing on remote systems
+* Computing on remote systems
+  - ~30 minutes lecture
+  - live tutorial component on ISAAC and/or AWS
+* Assignment 1 due tonight
+* No new assignments
+
+---
+class: clear, inverse, middle, center
+# Questions?
