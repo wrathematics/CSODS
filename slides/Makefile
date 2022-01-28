@@ -6,7 +6,7 @@ PDF=$(SRCS:.Rmd=.pdf )
 	./bin/build.r $<
 html: $(HTML)
 	
-%.pdf: $(HTML)
+%.pdf: %.html
 	./bin/topdf.r $<
 pdf: $(PDF)
 
