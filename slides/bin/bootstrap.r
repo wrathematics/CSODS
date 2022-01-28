@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript --vanilla
+#!/usr/bin/Rscript
 
 inst_pkgs = installed.packages()
 cran_pkgs = c("remotes", "rmarkdown", "xaringan", "progress", "jsonlite", "pdftools", "digest", "fs")

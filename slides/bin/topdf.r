@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript --vanilla
+#!/usr/bin/Rscript
 
 args = commandArgs(trailingOnly=TRUE)
 if (length(args) != 1) stop("Usage: Rscript topdf.r file")

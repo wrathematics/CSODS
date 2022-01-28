@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript --vanilla
+#!/usr/bin/Rscript
 
 to_date = function(d) as.Date(d, format="%m/%d/%Y")
 
