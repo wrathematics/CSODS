@@ -1,0 +1,155 @@
+---
+title: Lecture 4 - Introduction to Containers
+subtitle: "DSE 512"
+author: "Drew Schmidt"
+date: "2022-02-03"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# From Last Time
+* Solved the example issue!
+  - Ports, ports, ports
+  - Posted discussion on Canvas
+* Questions?
+
+
+
+---
+class: clear, inverse, middle, center
+# Containers
+
+---
+# What is a Container?
+>A Linux container is a set of one or more processes that are isolated from the rest of the system. All the files necessary to run them are provided from a distinct image.
+
+Source: redhat.com
+.pull-right[![](pics/04/containers.jpg)]
+
+---
+# What is a Container?
+A (binary) Linux program, shipped in a self-contained way.
+
+---
+# History of Containerization
+* 1980's: chroot
+* 1990's: VM's
+* 2000's: BSD Jails
+* 2013: Docker
+* 2016: Singularity
+* 2016--Present: Kubernetes, OpenVZ, snap, flatpak, OpenShift, AND MANY MORE
+
+---
+# Why Though?
+.pull-left[
+## Benefits
+* Isolation
+* Reproducibility
+* Distribution
+]
+.pull-right[
+## Common Uses
+* Web services
+* Dev environment
+* CI builds
+* Batch runs
+]
+
+* Building software is *really hard*
+* Distributing software is ***completely impossible***
+
+---
+# "Portability"
+.center[![:scale 150%](pics/04/python_packages.png)]
+
+---
+# Why Should I Care?
+.center[
+![](pics/04/siren.png)
+.huge[In HPC, you don't have root!]
+![](pics/04/siren.png)
+]
+
+---
+# Container VS VM
+Containers are
+* Smaller
+* Faster
+  - Instant startup (same kernel, no boot)
+  - Applications aren't virtualized; run *natively*
+* Integrable with "host" OS
+
+.pull-left[![](pics/04/container.png)]
+.pull-right[![](pics/04/vm.png)]
+
+---
+# Container VS VM
+.pull-left[
+A container is a normal program run in a funny way
+.center[![:scale 60%](pics/04/disguise.jpg)]
+]
+.pull-right[
+A VM is an entire OS living inside your OS.
+.center[![](pics/04/inception.jpg)]
+]
+
+---
+# Docker
+.pull-left[
+* Current hotness
+* Pros
+  - de facto standard
+  - Incremental builds
+  - Can be used on non-Linux (kind of)
+  - Repos (e.g., Docker Hub, AWS ECR)
+* Cons
+  - Very enterprisey
+  - Doesn't "feel" unix-y
+  - Driver issues (MPI, CUDA, ...)
+  - Security concerns
+]
+.pull-right[![](pics/04/docker.jpg)]
+
+---
+# Docker All The Things?
+.pull-left[
+* Builds are hardware specific
+* Sharing files is painful
+* Complex builds are, well, complex
+* Can't use in HPC (e.g. ISAAC)
+]
+.pull-right[![](pics/04/dead_docker.jpg)]
+
+---
+# Singularity
+.pull-left[
+* Containers for HPC
+* Not docker
+* Pros
+  - Not docker
+  - Can consumes docker images
+  - Containers are FILES
+  - Works great with NVIDIA
+* Cons
+  - Not docker
+  - Monolithic builds
+  - Singularity Hub
+  - MPI can cause trouble
+]
+.pull-right[![](pics/04/singularity.jpg)]
+
+---
+class: clear, inverse, middle, center
+# Live Demo
