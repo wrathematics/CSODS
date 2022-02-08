@@ -1,5 +1,5 @@
 ---
-title: Lecture 5 -
+title: Lecture 5 - Introduction to ISAAC
 subtitle: "DSE 512"
 author: "Drew Schmidt"
 date: "2022-02-08"
@@ -21,4 +21,183 @@ options(htmltools.dir.version = FALSE)
 
 
 # From Last Time
-* 
+* No announcements
+* Questions about Docker? EC2?
+* Questions about anything else?
+* *What scientists must know about hardware to write fast code* https://biojulia.net/post/hardware/
+
+
+
+---
+class: clear, inverse, middle, center
+# Using ISAAC
+
+---
+# What is ISAAC
+* **I**nfrastructure for **S**cientific **A**pplications and **A**dvanced **C**omputing
+* Campus cluster
+* Heterogeneous
+* System overview https://oit.utk.edu/hpsc/isaac-open-enclave-new-kpb/system-overview-cluster-at-kpb/
+
+---
+# Where to get help
+* Read the documentation! https://oit.utk.edu/hpsc/isaac-open-enclave-new-kpb/
+* Ask question in class
+* ISAAC Office Hours TRF 11:00am-11:59am https://oit.utk.edu/hpsc/
+* Email and/or schedule office hours with instructor
+
+---
+# ISAAC vs EC2
+.pull-left[
+## Similarities
+* Hardware is entirely managed
+* "Someone else's computer"
+]
+.pull-right[
+## Differences
+* Software environment is *largely managed*
+* No administrative privileges
+* No Docker
+]
+
+---
+# Logging in with ssh
+* ~~ISAAC acf-login.acf.tennessee.edu~~
+* ISAAC-NG login.isaac.tennessee.edu
+* Credentialing:
+  - Username is netid
+  - Enter netid password when asked
+  - Use 2-factor method specified
+
+---
+# Logging in with ssh
+```bash
+$ ssh username@login.isaac.tennessee.edu
+```
+
+```bash
+$ ssh mschmid3@login.isaac.tennessee.edu
+```
+
+---
+# ssh config
+Add a similar line to `~/.ssh/config`
+
+```
+Host isaac
+HostName login.isaac.tennessee.edu
+User mschmid3
+ServerAliveInterval 30
+Port 22
+```
+
+```bash
+$ ssh isaac
+```
+
+---
+# Node Tiering
+* Login nodes
+  - Where you land after logging in
+  - *Not where jobs should run*
+  - Shared resource
+  - file editing, code compilation, job submission
+* Compute nodes
+  - You have to go out of your way to get here
+  - *Where jobs should run*
+  - Semi-isolated resource
+
+---
+# Accessing the Compute Nodes
+![](pics/05/slurm.jpg)
+
+---
+# Basic Slurm
+| Task | Command | Example |
+|------|---------|---------|
+| Submit job | `sbatch` | `sbatch myjob.slurm` |
+| Run interactive job | `srun` | `srun ... --pty bash -i` |
+| Show jobs | `squeue` | `squeue` |
+| Show my jobs | `squeue` | `squeue --me` |
+| Cancel job | `scancenl` | `scancel 123456` |
+
+---
+# Project Account
+* Course account
+  - ACF-UTK0188
+  - `/lustre/isaac/proj/UTK0188`
+* Opportunistic account
+  - ACF-UTK0011
+
+---
+# Software
+* No root
+  - no `sudo apt install ...`
+  - no Docker
+* Instead
+  - modules
+  - building from source
+  - pip/conda/...
+  - singularity
+
+---
+# Modules
+| Task | Command | 
+|------|---------|
+| Show available modules | `module avail` |
+| Load module | `module load ${MODULE}` |
+| Unload module | `module unload ${MODULE}` |
+| Show loaded modules | `module list` |
+| Module description | `module whatis ${MODULE}` |
+| Search modules for string | `module apropos ${MY_STRING}` |
+| Get help | `module help` |
+
+---
+# Python on ISAAC
+* Load with `module load Python`
+* `pip`
+* `conda` (`module load anaconda3`)
+
+---
+# R on ISAAC
+* /sw/isaac/applications/r_studio/4.0.4/singularity_r_studio/R.4.0.4.simg
+
+```bash
+RIMGPATH="/sw/isaac/applications/r_studio/4.0.4/singularity_r_studio/R.4.0.4.simg"
+alias R="singularity exec ${RIMGPATH} R --no-save --quiet"
+alias Rscript="singularity exec ${RIMGPATH} Rscript"
+
+$ Rscript -e "1+1"
+[1] 2
+```
+
+---
+# Job Files
+```bash
+#!/bin/bash
+#SBATCH --account UTK0188
+#SBATCH --partition=campus
+#SBATCH --job-name=R_hello_world
+#SBATCH --nodes=1
+#SBATCH --time=00:00:30
+
+RIMGPATH="/sw/isaac/applications/r_studio/4.0.4/singularity_r_studio/R.4.0.4.simg"
+singularity exec ${RIMGPATH} Rscript -e "print('hello world')"
+```
+
+```bash
+sbatch myjob.slurm
+```
+
+
+
+---
+# Next Time
+* Multi-node jobs
+* Singularity
+* Homework?
+
+
+---
+class: clear, inverse, middle, center
+# Live Demo
