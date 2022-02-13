@@ -1,8 +1,8 @@
 ---
-title: Lecture 7 -
+title: Lecture 8 - High Level Language Optimizations Part 1
 subtitle: "DSE 512"
 author: "Drew Schmidt"
-date: "2022-02-15"
+date: "2022-02-17"
 output:
   xaringan::moon_reader:
     css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
@@ -19,9 +19,29 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-# First Slide
-Content
+# From Last Time
+* Homework due
+* Questions?
+
+
+
 
 ---
-# Second Slide
-Content
+# Using Efficient Kernels
+.pull-left[
+```r
+s = 0
+for (i in 1:length(x))
+  s = s + x[i]
+```
+]
+.pull-right[
+```r
+sum(x)
+```
+]
+
+
+---
+class: clear, inverse, middle, center
+# Live Demo

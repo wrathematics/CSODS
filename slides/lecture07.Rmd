@@ -1,0 +1,189 @@
+---
+title: Lecture 7 - Introduction to Performance Optimization
+subtitle: "DSE 512"
+author: "Drew Schmidt"
+date: "2022-02-15"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# From Last Time
+* No homework yet --- soon
+* Questions?
+
+---
+# Where We've Been
+## Module 1: Basic Cloud and HPC
+* Lecture 1 - Introduction
+* Lecture 2 - Overview of HPC and the Cloud
+* Lecture 3 - Introduction to Remote Computing
+* Lecture 4 - Introduction to Containers
+* Lecture 5 - Introduction to ISAAC
+* Lecture 6 - MPI and Singularity
+
+---
+# Where We're Headed
+## Module 2: Performance Optimization
+* High Level Language Optimizations
+* Computational Linear Algebra
+* GPGPU: The Easy Parts
+* Utilizing Compiled Code
+
+---
+# Where's the Data Science?
+.center[![](pics/07/homer.jpeg)]
+
+---
+# So Your Software Is Slow
+.pull-left[
+* Is it actually slow?
+* What does that even mean?
+* Is it a HLL (R/Python)
+  - Using vectorization?
+  - Using efficient kernels?
+  - Can you rewrite it in C?
+* Is it linear algebra dominant?
+  - Are you using fast BLAS?
+  - Are you using multi-threaded BLAS?
+* Can it be parallelized?
+]
+.pull-right[![](pics/07/slow.jpg)]
+
+---
+class: clear, inverse, middle, center
+# High Level Language Optimizations
+
+---
+# Speeding up HLL's
+* General strategies apply
+* Implementation(s) very language dependent
+* Examples in R and Python
+
+---
+# Optimizations
+.pull-left[
+## HLL Strategies
+* Compilation concerns
+* Use efficient kernels
+* Vectorization
+* JIT and/or bytecode compilers
+* Fundamental types
+* Language quirks (e.g. `if` vs `ifelse` cost in R)
+]
+.pull-right[
+## Other Concerns
+* Linear algebra libraries
+* Advanced hardware, e.g. GPGPU
+* Utilizing compmiled code
+* Parallelism
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Computational Linear Algebra
+
+---
+# Recall
+.pull-left[
+* **gemm** - matrix-matrix multiply
+* **BLAS** - Basic Linear Algebra Subprograms; matrix library
+* **FLOPS** - Floating Point Operations Per Second (adds and multiplies)
+* **LINPACK** - Solve `\\(Ax=b\\)`
+* **TOP500** - list of computers ranked by LINPACK benchmark
+]
+.pull-right[![](pics/02/everest.jpg)]
+
+---
+# Linear Algebra
+.pull-left[
+* LA dominates scientific and data computing
+* Some uses in data:
+  - PCA - SVD
+  - Linear Models - QR
+  - Covariance/correlation - gemm/syrk
+  - Inverse - Cholesky, LU
+* 1970's: LINPACK (not that one)
+* 1980's: BLAS, LAPACK
+* 1990's: ScaLAPACK
+* 2000's: PLASMA, MAGMA
+* 2010's: ~~DPLASMA~~ SLATE
+]
+.pull-right[![](pics/02/manga_linalg.png)]
+
+---
+# The LINPACK Benchmark
+* Solve the system $Ax=b$
+  - A- $n\times n$ matrix (you choose $n$)
+  - Double precision
+  - Must use LU with partial pivoting
+      - $A = LU$
+      - $b = Ax = LUx$
+* $\frac{2}{3} n^3 + 2n^2$ operations
+* Solution must satisfy some accuracy conditions.
+
+
+
+---
+class: clear, inverse, middle, center
+# GPGPU
+
+---
+# Using Video Game Hardware to Multiply Matrices
+.pull-left[
+* AKA GPGPU
+* Not just for video games and mining bitcoin anymore!
+* Major players
+  - NVIDIA
+  - AMD
+  - Intel…?!?!
+* Pros:
+  - Fast
+  - When you give up, you can mine bitcoin
+Cons:
+  - Hard to program
+  - Expensive
+]
+.pull-right[![](pics/02/kon_gpu.jpg)]
+
+---
+# "Low-Level" GPGPU Technologies
+.pull-left[
+* ~~Shaders~~
+* CUDA
+* OpenCL
+* OpenACC
+* OpenMP
+]
+.pull-right[![](pics/07/cuda_cube.jpg)]
+
+---
+# GPGPU
+* 
+
+---
+class: clear, inverse, middle, center
+# Utilizing Compiled Code
+
+
+
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Questions?
