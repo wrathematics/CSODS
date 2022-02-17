@@ -20,7 +20,7 @@ options(htmltools.dir.version = FALSE)
 ```
 
 # From Last Time
-* No homework yet --- soon
+* New Homework
 * Questions?
 
 ---
@@ -37,6 +37,7 @@ options(htmltools.dir.version = FALSE)
 # Where We're Headed
 ## Module 2: Performance Optimization
 * High Level Language Optimizations
+* I/O
 * Computational Linear Algebra
 * GPGPU: The Easy Parts
 * Utilizing Compiled Code
@@ -50,6 +51,7 @@ options(htmltools.dir.version = FALSE)
 .pull-left[
 * Is it actually slow?
 * What does that even mean?
+* Do you have an I/O problem? A compute problem? Memory?
 * Is it a HLL (R/Python)
   - Using vectorization?
   - Using efficient kernels?
@@ -62,11 +64,7 @@ options(htmltools.dir.version = FALSE)
 .pull-right[![](pics/07/slow.jpg)]
 
 ---
-class: clear, inverse, middle, center
 # High Level Language Optimizations
-
----
-# Speeding up HLL's
 * General strategies apply
 * Implementation(s) very language dependent
 * Examples in R and Python
@@ -76,7 +74,7 @@ class: clear, inverse, middle, center
 .pull-left[
 ## HLL Strategies
 * Compilation concerns
-* Use efficient kernels
+* Use efficient kernels/packages
 * Vectorization
 * JIT and/or bytecode compilers
 * Fundamental types
@@ -84,20 +82,29 @@ class: clear, inverse, middle, center
 ]
 .pull-right[
 ## Other Concerns
+* I/O
 * Linear algebra libraries
 * Advanced hardware, e.g. GPGPU
 * Utilizing compmiled code
 * Parallelism
 ]
 
-
+---
+# I/O
+.pull-left[
+* Different strategies
+  - plain text
+  - binary 
+  - database
+* Serial vs Parallel
+  - Serial hard to get wrong
+  - Parallel hard to get right
+  - lustre vs HDFS
+]
+.pull-right[![](pics/07/datastream.jpg)]
 
 ---
-class: clear, inverse, middle, center
-# Computational Linear Algebra
-
----
-# Recall
+# Recall: Terminology
 .pull-left[
 * **gemm** - matrix-matrix multiply
 * **BLAS** - Basic Linear Algebra Subprograms; matrix library
@@ -106,6 +113,18 @@ class: clear, inverse, middle, center
 * **TOP500** - list of computers ranked by LINPACK benchmark
 ]
 .pull-right[![](pics/02/everest.jpg)]
+
+---
+# The LINPACK Benchmark
+* Solve the system $Ax=b$
+  - A- $n\times n$ matrix (you choose $n$)
+  - Double precision
+  - Must use LU with partial pivoting
+      - $A = LU$
+      - $b = Ax = LUx$
+* $\frac{2}{3} n^3 + 2n^2$ operations
+* Solution must satisfy some accuracy conditions.
+* Most FLOPS wins!
 
 ---
 # Linear Algebra
@@ -125,27 +144,9 @@ class: clear, inverse, middle, center
 .pull-right[![](pics/02/manga_linalg.png)]
 
 ---
-# The LINPACK Benchmark
-* Solve the system $Ax=b$
-  - A- $n\times n$ matrix (you choose $n$)
-  - Double precision
-  - Must use LU with partial pivoting
-      - $A = LU$
-      - $b = Ax = LUx$
-* $\frac{2}{3} n^3 + 2n^2$ operations
-* Solution must satisfy some accuracy conditions.
-
-
-
----
-class: clear, inverse, middle, center
 # GPGPU
-
----
-# Using Video Game Hardware to Multiply Matrices
 .pull-left[
-* AKA GPGPU
-* Not just for video games and mining bitcoin anymore!
+* Using Video Game Hardware to Multiply Matrices
 * Major players
   - NVIDIA
   - AMD
@@ -171,18 +172,31 @@ Cons:
 .pull-right[![](pics/07/cuda_cube.jpg)]
 
 ---
-# GPGPU
-* 
+# "High-Level" GPGPU Technologies
+.pull-left[
+* Python
+  - CuPy
+* R
+  - fmlr
+  - gpuR
+* Deep Learning frameworks
+]
+.pull-right[![](pics/07/fml.png)]
 
 ---
-class: clear, inverse, middle, center
-# Utilizing Compiled Code
-
-
-
-
-
-
+# Using Compiled Code in a HLL
+.pull-left[
+* Pros
+  - fast
+  - memory-efficient
+  - best of both worlds
+* Cons
+  - hard to write
+  - hard to debug
+  - multiple skillsets
+* Julia???
+]
+.pull-right[![:scale 76%](pics/07/c.png)]
 
 ---
 class: clear, inverse, middle, center
