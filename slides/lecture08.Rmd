@@ -1,5 +1,5 @@
 ---
-title: Lecture 8 - High Level Language Optimizations Part 1
+title: Lecture 8 - High Level Language Optimizations
 subtitle: "DSE 512"
 author: "Drew Schmidt"
 date: "2022-02-17"
@@ -20,28 +20,392 @@ options(htmltools.dir.version = FALSE)
 ```
 
 # From Last Time
-* Homework due
+* Homework is out
+* Haven't made the slack channel yet
 * Questions?
 
 
 
+---
+class: clear, inverse, middle, center
+# Basics
 
 ---
-# Using Efficient Kernels
+# Profiling
+* Real profiling comes later
+* For now, we only need simple timing
+* "Wall clock" timers
+* Other kinds of timers exist...
+
+---
+# Wallclock Timing
 .pull-left[
-```r
-s = 0
-for (i in 1:length(x))
-  s = s + x[i]
+## Python
+```{python, cache=TRUE}
+import time
+
+t0 = time.perf_counter()
+time.sleep(1.2)
+t1 = time.perf_counter()
+t1 - t0
 ```
 ]
 .pull-right[
-```r
-sum(x)
+## R
+```{r, cache=TRUE}
+system.time(Sys.sleep(1.2))[3]
 ```
 ]
+
+---
+# Python Timer Class
+.pull-left[
+```{python timeclass, cache=TRUE}
+import time
+
+class Timer(object):
+  def start(self):
+    self.t0 = time.perf_counter()
+  
+  def stop(self):
+    t1 = time.perf_counter()
+    print(t1-self.t0)
+```
+]
+.pull-right[
+```{python, dependson="timeclass", cache=TRUE}
+t = Timer()
+
+t.start()
+time.sleep(.63)
+t.stop()
+```
+]
+
+---
+# Major HLL Strategies
+* Compilers and Flags
+* Fundamental types
+* Use efficient kernels/packages
+* Vectorization
+* JIT and/or bytecode compilers
+
+---
+# Compilers and Flags
+* You can compile Python/R with different compilers and flags
+  - `icc` instead of `gcc`
+  - `-O3` instead of `-O2`
+  - AND MANY MORE
+* Pros:
+  - Essentially **free** performance (if you can figure it out)
+  - No additional effort!
+* Cons:
+  - Not always easy to do
+  - Aggressive flags can break things
+* We won't deal with this further
+
+---
+# Fundamental Types
+* Floating point: `float` (32-bit) and `double` (64-bit)
+* Most computation (R, Python) automatically in double precision
+* Float:
+  - half the memory
+  - twice as fast (roughly)
+  - not as accurate
+* Python
+  - Well supported in numpy
+  - `np.random.rand(3).astype('f')`
+  - `np.array([1, 2, 3, 4], dtype='f')`
+* R
+  - float package https://cran.r-project.org/package=float
+  - fmlr package https://hpcran.org/packages/fmlr/index.html
+
+---
+# Efficient Kernels
+TODO
+
+---
+# Vectorization
+* A specific kind of use of efficient kernels
+* Not rigorously defined (sometimes means something different!)
+* Simplest explanation: avoiding loops
+* Trades memory for runtime performance
+* Operates on a vector of inputs
+  - Can be a transformation: vector(s) in $\rightarrow$ vector out (e.g. `x+1`)
+  - Can be a reduction: vector(s) in $\rightarrow$ number out (e.g. sum operator, dot product, etc)
+  - Not strictly limited to these patterns...
+
+---
+# Vectorization (Pseudocode)
+.pull-left[
+## Non-Vectorized
+```r
+s = initialize()
+for (i in 1:n)
+  s += my_operation()
+```
+How many numbers do we store?
+]
+.pull-right[
+## Vectorized
+```r
+x = my_operation(n)
+sum(x)
+```
+And here?
+]
+
+---
+# Vectorization Example: Dot Product
+$$a\cdot b = \displaystyle\sum_{i=1}^n a_i b_i$$
+.pull-left[
+## Non-Vectorized
+```python
+d = 0
+for i in range(len(a)):
+  d += a[i]*b[i]
+```
+How many numbers do we store?
+]
+.pull-right[
+## Vectorized
+```python
+numpy.dot(a, b)
+```
+And here?
+]
+
+
+---
+# JIT and/or Bytecode
+TODO
+
+
+
+
 
 
 ---
 class: clear, inverse, middle, center
-# Live Demo
+# Calculating Means in Python
+
+---
+# Mean Calculation
+* *Many* ways to do this
+  - Stable/unstable
+  - Online
+  - Mean + variance
+  - Online mean + variance
+* Some have numerical problems that go *well* beyond the scope of this course
+* Good place to start https://en.wikipedia.org/wiki/Kahan_summation_algorithm
+* Real example usage https://github.com/wrathematics/proginfo
+
+---
+# Generate Some Random Data
+```{python datagen, dependson="timeclass", cache=TRUE}
+import random
+random.seed(1234)
+import numpy as np
+n = 100000
+x = np.random.rand(n)
+```
+
+---
+# Naive Mean
+.pull-left[
+```{python naive_mean, dependson="datagen", cache=TRUE}
+def mean(x):
+  s = 0.0
+  n = len(x)
+  for i in range(n):
+    s += x[i]
+  return s / n
+```
+]
+.pull-right[
+```{python, dependson="naive_mean", cache=TRUE}
+t.start()
+mean_x = mean(x)
+t.stop()
+```
+]
+
+---
+# Vectorized Mean
+.pull-left[
+```{python vectorized_mean, dependson="datagen", cache=TRUE}
+def mean_numpy(x):
+  return np.sum(x) / len(x)
+```
+]
+.pull-right[
+```{python, dependson="vectorized_mean", cache=TRUE}
+t.start()
+mean_x = mean_numpy(x)
+t.stop()
+```
+]
+
+---
+# NUMBA
+.pull-left[
+* Just-In-Time (JIT) compiler
+* One of the cooler Python features!
+* Converts Python code into machine code using LLVM
+* 
+]
+.pull-right[![](pics/08/numba.jpg)]
+
+---
+# NUMBA Mean
+.pull-left[
+```{python numa_mean, dependson="datagen", cache=TRUE}
+from numba import jit
+
+@jit(nopython = True)
+def mean_numba(x):
+  s = 0.0
+  n = len(x)
+  for i in range(n):
+    s += x[i]
+  return s / n
+```
+]
+.pull-right[
+```{python, dependson="numa_mean", cache=TRUE}
+t.start()
+mean_x = mean_numba(x)
+t.stop()
+
+t.start()
+mean_x = mean_numba(x)
+t.stop()
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Calculating $\pi$
+
+
+---
+# Monte Carlo $\pi$ Simulation
+$\text{Area} = \pi r^2$
+
+.pull-left[
+```{r piplot, cache=TRUE}
+set.seed(1234)
+n = 1000
+x = runif(n)
+y = runif(n)
+
+circ_pts = seq(0, pi/2,length.out=100)
+library(ggplot2)
+g = ggplot(data.frame(x=x, y=y), aes(x, y)) +
+  theme_bw() +
+  geom_point() +
+  annotate("path",
+   x = 0 + 1*cos(circ_pts),
+   y = 0 + 1*sin(circ_pts),
+   color="red"
+  )
+```
+]
+.pull-right[
+```{r piplot_render, dependson="piplot", cache=TRUE, echo=FALSE}
+g
+```
+]
+
+---
+# Estimating $\pi$: Naive Implementation
+.pull-left[
+```{r, cache=TRUE}
+pi_sim = function(n=1e6, seed=1234)
+{
+  set.seed(seed)
+  x = runif(n)
+  y = runif(n)
+  
+  s = 0
+  for (i in 1:n)
+  {
+    if (x[i]*x[i] + y[i]*y[i] < 1)
+      s = s + 1
+  }
+  
+  4 * s / n
+}
+```
+]
+.pull-right[
+```{r, cache=TRUE}
+system.time({
+  pi_est <- pi_sim()
+})[3]
+pi_est
+
+pi_sim_cmp <- compiler::cmpfun(pi_sim)
+system.time({
+  pi_est <- pi_sim_cmp()
+})[3]
+```
+]
+
+---
+# Estimating $\pi$: Vectorized
+.pull-left[
+```{r, cache=TRUE}
+pi_sim_vec = function(n=1e6, seed=1234)
+{
+  set.seed(seed)
+  x = runif(n)
+  y = runif(n)
+  4 * sum(x*x + y*y < 1) / n
+}
+```
+]
+.pull-right[
+```{r, cache=TRUE}
+system.time({
+  pi_est <- pi_sim_vec()
+})[3]
+pi_est
+```
+]
+
+---
+# Estimating $\pi$: Python
+.pull-left[
+* Discussed last year $\rightarrow$
+* Ungraded Homework:
+  - Create naive impl
+  - Create numpy impl
+  - Use numba impl
+  - Time them all
+  - Experiment with different sized samples
+]
+.pull-right[
+```python
+import random
+from numba import jit
+
+@jit(nopython = True)
+def monte_carlo_pi(nsamples):
+  acc = 0
+  for i in range(nsamples):
+    x = random.random()
+    y = random.random()
+    if (x**2 + y**2) < 1:
+      acc += 1
+  return 4 * acc / nsamples
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Questions?
