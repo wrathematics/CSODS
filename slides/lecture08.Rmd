@@ -88,7 +88,7 @@ t.stop()
 * Fundamental types
 * Use efficient kernels/packages
 * Vectorization
-* JIT and/or bytecode compilers
+* HLL Compilers: JIT and bytecode
 
 ---
 # Compilers and Flags
@@ -108,7 +108,7 @@ t.stop()
 # Fundamental Types
 * Floating point: `float` (32-bit) and `double` (64-bit)
 * Most computation (R, Python) automatically in double precision
-* Float:
+* 32-bit Float:
   - half the memory
   - twice as fast (roughly)
   - not as accurate
@@ -122,7 +122,14 @@ t.stop()
 
 ---
 # Efficient Kernels
-TODO
+* Use existing functions/methods/packages that solve problems *well*.
+  - Don't write your own linear model fitter
+  - Don't write your own matrix multiplication
+  - Don't write your own deep learning framework
+* Exceptions
+  - Interface work
+  - Learning
+  - Having a *genuinely* new/different approach
 
 ---
 # Vectorization
@@ -175,15 +182,105 @@ numpy.dot(a, b)
 And here?
 ]
 
+---
+# Bytecode
+* Your computer accepts a specific kind of instructions
+* Those look nothing like R/Python instructions
+* Bytecode is like machine code for interpreters
+* C $\xrightarrow{\text{compiler}}$ machine code
+* R and Python are C programs
+* So R/Python $\xrightarrow{\text{compiler}}$ C $\xrightarrow{\text{compiler}}$ machine code?
 
 ---
-# JIT and/or Bytecode
-TODO
+# Machine Code
+.pull-left[
+```c
+#include <stdio.h>
 
+int main()
+{
+  printf("hi\n");
+  return 0;
+}
+```
 
+```
+gcc -g hello.c -o hello
+```
+]
+.pull-right[
+```
+(gdb) disass main
+Dump of assembler code for function main:
+  0x0000000000001149 <+0>:	endbr64 
+  0x000000000000114d <+4>:	push   %rbp
+  0x000000000000114e <+5>:	mov    %rsp,%rbp
+  0x0000000000001151 <+8>:	lea    0xeac(%rip),%rdi        # 0x2004
+  0x0000000000001158 <+15>:	callq  0x1050 <puts@plt>
+  0x000000000000115d <+20>:	mov    $0x0,%eax
+  0x0000000000001162 <+25>:	pop    %rbp
+  0x0000000000001163 <+26>:	retq   
+End of assembler dump.
+```
+]
 
+---
+# Machine Code
+.pull-left[
+```c
+#include <stdio.h>
 
+int main()
+{
+  printf("hi\n");
+  return 0;
+}
+```
 
+```
+gcc -g -O2 hello.c -o hello
+```
+]
+.pull-right[
+```
+(gdb) disass main
+Dump of assembler code for function main:
+  0x0000000000001060 <+0>:	endbr64 
+  0x0000000000001064 <+4>:	sub    $0x8,%rsp
+  0x0000000000001068 <+8>:	lea    0xf95(%rip),%rdi        # 0x2004
+  0x000000000000106f <+15>:	callq  0x1050 <puts@plt>
+  0x0000000000001074 <+20>:	xor    %eax,%eax
+  0x0000000000001076 <+22>:	add    $0x8,%rsp
+  0x000000000000107a <+26>:	retq  
+End of assembler dump.
+```
+]
+
+---
+# Python Bytecode
+```{python}
+def hello():
+  print('hi')
+
+import dis
+dis.dis(hello)
+```
+
+---
+# R Bytecode
+
+```{r}
+hello = function() print("hi")
+hello = compiler::cmpfun(hello)
+compiler::disassemble(hello)
+```
+
+---
+# JIT
+* Just-In-Time
+* Compilation occurs during execution
+* Both modern Python and R use JIT for bytecode
+* Other kinds of JITs exist --- more later
 
 ---
 class: clear, inverse, middle, center
@@ -223,7 +320,7 @@ def mean(x):
 ```
 ]
 .pull-right[
-```{python, dependson="naive_mean", cache=TRUE}
+```{python, dependson=c("timeclass", "naive_mean"), cache=TRUE}
 t.start()
 mean_x = mean(x)
 t.stop()
@@ -239,7 +336,7 @@ def mean_numpy(x):
 ```
 ]
 .pull-right[
-```{python, dependson="vectorized_mean", cache=TRUE}
+```{python, dependson=c("timeclass", "vectorized_mean"), cache=TRUE}
 t.start()
 mean_x = mean_numpy(x)
 t.stop()
@@ -249,10 +346,13 @@ t.stop()
 ---
 # NUMBA
 .pull-left[
-* Just-In-Time (JIT) compiler
+* A different kind of JIT compiler
 * One of the cooler Python features!
-* Converts Python code into machine code using LLVM
-* 
+* Converts some Python into machine code using LLVM
+  - some core operations
+  - NumPy
+  - potentially good for loops of scalar/vector/matrix ops
+* Somewhat similar to armacmp https://github.com/dirkschumacher/armacmp
 ]
 .pull-right[![](pics/08/numba.jpg)]
 
@@ -272,7 +372,7 @@ def mean_numba(x):
 ```
 ]
 .pull-right[
-```{python, dependson="numa_mean", cache=TRUE}
+```{python, dependson=c("timeclass", "numa_mean"), cache=TRUE}
 t.start()
 mean_x = mean_numba(x)
 t.stop()
