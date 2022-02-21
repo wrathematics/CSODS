@@ -1,0 +1,378 @@
+---
+title: Lecture 9 - Computational Linear Algebra Part 1
+subtitle: "DSE 512"
+author: "Drew Schmidt"
+date: "2022-02-22"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# From Last Time
+* Homework is out --- due Saturday
+* Haven't made the slack channel yet
+* Questions?
+
+
+
+---
+class: clear, inverse, middle, center
+# Linear Algebra
+
+---
+# Linear Algebra On Your Computer
+What happens when you multiply two matrices?
+.pull-left[
+## Python
+```python
+np.dot(A, B)
+```
+]
+.pull-right[
+## R
+```r
+A %*% B
+```
+]
+
+---
+# BLAS and LAPACK
+.pull-left[
+## Basic Linear Algebra Subprograms
+* Fortran 77 library
+* Basic arithmetic operations
+* Level 1: vector/vector operations
+* Level 2: matrix/vector operations
+* Level 3: matrix/matrix operations
+]
+.pull-left[
+## Linear Algebra PACKage
+* Fortran 77 library
+* Matrix factorizations
+]
+
+---
+# BLAS Library: Python
+```{python, cache=TRUE}
+import numpy as np
+np.show_config()
+```
+
+---
+# BLAS Library: Python
+```{python, cache=TRUE}
+np.__config__.blas_info
+```
+
+---
+# BLAS Library: R
+```{r, cache=TRUE}
+sessionInfo()
+```
+
+---
+# BLAS Library: R
+```{r, cache=TRUE}
+sessionInfo()$BLAS
+sessionInfo()$LAPACK
+```
+
+
+---
+class: clear, inverse, middle, center
+# Quick Matrix Review
+
+---
+# Background
+* rank of a matrix
+
+
+---
+# Linear Regression
+$$
+\begin{aligned}
+y = X\beta &\iff X^T y = X^T X \beta \\
+ &\iff \left(X^TX\right)^{-1} X^T y = \beta
+\end{aligned}
+$$
+
+...right?
+
+---
+# Linear Regression
+```{r, cache=TRUE, error=TRUE}
+x = matrix(1:30, nrow=10)
+y = runif(10)
+
+solve(t(x) %*% x) %*% t(x) %*% y
+lm.fit(x, y)$coefficients
+```
+
+---
+# Linear Regression
+```{r, cache=TRUE}
+set.seed(1234)
+m = 10000
+n = 250
+x = matrix(rnorm(m*n), nrow=m, ncol=n)
+y = runif(m)
+
+system.time(solve(t(x) %*% x) %*% t(x) %*% y)
+system.time(lm.fit(x, y))
+```
+
+---
+# Condition Numbers
+>[T]he condition number [...] measures how much the output value [...] can change for a small change in the input argument
+
+>In linear regression the condition number of the moment matrix can be used as a diagnostic for multicollinearity.
+
+Source: https://en.wikipedia.org/wiki/Condition_number
+
+---
+# What's Going On?
+```{r, cache=TRUE}
+set.seed(1234)
+x = matrix(rnorm(30), 10)
+
+kappa(x)
+kappa(x)^2
+
+kappa(t(x) %*% x)
+```
+
+---
+# Conclusion
+There are *good ways* and *bad ways* to compute the same thing.
+
+
+
+---
+class: clear, inverse, middle, center
+# Singular Value Decomposition
+
+---
+# Singular Value Decomposition (SVD)
+* ***THE*** most important matrix factorization
+
+---
+# "Compact" SVD
+If $A$ is an $m\times n$ matrix then
+
+$$A_{m\times n} = U_{m\times k} \Sigma_{k\times k} V_{n\times k}^T$$
+
+* $k$ is usually minimum of $m$ and $n$
+* may be taken to be the rank of $A$ which is no greater than the minimum of $m$ and $n$
+* $\Sigma$ is diagonal
+* $U$ and $V$ are orthogonal
+
+---
+# "Full" SVD
+This is sometimes called the "compact SVD". Although it's basically never done in software, we could take the "full SVD" as
+
+$$A_{m\times n} = U_{m\times m} \Sigma_{m\times n} V^T_{n\times n}$$
+
+---
+# Important Point
+* SVD can do *almost anything*
+* But it may not be the fastest way in software
+
+---
+# SVD: Matrix Inversion
+$$ A^{-1} = V \Sigma^{-1} U^T $$
+
+---
+# SVD: System Solving
+$$
+\begin{aligned}
+Ax=b &\iff U\Sigma V^T x = b \\
+ &\iff x = V \Sigma^{-1} U^Tb
+\end{aligned}
+$$
+
+---
+# SVD: Determinants
+.pull-left[
+$$
+\begin{aligned}
+det(A) &= det(U \Sigma V^T) \\
+ &= det(\Sigma) \\
+ &= \displaystyle\prod_{i=1}^n \sigma_{ii}
+\end{aligned}
+$$
+]
+.pull-right[
+```{r, cache=TRUE}
+x = matrix(rnorm(25), nrow=5)
+det(x)
+prod(svd(x, nu=0, nv=0)$d)
+```
+]
+
+---
+# SVD: Regression (over/under-determined systems)
+$$y = X\beta \iff \beta = V \Sigma^{-1} U^T y$$
+
+---
+# Column Rank
+$$
+\begin{aligned}
+rank(A) &= rank\left( U \Sigma V^T \right) \\
+ &= \lvert \{ \sigma \mid \sigma > 0 \} \rvert
+\end{aligned}
+$$
+
+---
+# Condition Number
+$$
+cond(A) = \frac{\sigma_1}{\sigma_n}
+$$
+
+
+
+
+
+---
+# Linear Algebra
+.pull-left[
+* LA dominates scientific and data computing
+* Some uses in data:
+  - PCA - SVD
+  - Linear Models - QR
+  - Covariance/correlation - gemm/syrk
+  - Inverse - Cholesky, LU
+* 1970's: LINPACK (not that one)
+* 1980's: BLAS, LAPACK
+* 1990's: ScaLAPACK
+* 2000's: PLASMA, MAGMA
+* 2010's: ~~DPLASMA~~ SLATE
+]
+.pull-right[![](pics/02/manga_linalg.png)]
+
+
+---
+# Recall: Terminology
+.pull-left[
+* **gemm** - matrix-matrix multiply
+* **BLAS** - Basic Linear Algebra Subprograms; matrix library
+* **FLOPS** - Floating Point Operations Per Second (adds and multiplies)
+* **LINPACK** - Solve `\\(Ax=b\\)`
+* **TOP500** - list of computers ranked by LINPACK benchmark
+]
+.pull-right[![](pics/02/everest.jpg)]
+
+---
+# The LINPACK Benchmark
+* Solve the system $Ax=b$
+  - A- $n\times n$ matrix (you choose $n$)
+  - Double precision
+  - Must use LU with partial pivoting
+      - $A = LU$
+      - $b = Ax = LUx$
+* $\frac{2}{3} n^3 + 2n^2$ operations
+* Solution must satisfy some accuracy conditions.
+* Most FLOPS wins!
+
+---
+# Running LINPACK
+
+* HPL http://www.netlib.org/benchmark/hpl/
+* Python
+  - `numpy.linalg.solve(A, b)`
+* R
+  - `solve(A, b)`
+  - [okcpuid package](https://github.com/shinra-dev/okcpuid)
+  ```r
+  okcpuid::linpack()
+  ```
+* Your iPhone?! https://apps.apple.com/us/app/linpack/id380883195
+
+---
+# My Machine
+
+```{r}
+okcpuid::cpu_clock()
+```
+
+---
+# My LINPACK Results
+* N.max: 50,000
+* R.max: 186.655 GFLOPS
+* R.peak: 217.152 GFLOPS
+* max-to-peak: 85.956%
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Linear Regression
+
+---
+# The Normal Equations
+$$
+\begin{aligned}
+y = X\beta &\iff X^T y = X^T X \beta \\
+ &\iff \left(X^TX\right)^{-1} X^T y = \beta
+\end{aligned}
+$$
+
+```r
+solve(t(x) %*% x) %*% t(x) %*% y
+```
+
+---
+# QR Factorization
+
+
+---
+# SVD
+$$y = X\beta \iff \beta = V \Sigma^{-1} U^T y$$
+
+
+---
+# An Optimization Problem
+```r
+cost_gaussian = function(theta, x, y)
+{
+  m = nrow(x)
+  (1/(2*m))*sum((x%*%theta - y)^2)
+}
+
+reg.fit = function(x, y, maxiter=100)
+{
+  control = list(maxit=maxiter)
+  theta = numeric(ncol(x))
+  optim(par=theta, fn=cost_gaussian, x=x, y=y, method="CG", control=control)$par
+}
+```
+
+
+```r
+reg.fit(x, y)
+lm.fit(x, y)$coef
+```
+
+---
+# References
+
+McCullagh, P. and Nelder, J.A., 1989. Generalized Linear Models, no. 37 in Monograph on Statistics and Applied Probability.
+
+Duda, R.O., Hart, P.E. and Stork, D.G., 1973. Pattern classification (pp. 526-528). Wiley, New York.
+
+
+
+---
+class: clear, inverse, middle, center
+# Questions?
