@@ -1,6 +1,6 @@
 # DSE512
 
-The Computer Science of Data Science. Course content is licensed [CC-BY-SA](LICENSE)
+The Computer Science of Data Science. Course content is licensed [CC-BY-SA](LICENSE).
 
 * [Syllabus](syllabus/syllabus.Rmd)
 * [Assignment 1](assignments/assignment1.Rmd)
@@ -10,7 +10,7 @@ The Computer Science of Data Science. Course content is licensed [CC-BY-SA](LICE
 * Lecture 2 - [Overview of HPC and the Cloud](slides/lecture02.Rmd)
 * Lecture 3 - [Introduction to Remote Computing](slides/lecture03.Rmd)
 * Lecture 4 - [Introduction to Containers](slides/lecture04.Rmd)
-  - Handout 1 - [Docker Handout](handsouts/handout_docker.Rmd)
+  - Handout 1 - [Docker Handout](handouts/handout_docker.Rmd)
 * Lecture 5 - [Introduction to ISAAC](slides/lecture05.Rmd)
 * Lecture 6 - [MPI and Singularity](slides/lecture06.Rmd)
 * [Assignment 2](assignments/assignment2.Rmd)
