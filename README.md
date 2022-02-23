@@ -3,7 +3,7 @@
 The Computer Science of Data Science. Course content is licensed [CC-BY-SA](LICENSE).
 
 * Syllabus [[src](syllabus/syllabus.Rmd) | [pdf](syllabus/syllabus.pdf)]
-* Assignment 1 [[src](assignments/assignment1.Rmd) | [pdf(assignments/assignment1.pdf)]
+* Assignment 1 [[src](assignments/assignment1.Rmd) | [pdf](assignments/assignment1.pdf)]
 
 ## Module 1 Basic Cloud and HPC
 * Lecture 1 - Introduction [[src](slides/lecture01.Rmd) | [pdf](slides/lecture01.pdf)]
@@ -19,4 +19,4 @@ The Computer Science of Data Science. Course content is licensed [CC-BY-SA](LICE
 * Lecture 7 - Introduction to Performance Optimization [[src](slides/lecture07.Rmd) | [pdf](slides/lecture07.pdf)]
 * Lecture 8 - High Level Language Optimizations [[src](slides/lecture08.Rmd) | [pdf](slides/lecture08.pdf)]
 * Lecture 9 - Computational Linear Algebra Part 1 [[src](slides/lecture09.Rmd) | [pdf](slides/lecture09.pdf)]
-* Lecture 10 - Computational Linear Algebra Part 2 [[src](slides/lecture10.Rmd) | [pdf]()]
+* Lecture 10 - Computational Linear Algebra Part 2 [[src](slides/lecture10.Rmd) | pdf]
