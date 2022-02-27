@@ -19,4 +19,4 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 7 - Introduction to Performance Optimization [[src](slides/lecture07.Rmd) | [pdf](slides/lecture07.pdf)]
 * Lecture 8 - High Level Language Optimizations [[src](slides/lecture08.Rmd) | [pdf](slides/lecture08.pdf)]
 * Lecture 9 - Computational Linear Algebra Part 1 [[src](slides/lecture09.Rmd) | [pdf](slides/lecture09.pdf)]
-* Lecture 10 - Computational Linear Algebra Part 2 [[src](slides/lecture10.Rmd) | pdf]
+* Lecture 10 - Computational Linear Algebra Part 2 [[src](slides/lecture10.Rmd) | [pdf](slides/lecture10.pdf)]

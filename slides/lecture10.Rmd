@@ -24,6 +24,12 @@ options(htmltools.dir.version = FALSE)
 * Questions?
 
 ---
+# Revisiting Cholesky
+.center[![](pics/10/mvn.png)]
+
+Gelman, A., Carlin, J.B., Stern, H.S. and Rubin, D.B., 1995. Bayesian data analysis. Chapman and Hall/CRC.
+
+---
 # Two Techniques
 * Principal Components Analysis (PCA)
 * Linear Regression
@@ -52,14 +58,25 @@ class: clear, inverse, middle, center
 
 ---
 # PCA: The Black Box
+.pull-left[
 * Via covariance matrix `princomp()`
 * Via SVD `prcomp()`
+]
+.pull-right[
+* Pros
+  - It just works!
+  - Reasonably efficient
+* Cons
+  - Stock methods do what they do...
+  - What if we run out of memory?
+  - What if we want to go parallel?
+]
 
 ---
 # PCA: Covariance Matrix
 .pull-left[
 * Step 1: compute covariance matrix $\Sigma_X$
-* Step 2: compute Eigendecomposition $\Sigma_X = V \Delta V^T$
+* Step 2: compute $\Sigma_X = V \Delta V^T$
   - "Standard deviations": $\sqrt{\delta_i}$
   - Loadings: $V$
   - Scores: $XV$
@@ -167,11 +184,13 @@ Halko, N., Martinsson, P.G. and Tropp, J.A., 2009. Finding structure with random
 
 ---
 # Randomized SVD
-```{r}
+.pull-left[
+```r
 rsvd = function(x, k=1, q=3){
   ### Stage A
   n = ncol(x)
-  Omega = matrix(runif(n*2L*k), nrow=n, ncol=2L*k)
+  Omega = matrix(runif(n*2L*k),
+    nrow=n, ncol=2L*k)
   
   Y = x %*% Omega
   Q = qr.Q(qr(Y))
@@ -181,7 +200,6 @@ rsvd = function(x, k=1, q=3){
     Y = x %*% Q
     Q = qr.Q(qr(Y))
   }
-  
   ### Stage B
   B = crossprod(Q, x)
   svd_B = La.svd(x=B, nu=0, nv=0)
@@ -189,26 +207,36 @@ rsvd = function(x, k=1, q=3){
   d
 }
 ```
+]
+.pull-right[
+* Pros
+  - Fast
+  - Memory efficient
+  - "Good enough" for plotting
+* Cons
+  - Numerical accuracy
+  - How do we recover $U$ and $V$? (Hint: inspect $B$)
+]
 
 ---
-# Randomized SVD
+# rsvd Benchmark
 ```r
 m = 1e6
-n = 250
+n = 500
 X = matrix(runif(m*n), nrow=m, ncol=n)
 
 system.time(svd(X, nu=0, nv=0))
 ```
 ```
-##    user  system elapsed 
-##  96.357  13.982  18.405
+##     user  system elapsed 
+##  164.000  22.959  32.814
 ```
 ```r
 system.time(rsvd(X, k=2))
 ```
 ```
 ##    user  system elapsed 
-##  11.949   7.171   2.994
+##  18.599   7.051   4.712
 ```
 
 ---
@@ -216,7 +244,25 @@ class: clear, inverse, middle, center
 # Linear Regression
 
 ---
+# Linear Regression
+.pull-left[
+```{r regplot, cache=TRUE}
+library(ggplot2)
+g = ggplot(data=mtcars, aes(hp, mpg)) + 
+  theme_bw() +
+  geom_point() +
+  geom_smooth(method="lm")
+```
+]
+.pull-right[
+```{r, dependson="regplot", cache=TRUE, echo=FALSE}
+suppressMessages(print(g))
+```
+]
+
+---
 # Regression: The Black Box
+.pull-left[
 * Uses a rank-revealing QR
 * Modified LINPACK (!) code
 * Pivoting destroys statistical information...
@@ -224,9 +270,19 @@ class: clear, inverse, middle, center
 ```r
 lm.fit(X, y)$coef
 ```
+]
+.pull-right[
+* Pros
+  - It just works!
+  - It gets the statistics right when rank degenerate (THIS IS VERY HARD)
+* Cons
+  - Not very efficient
+  - Same as before: memory, parallelism, etc
+]
 
 ---
 # Regression: The Normal Equations
+.pull-left[
 $$
 \begin{aligned}
 y = X\beta &\iff X^T y = X^T X \beta \\
@@ -237,9 +293,19 @@ $$
 ```r
 solve(t(X) %*% X) %*% t(X) %*% y
 ```
+]
+.pull-right[
+* Pros
+  - Easy to understand
+  - Great for teaching
+* Cons
+  - Doesn't handle rank degeneracy
+  - Other accuracy problems
+]
 
 ---
 # Regression: QR Factorization
+.pull-left[
 $$
 \begin{aligned}
 y = X\beta &\iff y = QR\beta \\
@@ -250,18 +316,36 @@ $$
 ```r
 qr.solve(qr(X), y)
 ```
+]
+.pull-right[
+* Pros
+  - Mostly like what `lm.fit()` is doing!
+  - Numerically good
+* Cons
+  - LAPACK QR solver has pivoting issues (ANOVA)
+]
 
 ---
 # Regression: SVD
+.pull-left[
 $$y = X\beta \iff \beta = V \Sigma^{-1} U^T y$$
 
 ```r
 s = La.svd(X)
 t(s$vt) %*% diag(1/s$d) %*% t(s$u) %*% y
 ```
+]
+.pull-right[
+* Pros
+  - Accurate
+  - Can accommodate rank degeneracy
+* Cons
+  - Not the fastest
+]
 
 ---
-# An Optimization Problem
+# Regression: Optimization Problem
+.pull-left[
 $$\min_{\beta \in \mathbb{R}^n} \frac{1}{2m} \sum_{i=1}^m \left((X \beta)_i - y_i\right)^2$$
 
 ```r
@@ -273,13 +357,25 @@ cost_gaussian = function(beta, x, y){
 reg.fit = function(x, y, maxiter=100){
   control = list(maxit=maxiter)
   beta = numeric(ncol(x))
-  optim(par=beta, fn=cost_gaussian, x=x, y=y, method="CG", control=control)
+  optim(par=beta, fn=cost_gaussian,
+    x=x, y=y, method="CG", control=control
+  )
 }
 ```
 
 ```r
 reg.fit(X, y)$par
 ```
+]
+.pull-right[
+* Pros
+  - Easy to implement
+  - Can easily re-purpose for other GLM's
+  - Parallelizes easily!
+* Cons
+  - Performance depends *a lot* on optimization method
+  - How even would we handle rank degeneracy?
+]
 
 ---
 # Ungraded Homework
