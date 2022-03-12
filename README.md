@@ -21,4 +21,6 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 9 - Computational Linear Algebra Part 1 [[src](slides/lecture09.Rmd) | [pdf](slides/lecture09.pdf)]
 * Lecture 10 - Computational Linear Algebra Part 2 [[src](slides/lecture10.Rmd) | [pdf](slides/lecture10.pdf)]
 * Lecture 11 - GPGPU (The Easy Parts) Part 1 [[src](slides/lecture11.Rmd) | [pdf](slides/lecture11.pdf)]
-* Lecture 11 - GPGPU (The Easy Parts) Part 2 [[src](slides/lecture12.Rmd) | [pdf](slides/lecture12.pdf)]
+* Lecture 12 - GPGPU (The Easy Parts) Part 2 [[src](slides/lecture12.Rmd) | [pdf](slides/lecture12.pdf)]
+* Lecture 13 - Utilizing Compiled Code [[src](slides/lecture13.Rmd) | [pdf](slides/lecture13.pdf)]
+* Lecture 14 -  I/O and Out-of-Core Methods [[src](slides/lecture14.Rmd) | [pdf](slides/lecture14.pdf)]
