@@ -5,7 +5,7 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Syllabus [[src](syllabus/syllabus.Rmd) | [pdf](syllabus/syllabus.pdf)]
 * Assignment 1 [[src](assignments/assignment1.Rmd) | [pdf](assignments/assignment1.pdf)]
 
-## Module 1 Basic Cloud and HPC
+## Module 1: Basic Cloud and HPC
 * Lecture 1 - Introduction [[src](slides/lecture01.Rmd) | [pdf](slides/lecture01.pdf)]
 * Lecture 2 - Overview of HPC and the Cloud [[src](slides/lecture02.Rmd) | [pdf](slides/lecture02.pdf)]
 * Lecture 3 - Introduction to Remote Computing [[src](slides/lecture03.Rmd) | [pdf](slides/lecture03.pdf)]
