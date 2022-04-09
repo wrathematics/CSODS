@@ -24,3 +24,13 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 12 - GPGPU (The Easy Parts) Part 2 [[src](slides/lecture12.Rmd) | [pdf](slides/lecture12.pdf)]
 * Lecture 13 - Utilizing Compiled Code [[src](slides/lecture13.Rmd) | [pdf](slides/lecture13.pdf)]
 * Lecture 14 -  I/O and Out-of-Core Methods [[src](slides/lecture14.Rmd) | [pdf](slides/lecture14.pdf)]
+* Assignment 3  [[src](assignments/assignment3.Rmd) | [pdf](assignments/assignment3.pdf)]
+
+## Module 3: Parallelism
+* Lecture 15 - Introduction to Parallelism [[src](slides/lecture15.Rmd) | [pdf](slides/lecture15.pdf)]
+* Lecture 16 - Fork Parallelism Part 1 [[src](slides/lecture16.Rmd) | [pdf](slides/lecture16.pdf)]
+* Lecture 17 - Fork Parallelism Part 2 [[src](slides/lecture17.Rmd) | [pdf](slides/lecture17.pdf)]
+* Lecture 18 - MPI Part 1 [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
+* Lecture 19 - MPI Part 2 [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
+* Lecture 20 - MPI Part 3 [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
+* Lecture 21 - The MapReduce Algorithm [src | pdf]
