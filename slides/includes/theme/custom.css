@@ -97,8 +97,17 @@ a, a > code {
   padding: 1em 4em 1em 4em;
 }
 
+
+.small {
+  font-size: 22px;
+}
+
 .tiny {
   font-size: 16px;
+}
+
+.large {
+  font-size: 36px;
 }
 
 .huge {

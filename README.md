@@ -33,4 +33,4 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 18 - MPI Part 1 [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
 * Lecture 19 - MPI Part 2 [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
 * Lecture 20 - MPI Part 3 [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
-* Lecture 21 - The MapReduce Algorithm [src | pdf]
+* Lecture 21 - The MapReduce Algorithm [[src](slides/lecture21.Rmd) | [pdf](slides/lecture21.pdf)]

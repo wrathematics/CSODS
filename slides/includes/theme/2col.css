@@ -26,6 +26,19 @@
 .pull-right ~ * {
   clear: both;
 }
+.pull-left-minicol {
+  margin-top: -20px;
+  float: left;
+  width: 20%;
+}
+.pull-right-maxicol {
+  margin-top: -20px;
+  float: right;
+  width: 78%;
+}
+.pull-right-maxicol ~ * {
+  clear: both;
+}
 img, video, iframe {
   max-width: 100%;
 }
@@ -52,4 +65,3 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
     left: 0 !important;
   }
 }
-
