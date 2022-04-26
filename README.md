@@ -34,3 +34,15 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 19 - MPI Part 2 [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
 * Lecture 20 - MPI Part 3 [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
 * Lecture 21 - The MapReduce Algorithm [[src](slides/lecture21.Rmd) | [pdf](slides/lecture21.pdf)]
+* Assignment 4  [[src](assignments/assignment4.Rmd) | [pdf](assignments/assignment4.pdf)]
+
+## Module 4: Profiling
+* Lecture 22 - Profiling Basics [[src](slides/lecture22.Rmd) | [pdf](slides/lecture22.pdf)]
+* Lecture 23 - Debugging Story [[src](slides/lecture23.Rmd) | [pdf](slides/lecture23.pdf)]
+* Lecture 24 - HLL Profiling [[src](slides/lecture24.Rmd) | [pdf](slides/lecture24.pdf)]
+* Lecture 25 - Advanced Profiling 
+
+## Module 5: Deep Learning
+* Lecture 26 - Basic Introduction to DL [src|pdf]
+* Lecture 27 - DL for Practitioners [src|pdf]
+* Lecture 28 - GPU and Distributed Training [src|pdf]
