@@ -1,0 +1,421 @@
+---
+title: Lecture 25 - Advanced Profiling
+subtitle: "DSE 512"
+author: "Drew Schmidt"
+date: "2022-04-28"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# From Last Time
+* Homework 4
+  - Assigned
+  - Due April 30
+  - Extensions very unlikely
+* Homework 5
+  - Covers profiling
+  - Smaller
+  - Assigned next week?
+  - Due May 10?
+* No Homework 6 (Deep Learning)
+* Questions?
+
+
+---
+class: clear, inverse, middle, center
+# Advanced Profiling
+
+---
+# Advanced Profilers
+* Hardware counter profiling
+* MPI profilers
+* GPU (CUDA) profilers
+
+---
+# Hardware Counter Profiling
+.pull-left[
+* Modern hardware (CPU, GPU) collects *hardware counters*
+* Counter: number of occurrences
+* Hardware counter: Number of times hardware event occurs
+* Performance Application Programming Interface (PAPI) https://icl.utk.edu/papi/
+].pull-right[![](pics/22/counter.jpg)]
+
+---
+# Hardware Counter Examples
+.pull-left[
+* Cache misses
+  - Data cache
+  - Instruction cache
+* Flops
+* Others
+].pull-right[![](pics/22/counter.jpg)]
+
+---
+# An Example
+We're talking about SVD again!
+.center[![:scale 50%](pics/25/party.png)]
+
+---
+# PCA
+* Input matrix $A$
+  - Compute SVD of $A$
+  - Project $A$ onto $V$
+* Number of floating point operations:
+  - SVD requires $6mn^2 + 20n^3$ ops
+  - projection requires $2mn^2$ ops
+  - Source: Golub, G.H. and Van Loan, C.F., 2013. Matrix computations. JHU press.
+  - Also requires mean-centering: $2mn+n$ ops
+* TOTAL: $6mn^2 + 20n^3 + 2mn^2 + 2mn + n$
+
+---
+# PCA FLOPs
+```r
+m = 10000
+n = 50
+A = matrix(rnorm(m*n), m, n)
+ret = prcomp(A)
+
+pbdPAPI::system.flops(prcomp(A))
+```
+```
+      m  n  measured theoretical difference pct.error   mflops
+1 10000 50 212538720   203500050    9038670      4.25  2284.26
+```
+
+---
+# MPI Profilers
+* fpmpi
+  - Easy to install
+  - Least useful
+* mpiP
+  - Relatively easy to install
+  - 
+* tau
+  - *Very* hard to install
+  - Profiles *everything*
+
+---
+# MPI Profiling
+.center[![](pics/22/mpi_profiler.png)]
+
+---
+# MPI Profiling Steps
+* Build mpiP
+* Rebuild your MPI program
+  - Binary, pbdMPI, mpi4py, ...
+  - Link with mpiP
+* Run program
+* Read profiler data
+
+---
+# MPI Profiling
+.center[![](pics/22/stats1.png)]
+
+
+
+---
+class: clear, inverse, middle, center
+# Cache
+
+---
+# Computer Hardware
+.pull-left[
+* We have to talk a bit about computer hardware
+* Goal is not to become experts
+* Need to be aware of some realities
+].pull-right[![](pics/25/computer.jpg)]
+
+---
+# Memory Hierarchy
+.center[![:scale 75%](pics/25/memory.png)]
+
+---
+# Cache
+.center[![:scale 75%](pics/25/cache.png)]
+
+---
+# Cache Sizes
+```r
+library(memuse)
+
+Sys.cachesize()
+```
+```
+## L1I:   64.000 KiB 
+## L1D:   32.000 KiB 
+## L2:   512.000 KiB 
+## L3:    16.000 MiB 
+```
+```r
+Sys.cachelinesize()
+```
+```
+## Linesize:  64 B 
+```
+
+---
+# Recall: Homework 3
+Filling matrix $A = \left[a_{ij}\right]_{n\times n}$  where
+
+$$ \displaystyle a_{ij} = \exp\left( -\frac{i+j}{ij} \right) $$
+
+---
+# Homework 3
+.pull-left[
+## R
+```r
+rf = function(n){
+  A = matrix(0, n, n)
+  for (i in 1:n)
+    for (j in 1:n){
+      A[i, j] = exp(-(i+j)/(i*j))
+  }
+  A
+}
+
+cf = function(n){
+  A = matrix(0, n, n)
+  for (j in 1:n){
+    for (i in 1:n)
+      A[i, j] = exp(-(i+j)/(i*j))
+  }
+  A
+}
+```
+].pull-right[
+## Python
+```python
+@jit(nopython = True)
+def rf(n):
+  A = np.zeros((n, n))
+  for i in range(0, n):
+    for j in range(0, n):
+      A[i, j] = math.exp(-((i+1)+(j+1))/((i+1)*(j+1)))
+  return A
+
+@jit(nopython = True)
+def cf(n):
+  A = np.zeros((n, n))
+  for j in range(0, n):
+    for i in range(0, n):
+      A[i, j] = math.exp(-((i+1)+(j+1))/((i+1)*(j+1)))
+  return A
+```
+]
+
+---
+# Homework 3
+.pull-left[
+## R
+```{r, cache=TRUE, echo=FALSE}
+library(ggplot2)
+df = data.frame(runtime=c(13.8, 12.8), operation=c("rows", "cols"))
+ggplot(df, aes(operation, runtime)) +
+  geom_bar(stat="identity") +
+  theme_bw() + 
+  xlab("Outer Loop") + 
+  ylab("Average Runtime (5 runs) in Seconds") + 
+  ggtitle("Matrix filler benchmark with n=10000")
+```
+].pull-right[
+## Python (with Numba)
+```{r, cache=TRUE, echo=FALSE}
+library(ggplot2)
+df = data.frame(runtime=c(1.040239, 1.413331), operation=c("rows", "cols"))
+ggplot(df, aes(operation, runtime)) +
+  geom_bar(stat="identity") +
+  theme_bw() + 
+  xlab("Outer Loop") + 
+  ylab("Average Runtime (5 runs) in Seconds") + 
+  ggtitle("Matrix filler benchmark with n=10000")
+```
+]
+
+---
+# Why Would It Matter?
+.center[![:scale 55%](pics/09/big_think.png)]
+
+---
+# Matrices
+.pull-left[
+* Computers don't have a concept of "matrix"
+* Computers *do* have a concept of "array"
+* Array: A contiguous block of memory
+].pull-right[.center[![:scale 75%](pics/25/array1.png)]]
+
+---
+# Matrices
+.pull-left[
+* Matrices are (almost always) just arrays
+  - Can be arrays of arrays
+  - This is usually not a good idea
+  - I don't want to get into it
+* Ordering (column-major / row-major)
+* Col: `A[i, j] = A[i + m*j]`
+* Row: `A[i, j] = A[i*n + j]`
+].pull-right[.center[![:scale 75%](pics/25/array2.png)]]
+
+---
+# Looping "Wrong"
+* CPUs will fetch data to cache(s) that it expects you'll need
+* A cache "miss" means data is not in cache
+  - have to go get it from RAM
+  - RAM $\rightarrow$ L3 $\rightarrow$ L2 $\rightarrow$ L1
+* A "miss" is not inherently bad
+  - If everything fit in cache, GREAT!
+  - Probably it won't
+  - In that case, *there will be cache misses*
+* What you *don't* want is **unnecessary** misses
+
+---
+# Another Example
+We're simulating $\pi$ again!
+.center[![:scale 50%](pics/25/party.png)]
+
+---
+# Implementations
+.pull-left[
+## Rcpp
+```c++
+double mcpi_rcpp(const int n){
+  int i, r = 0;
+  double u, v;
+  Rcpp::RNGScope scope;
+  
+  for (i=0; i<n; i++){
+    u = R::runif(0, 1);
+    v = R::runif(0, 1);
+    if (u*u + v*v <= 1)
+      r++;
+  }
+  
+  return (double) 4.0*r/n;
+}
+```
+].pull-right[
+## C
+```c
+SEXP mcpi_c(SEXP n_){
+  SEXP ret;
+  int i, r = 0;
+  const int n = INTEGER(n_)[0];
+  double u, v;
+  
+  GetRNGstate();
+  for (i=0; i<n; i++){
+    u = unif_rand();
+    v = unif_rand();
+    if (u*u + v*v <= 1)
+      r++;
+  }
+  PutRNGstate();
+  
+  PROTECT(ret = allocVector(REALSXP, 1));
+  REAL(ret)[0] = (double) 4.0*r/n;
+  UNPROTECT(1);
+  return ret;
+}
+```
+]
+
+---
+# Benchmark
+```r
+library(Rcpp)
+
+sourceCpp(code=Rcpp_code)
+sourceCpp(code=C_code)
+
+n = 1e6
+rbenchmark::benchmark(mcpi_c(n), mcpi_rcpp(n))
+```
+```
+##            test replications elapsed relative user.self sys.self user.child
+##  1    mcpi_c(n)          100   1.609    1.000     1.598    0.004          0
+##  2 mcpi_rcpp(n)          100   3.099    1.926     3.084    0.001          0
+```
+
+---
+# Data Cache
+```r
+pbdPAPI::system.cache(mcpi_c(n))
+```
+```
+## Level 1 Cache Misses: 1358
+## Level 2 Cache Misses: 720
+## Level 3 Cache Misses: 400
+```
+
+```r
+pbdPAPI::system.cache(mcpi_rcpp(n))
+```
+```
+## Level 1 Cache Misses: 1316
+## Level 2 Cache Misses: 747
+## Level 3 Cache Misses: 248
+```
+
+---
+# Instructions
+## Total instructions executed
+```r
+pbdPAPI::system.event(mcpi_c(n), events="PAPI_TOT_INS")
+```
+```
+## Instructions Completed: 131035426
+```
+```r
+pbdPAPI::system.event(mcpi_rcpp(n), events="PAPI_TOT_INS")
+```
+```
+## Instructions Completed: 227028352
+```
+
+---
+# Instruction Cache
+## Instruction cache misses
+```r
+pbdPAPI::system.event(mcpi_c(n), events="PAPI_L1_ICM")
+```
+```
+## Level 1 Instruction Cache Misses: 604
+```
+```r
+pbdPAPI::system.event(mcpi_rcpp(n), events="PAPI_L1_ICM")
+```
+```
+## Level 1 Instruction Cache Misses: 873
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* Profiling is information gathering
+  - runtimes
+  - memory consumption
+  - cache misses
+  - MPI comms
+* The more you understand your computer's memory hierarchy, the faster your programs will be.
+* That's it for profiling!
+* Deep learning next
+
+---
+class: clear, inverse, middle, center
+# Questions?

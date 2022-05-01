@@ -40,7 +40,7 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 22 - Profiling Basics [[src](slides/lecture22.Rmd) | [pdf](slides/lecture22.pdf)]
 * Lecture 23 - Debugging Story [[src](slides/lecture23.Rmd) | [pdf](slides/lecture23.pdf)]
 * Lecture 24 - HLL Profiling [[src](slides/lecture24.Rmd) | [pdf](slides/lecture24.pdf)]
-* Lecture 25 - Advanced Profiling 
+* Lecture 25 - Advanced Profiling [[src](slides/lecture25.Rmd) | [pdf](slides/lecture25.pdf)]
 
 ## Module 5: Deep Learning
 * Lecture 26 - Basic Introduction to DL [src|pdf]
