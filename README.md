@@ -44,6 +44,6 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Assignment 5  [[src](assignments/assignment5.Rmd) | [pdf](assignments/assignment5.pdf)]
 
 ## Module 5: Deep Learning
-* Lecture 26 - Basic Introduction to DL [src|pdf]
-* Lecture 27 - DL for Practitioners [src|pdf]
+* Lecture 26 - Basic Introduction to DL [[src](slides/lecture26.Rmd) | [pdf](slides/lecture26.pdf)]
+* Lecture 27 - DL for Practitioners [[src](slides/lecture27.Rmd) | [pdf](slides/lecture27.pdf)]
 * Lecture 28 - GPU and Distributed Training [src|pdf]
