@@ -51,7 +51,7 @@ class: clear, inverse, middle, center
   - AMD
   - Intel
 ]
-.pull-right[![](pics/02/kon_gpu.jpg)]
+.pull-right[![](pics/kon_gpu.jpg)]
 
 ---
 # "Low-Level" GPGPU Technologies
@@ -62,7 +62,7 @@ class: clear, inverse, middle, center
 * OpenACC
 * OpenMP
 ]
-.pull-right[![](pics/07/cuda_cube.jpg)]
+.pull-right[![](pics/cuda_cube.jpg)]
 
 ---
 # "High-Level" GPGPU Technologies
@@ -75,15 +75,15 @@ class: clear, inverse, middle, center
   - gpuR
 * Deep Learning frameworks
 ]
-.pull-right[![](pics/07/fml.png)]
+.pull-right[![](pics/fml.png)]
 
 ---
 # Hardware
-.center[![](pics/11/shmem2.png)]
+.center[![](pics/shmem2.png)]
 
 ---
 # Hardware
-.center[![](pics/11/dmem2.png)]
+.center[![](pics/dmem2.png)]
 
 ---
 # Using a GPU
@@ -92,11 +92,11 @@ class: clear, inverse, middle, center
 * Transferring data is very expensive
 * Leave data on GPU as long as possible
 ]
-.pull-right[![](pics/11/shmem2.png)]
+.pull-right[![](pics/shmem2.png)]
 
 ---
 # So How Does a GPU Work?
-.center[![:scale 55%](pics/09/big_think.png)]
+.center[![:scale 55%](pics/big_think.png)]
 
 ---
 # SIMD Parallelism
@@ -111,11 +111,11 @@ https://en.wikipedia.org/wiki/Single_instruction,_multiple_data
 # SIMD Parallelism
 .pull-left[
 ## Serial
-![](pics/11/serial.png)
+![](pics/serial.png)
 ]
 .pull-right[
 ## SIMD
-![](pics/11/simd.png)
+![](pics/simd.png)
 ]
 
 ---
@@ -154,7 +154,7 @@ Vec vec_vec_add(const Vec a, const Vec b)
 * Libraries are buggy garbage
 * Some operations are fast; many are ***SLOW***
 ]
-.center[![](pics/11/daedalus-icarus.jpg)]
+.center[![](pics/daedalus-icarus.jpg)]
 
 ---
 # CUDA OS Support
@@ -163,7 +163,7 @@ Vec vec_vec_add(const Vec a, const Vec b)
 * Windows - Mostly works; dll problem even worse than usual
 * MacOS - Not supported; will not work
 ]
-.pull-right[![](pics/11/linux.png)]
+.pull-right[![](pics/linux.png)]
 
 
 ---
@@ -231,7 +231,7 @@ cublasStatus_t cublasDgemm(
 
 ---
 # Can We Offload Computations to GPU Automatically?
-.center[![:scale 55%](pics/09/big_think.png)]
+.center[![:scale 55%](pics/big_think.png)]
 
 ---
 # NVBLAS
@@ -264,15 +264,15 @@ cublasStatus_t cublasDgemm(
 
 ---
 # Matrix Products Benchmark
-.center[![:scale 57%](pics/11/netlib_vs_openblas.png)]
+.center[![:scale 57%](pics/netlib_vs_openblas.png)]
 
 ---
 # Matrix Products Benchmark
-.center[![:scale 57%](pics/11/openblas.png)]
+.center[![:scale 57%](pics/openblas.png)]
 
 ---
 # Matrix Products Benchmark
-.center[![:scale 57%](pics/11/nvblas.png)]
+.center[![:scale 57%](pics/nvblas.png)]
 
 ---
 # Configuring NVBLAS
@@ -317,7 +317,7 @@ class: clear, inverse, middle, center
 
 ---
 # It Doesn't Go Well
-.center[![](pics/11/spoiler-alert.jpg)]
+.center[![](pics/spoiler-alert.jpg)]
 
 ---
 # Test Scripts
@@ -434,7 +434,7 @@ nm /sw/isaac/applications/anaconda3/2021.05/rhel8_gcc10.2.0/anaconda3-2021.05/li
 
 ---
 # NVBLAS DOESN'T WORK WITH CBLAS
-.center[![:scale 55%](pics/12/stop.jpg)]
+.center[![:scale 55%](pics/stop.jpg)]
 
 ---
 # Retry With OpenBLAS
@@ -548,7 +548,7 @@ sbatch: error: Batch job submission failed: Invalid account or account/partition
 
 ---
 # What To Do?
-.center[![:scale 55%](pics/09/big_think.png)]
+.center[![:scale 55%](pics/big_think.png)]
 
 
 

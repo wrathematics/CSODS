@@ -33,13 +33,13 @@ class: clear, inverse, middle, center
 
 ---
 # AI Winter?
-.center[![](pics/27/wall.png)]
-.center[![](pics/27/problem.png)]
+.center[![](pics/wall.png)]
+.center[![](pics/problem.png)]
 .tiny[https://nautil.us/deep-learning-is-hitting-a-wall-14467/]
 
 ---
 # DL Model Fragility
-.center[![](pics/27/onepx.png)]
+.center[![](pics/onepx.png)]
 .tiny[https://arxiv.org/abs/1710.08864]
 
 ---
@@ -53,7 +53,7 @@ class: clear, inverse, middle, center
 * Imagenet
   - 1000 class "common item" dataset
   - Nearly 15 million hand-annotated images
-].pull-right[![](pics/27/MnistExamples.png)]
+].pull-right[![](pics/MnistExamples.png)]
 
 ---
 # Some Common CNN's
@@ -61,7 +61,7 @@ class: clear, inverse, middle, center
 * AlexNet (Alex Krizhevsky, Hinton)
 * VGG (Oxford)
 * ResNet (Microsoft Research)
-].pull-right[![](pics/27/resnet.png)]
+].pull-right[![](pics/resnet.png)]
 
 .tiny[Image from https://www.researchgate.net/figure/The-structure-of-ResNet-12_fig1_329954455]
 
@@ -108,7 +108,7 @@ Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /hom
 
 ---
 # Is This a Dog?
-.center[![](pics/27/dog.jpg)]
+.center[![](pics/dog.jpg)]
 
 ---
 # Getting the Image
@@ -200,7 +200,7 @@ ashcan 0.005110110156238079
 
 ---
 # NO! This is a Bucket
-.center[![](pics/27/dog.jpg)]
+.center[![](pics/dog.jpg)]
 
 ---
 # Why Did This Happen?
@@ -208,7 +208,7 @@ ashcan 0.005110110156238079
 * We aren't training, we're evaluating
 * Need to call `model.eval()`
 * For training we use `model.train()`
-].pull-right[![:scale 50%](pics/09/big_think.png)]
+].pull-right[![:scale 50%](pics/big_think.png)]
 
 ---
 # Making a Prediction Function
@@ -323,12 +323,12 @@ string_vec_contains(categories, 'pot')
 ```
 True
 ```
-].pull-right[![:scale 50%](pics/09/big_think.png)]
+].pull-right[![:scale 50%](pics/big_think.png)]
 
 
 ---
 # What Is This?
-.center[![:scale 50%](pics/27/stove.jpg)]
+.center[![:scale 50%](pics/stove.jpg)]
 
 ---
 # Stove Predictions
@@ -384,7 +384,7 @@ car wheel 0.03589474409818649
 
 ---
 # What Is This?
-.center[![:scale 50%](pics/27/stove_eye_covers.jpg)]
+.center[![:scale 50%](pics/stove_eye_covers.jpg)]
 
 ---
 # Stove Predictions
@@ -439,7 +439,7 @@ typewriter keyboard 0.027740538120269775
 
 ---
 # What Is This?
-.center[![:scale 50%](pics/27/stove_pot.jpg)]
+.center[![:scale 50%](pics/stove_pot.jpg)]
 
 ---
 # Stove Predictions
@@ -495,7 +495,7 @@ measuring cup 0.06810993701219559
 
 ---
 # What Is This?
-.center[![:scale 50%](pics/27/pot.jpg)]
+.center[![:scale 50%](pics/pot.jpg)]
 
 ---
 # Stove Predictions
@@ -567,13 +567,13 @@ string_vec_contains(categories, 'big think')
 ```
 False
 ```
-].pull-right[![:scale 50%](pics/09/big_think.png)]
+].pull-right[![:scale 50%](pics/big_think.png)]
 
 
 
 ---
 # What Is This?
-.center[![:scale 50%](pics/09/big_think.png)]
+.center[![:scale 50%](pics/big_think.png)]
 
 ---
 # Thinking Face Predictions

@@ -50,7 +50,7 @@ class: clear, inverse, middle, center
 * Counter: number of occurrences
 * Hardware counter: Number of times hardware event occurs
 * Performance Application Programming Interface (PAPI) https://icl.utk.edu/papi/
-].pull-right[![](pics/22/counter.jpg)]
+].pull-right[![](pics/counter.jpg)]
 
 ---
 # Hardware Counter Examples
@@ -60,12 +60,12 @@ class: clear, inverse, middle, center
   - Instruction cache
 * Flops
 * Others
-].pull-right[![](pics/22/counter.jpg)]
+].pull-right[![](pics/counter.jpg)]
 
 ---
 # An Example
 We're talking about SVD again!
-.center[![:scale 50%](pics/25/party.png)]
+.center[![:scale 50%](pics/party.png)]
 
 ---
 # PCA
@@ -108,7 +108,7 @@ pbdPAPI::system.flops(prcomp(A))
 
 ---
 # MPI Profiling
-.center[![](pics/22/mpi_profiler.png)]
+.center[![](pics/mpi_profiler.png)]
 
 ---
 # MPI Profiling Steps
@@ -121,7 +121,7 @@ pbdPAPI::system.flops(prcomp(A))
 
 ---
 # MPI Profiling
-.center[![](pics/22/stats1.png)]
+.center[![](pics/stats1.png)]
 
 
 
@@ -135,15 +135,15 @@ class: clear, inverse, middle, center
 * We have to talk a bit about computer hardware
 * Goal is not to become experts
 * Need to be aware of some realities
-].pull-right[![](pics/25/computer.jpg)]
+].pull-right[![](pics/computer.jpg)]
 
 ---
 # Memory Hierarchy
-.center[![:scale 75%](pics/25/memory.png)]
+.center[![:scale 75%](pics/memory.png)]
 
 ---
 # Cache
-.center[![:scale 75%](pics/25/cache.png)]
+.center[![:scale 75%](pics/cache.png)]
 
 ---
 # Cache Sizes
@@ -245,7 +245,7 @@ ggplot(df, aes(operation, runtime)) +
 
 ---
 # Why Would It Matter?
-.center[![:scale 55%](pics/09/big_think.png)]
+.center[![:scale 55%](pics/big_think.png)]
 
 ---
 # Matrices
@@ -253,7 +253,7 @@ ggplot(df, aes(operation, runtime)) +
 * Computers don't have a concept of "matrix"
 * Computers *do* have a concept of "array"
 * Array: A contiguous block of memory
-].pull-right[.center[![:scale 75%](pics/25/array1.png)]]
+].pull-right[.center[![:scale 75%](pics/array1.png)]]
 
 ---
 # Matrices
@@ -265,7 +265,7 @@ ggplot(df, aes(operation, runtime)) +
 * Ordering (column-major / row-major)
 * Col: `A[i, j] = A[i + m*j]`
 * Row: `A[i, j] = A[i*n + j]`
-].pull-right[.center[![:scale 75%](pics/25/array2.png)]]
+].pull-right[.center[![:scale 75%](pics/array2.png)]]
 
 ---
 # Looping "Wrong"
@@ -282,7 +282,7 @@ ggplot(df, aes(operation, runtime)) +
 ---
 # Another Example
 We're simulating $\pi$ again!
-.center[![:scale 50%](pics/25/party.png)]
+.center[![:scale 50%](pics/party.png)]
 
 ---
 # Implementations

@@ -354,7 +354,7 @@ t.stop()
   - potentially good for loops of scalar/vector/matrix ops
 * Somewhat similar to armacmp https://github.com/dirkschumacher/armacmp
 ]
-.pull-right[![](pics/08/numba.jpg)]
+.pull-right[![](pics/numba.jpg)]
 
 ---
 # NUMBA Mean

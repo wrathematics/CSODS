@@ -26,7 +26,7 @@ options(htmltools.dir.version = FALSE)
 
 ---
 class: clear, middle, center
-![](pics/18/dongarra.jpg)
+![](pics/dongarra.jpg)
 
 
 ---
@@ -92,7 +92,7 @@ class: clear, inverse, middle, center
   - MPT
   - Spectrum
 ]
-.pull-right[![](pics/02/comm.png)]
+.pull-right[![](pics/comm.png)]
 
 ---
 # Interfaces
@@ -189,7 +189,7 @@ class: clear, inverse, middle, center
 
 ---
 # Hardware
-.center[![](pics/11/dmem2.png)]
+.center[![](pics/dmem2.png)]
 
 ---
 # Basic Communicator Jargon
@@ -324,7 +324,7 @@ class: clear, inverse, middle, center
 * Can destroy performance!
 ]
 .pull-right[
-![:scale 85%](pics/18/mpi_barrier.png)
+![:scale 85%](pics/mpi_barrier.png)
 ]
 
 
@@ -388,7 +388,7 @@ sys	0m0.079s
 * `reduce` - reduce to one
 * `allreduce` - reduce to all
 ]
-.pull-right[![](pics/18/mpi_reduce.png)]
+.pull-right[![](pics/mpi_reduce.png)]
 
 ---
 # Reduce Example
@@ -446,7 +446,7 @@ mpirun -np 2 python example.py
   - give it to ever other process
 * `bcast` - broadcast from one to all
 ]
-.pull-right[![](pics/18/mpi_bcast.png)]
+.pull-right[![](pics/mpi_bcast.png)]
 
 ---
 # Broadcast Example
@@ -510,7 +510,7 @@ MPI.Finalize()
 * `gather` - gather to one
 * `allgather` - gather to all
 ]
-.pull-right[![](pics/18/mpi_gather.png)]
+.pull-right[![](pics/mpi_gather.png)]
 
 ---
 # Gather Example

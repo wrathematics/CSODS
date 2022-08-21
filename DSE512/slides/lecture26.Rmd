@@ -44,7 +44,7 @@ https://en.wikipedia.org/wiki/Deep_learning
 * Dates back to the 1960's!
 * Resurfaces every decade or so
 * In 2010's they finally solved a real problem
-].pull-right[![](pics/26/ann.png)]
+].pull-right[![](pics/ann.png)]
 
 .tiny[Image from https://en.wikipedia.org/wiki/Artificial_neural_network]
 
@@ -95,12 +95,12 @@ https://en.wikipedia.org/wiki/Deep_learning
 
 ---
 # Anomaly Detection
-.center[![:scale 65%](pics/26/deathray.jpg)]
+.center[![:scale 65%](pics/deathray.jpg)]
 .tiny[Schmidt, D., Messer, B., Young, M.T. and Matheson, M., 2020. Towards the Development of Entropy-Based Anomaly Detection in an Astrophysics Simulation. arXiv preprint arXiv:2009.02430.]
 
 ---
 # Deep Laughing
-.center[![](pics/26/dlol.png)]
+.center[![](pics/dlol.png)]
 
 ---
 # Core Objects
@@ -164,7 +164,7 @@ Tensors
 
 ---
 # Why not use k-fold Crossvalidation?
-.center[![:scale 50%](pics/09/big_think.png)]
+.center[![:scale 50%](pics/big_think.png)]
 
 ---
 # Software Packages
@@ -175,7 +175,7 @@ Tensors
   - CNTK
   - Theano
   - Caffe
-].pull-right[![](pics/26/tf.jpg)]
+].pull-right[![](pics/tf.jpg)]
 
 ---
 # Hardware
@@ -183,7 +183,7 @@ Tensors
 * CPU
 * GPU
 * TPU
-].pull-right[![](pics/26/tpu.jpg)]
+].pull-right[![](pics/tpu.jpg)]
 
 ---
 # Parallelism in DL

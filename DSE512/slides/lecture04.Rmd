@@ -36,7 +36,7 @@ class: clear, inverse, middle, center
 >A Linux container is a set of one or more processes that are isolated from the rest of the system. All the files necessary to run them are provided from a distinct image.
 
 Source: redhat.com
-.pull-right[![](pics/04/containers.jpg)]
+.pull-right[![](pics/containers.jpg)]
 
 ---
 # What is a Container?
@@ -72,14 +72,14 @@ A (binary) Linux program, shipped in a self-contained way.
 
 ---
 # "Portability"
-.center[![:scale 150%](pics/04/python_packages.png)]
+.center[![:scale 150%](pics/python_packages.png)]
 
 ---
 # Why Should I Care?
 .center[
-![](pics/04/siren.png)
+![](pics/siren.png)
 .huge[In HPC, you don't have root!]
-![](pics/04/siren.png)
+![](pics/siren.png)
 ]
 
 ---
@@ -91,18 +91,18 @@ Containers are
   - Applications aren't virtualized; run *natively*
 * Integrable with "host" OS
 
-.pull-left[![](pics/04/container.png)]
-.pull-right[![](pics/04/vm.png)]
+.pull-left[![](pics/container.png)]
+.pull-right[![](pics/vm.png)]
 
 ---
 # Container VS VM
 .pull-left[
 A container is a normal program run in a funny way
-.center[![:scale 60%](pics/04/disguise.jpg)]
+.center[![:scale 60%](pics/disguise.jpg)]
 ]
 .pull-right[
 A VM is an entire OS living inside your OS.
-.center[![](pics/04/inception.jpg)]
+.center[![](pics/inception.jpg)]
 ]
 
 ---
@@ -120,7 +120,7 @@ A VM is an entire OS living inside your OS.
   - Driver issues (MPI, CUDA, ...)
   - Security concerns
 ]
-.pull-right[![](pics/04/docker.jpg)]
+.pull-right[![](pics/docker.jpg)]
 
 ---
 # Docker All The Things?
@@ -130,7 +130,7 @@ A VM is an entire OS living inside your OS.
 * Complex builds are, well, complex
 * Can't use in HPC (e.g. ISAAC)
 ]
-.pull-right[![](pics/04/dead_docker.jpg)]
+.pull-right[![](pics/dead_docker.jpg)]
 
 ---
 # Singularity
@@ -148,7 +148,7 @@ A VM is an entire OS living inside your OS.
   - Singularity Hub
   - MPI can cause trouble
 ]
-.pull-right[![](pics/04/singularity.jpg)]
+.pull-right[![](pics/singularity.jpg)]
 
 ---
 class: clear, inverse, middle, center

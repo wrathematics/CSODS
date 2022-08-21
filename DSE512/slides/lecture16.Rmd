@@ -62,11 +62,11 @@ dependence in computations
 # Scalability
 .pull-left[
 ## Strong Scaling
-![](pics/15/scaling_strong.png)
+![](pics/scaling_strong.png)
 ]
 .pull-right[
 ## Weak Scaling
-![](pics/15/scaling_weak.png)
+![](pics/scaling_weak.png)
 ]
 
 ---
@@ -90,7 +90,7 @@ for } n_2 \text{ cores}} $$
   - Sometimes the parallel interface is
   - Sometimes it's both
 ]
-.pull-right[![](pics/15/Declaration02.jpg)]
+.pull-right[![](pics/Declaration02.jpg)]
 
 
 ---
@@ -102,7 +102,7 @@ for } n_2 \text{ cores}} $$
 * 20 holes?
 * One really big hole?
 ]
-.pull-right[![](pics/16/hole.jpg)]
+.pull-right[![](pics/hole.jpg)]
 
 ---
 # Independence in Practice
@@ -125,7 +125,7 @@ for } n_2 \text{ cores}} $$
 * Sometimes it is very noticeable
 * Sometimes it is worse than serial!
 ]
-.pull-right[![](pics/16/overhead.jpg)]
+.pull-right[![](pics/overhead.jpg)]
 
 ---
 # Fork
@@ -191,7 +191,7 @@ pool.map(math.sqrt, range(6))
   - `Pool()` has a `Spawn()` method for Windows
   - ***DO NOT DESTROY YOUR WORKER POOL UNTIL YOU ARE DONE***
 ]
-.pull-right[![](pics/16/air_quotes.jpg)]
+.pull-right[![](pics/air_quotes.jpg)]
 
 
 
@@ -322,7 +322,7 @@ for nc in [1, 2, 4]:
   - Easy in R
   - Painful in Python
 ]
-.pull-right[![](pics/16/air_quotes.jpg)]
+.pull-right[![](pics/air_quotes.jpg)]
 
 ---
 # RNG in Parallel
@@ -353,7 +353,7 @@ class: clear, inverse, middle, center
 * You can switch to the remaining door if you choose
 * What is the probability of winning if you switch?
 ]
-.pull-right[![](pics/16/monty_hall.jpg)]
+.pull-right[![](pics/monty_hall.jpg)]
 
 ---
 # Simulating One Game
@@ -614,7 +614,7 @@ class: clear, inverse, middle, center
 * "scale out"
 * What do these mysterious phrases mean?
 ]
-.pull-right[![:scale 55%](pics/09/big_think.png)]
+.pull-right[![:scale 55%](pics/big_think.png)]
 
 ---
 # Vertical (up) vs Horizontal (out) Scaling

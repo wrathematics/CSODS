@@ -29,7 +29,7 @@ options(htmltools.dir.version = FALSE)
 
 ---
 # Story Time
-.center[![](pics/23/storytime.jpg)]
+.center[![](pics/storytime.jpg)]
 
 ---
 # Cholesky
@@ -37,7 +37,7 @@ $$A_{n\times n} = L_{n\times n}L_{n\times n}^T = U_{n\times n}^TU_{n\times n}$$
 
 ---
 # Revisiting Cholesky
-.center[![](pics/10/mvn.png)]
+.center[![](pics/mvn.png)]
 
 Gelman, A., Carlin, J.B., Stern, H.S. and Rubin, D.B., 1995. Bayesian data analysis. Chapman and Hall/CRC.
 
@@ -60,7 +60,7 @@ $$ \displaystyle a_{ij} = \exp\left( -\frac{i+j}{ij} \right) $$
 * Where it doesn't work
   - Exactly one runtime environment
 ]
-.pull-right[![:scale 55%](pics/09/big_think.png)]
+.pull-right[![:scale 55%](pics/big_think.png)]
 
 ---
 # What Actually Goes Wrong
@@ -124,7 +124,7 @@ readLines("/proc/cpuinfo")
 
 ---
 # Hardware Has AVX-512
-.center[![](pics/23/bug.png)]
+.center[![](pics/bug.png)]
 
 Solution:
 ```

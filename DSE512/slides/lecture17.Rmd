@@ -31,23 +31,23 @@ class: clear, inverse, middle, center
 
 ---
 # Serial Programming
-.center[![](pics/15/parallelism1.PNG)]
+.center[![](pics/parallelism1.PNG)]
 
 ---
 # Parallel Programming
-.center[![](pics/15/parallelism2.PNG)]
+.center[![](pics/parallelism2.PNG)]
 
 ---
 # Fork/Join Parallelism
-.center[![:scale 75%](pics/17/forkjoin.png)]
+.center[![:scale 75%](pics/forkjoin.png)]
 
 ---
 # Parallelism in Theory
-.center[![:scale 55%](pics/17/mt_theory.jpg)]
+.center[![:scale 55%](pics/mt_theory.jpg)]
 
 ---
 # Parallelism in Practice
-.center[![:scale 55%](pics/17/mt_practice.jpg)]
+.center[![:scale 55%](pics/mt_practice.jpg)]
 
 
 
@@ -176,7 +176,7 @@ class: clear, inverse, middle, center
   - Number of cylinders
   - Gross horsepower
 ]
-.pull-right[![](pics/17/homer_car.jpg)]
+.pull-right[![](pics/homer_car.jpg)]
 
 ---
 # Estimating Model MSE
@@ -352,7 +352,7 @@ svd(B)$vt
 
 ---
 # But I thought we were doing data parallelism?
-.center[![:scale 50%](pics/09/big_think.png)]
+.center[![:scale 50%](pics/big_think.png)]
 
 ---
 # Distributing Work: R Implementation

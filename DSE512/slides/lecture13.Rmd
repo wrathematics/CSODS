@@ -54,7 +54,7 @@ options(htmltools.dir.version = FALSE)
   - multiple skillsets
 * Julia???
 ]
-.pull-right[![:scale 76%](pics/07/c.png)]
+.pull-right[![:scale 76%](pics/c.png)]
 
 ---
 # Differences
@@ -182,7 +182,7 @@ class: clear, inverse, middle, center
 
 ---
 # I'm not going to be polite about this...
-.center[![](pics/12/angry_homer.jpg)]
+.center[![](pics/angry_homer.jpg)]
 
 ---
 # How I Feel About Cython

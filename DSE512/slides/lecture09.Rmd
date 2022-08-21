@@ -38,7 +38,7 @@ class: clear, inverse, middle, center
   - All matrices are real-valued
   - Usually non-square
 ]
-.pull-right[![](pics/02/manga_linalg.png)]
+.pull-right[![](pics/manga_linalg.png)]
 
 ---
 # Linear Algebra On Your Computer
@@ -65,7 +65,7 @@ A %*% B
 * **LINPACK** - Solve `\\(Ax=b\\)`
 * **TOP500** - list of computers ranked by LINPACK benchmark
 ]
-.pull-right[![](pics/02/everest.jpg)]
+.pull-right[![](pics/everest.jpg)]
 
 ---
 # gemm
@@ -174,11 +174,11 @@ sessionInfo()$LAPACK
 .pull-left[
 What makes a BLAS implementation "high performance"?
 ]
-.pull-right[![](pics/09/big_think.png)]
+.pull-right[![](pics/big_think.png)]
 
 ---
 # Some Benchmarks
-.center[![:scale 55%](pics/09/blas.png)]
+.center[![:scale 55%](pics/blas.png)]
 
 ---
 # The LINPACK Benchmark
@@ -407,7 +407,7 @@ $$
 .pull-left[
 So what can SVD do?
 ]
-.pull-right[![](pics/09/no-limits.jpg)]
+.pull-right[![](pics/no-limits.jpg)]
 
 ---
 # SVD: Matrix Inversion

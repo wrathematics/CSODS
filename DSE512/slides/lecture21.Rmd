@@ -40,7 +40,7 @@ class: clear, inverse, middle, center
 
 ---
 # MapReduce
-.center[![](pics/21/mrpaper.png)]
+.center[![](pics/mrpaper.png)]
 
 ---
 # Algorithm Overview
@@ -56,11 +56,11 @@ class: clear, inverse, middle, center
 * input pair $\xrightarrow{map}$ intermediate pair
 * intermediate pairs are automatically grouped
 * intermediate key + iterator $\xrightarrow{reduce}$ values
-.center[![:scale 75%](pics/21/types.png)]
+.center[![:scale 75%](pics/types.png)]
 
 ---
 # How It Works: Computer's Perspective
-.center[![](pics/21/execution.png)]
+.center[![](pics/execution.png)]
 
 ---
 # Implementations
@@ -75,7 +75,7 @@ class: clear, inverse, middle, center
 * "scale out"
 * What do these mysterious phrases mean?
 ]
-.pull-right[![:scale 55%](pics/09/big_think.png)]
+.pull-right[![:scale 55%](pics/big_think.png)]
 
 ---
 # Vertical (up) vs Horizontal (out) Scaling
@@ -90,7 +90,7 @@ class: clear, inverse, middle, center
 ---
 # The MapReduce 'Hello World'
 Count the number of occurrences of a word across many text documents
-.center[![:scale 75%](pics/21/wordcount.png)]
+.center[![:scale 75%](pics/wordcount.png)]
 
 ---
 # Mapreduce (Spark) Pros and Cons
@@ -114,13 +114,13 @@ Count the number of occurrences of a word across many text documents
 
 ---
 # Hadoop vs RevoScaleR
-.center[![](pics/21/revo.png)]
+.center[![](pics/revo.png)]
 
 https://blog.revolutionanalytics.com/2012/10/allstate-big-data-glm.html
 
 ---
 # Spark vs pbdR
-.pull-left-minicol[<br><br>![](pics/21/hpcwire.png)]
+.pull-left-minicol[<br><br>![](pics/hpcwire.png)]
 .pull-right-maxicol[
 * A problem that takes several hours on Apache Spark
 [was analyzed] in less than a minute using R on OLCF
@@ -179,15 +179,15 @@ spark-master      | 22/04/10 14:53:08 INFO Master: Started daemon with process n
 
 ---
 # Master
-.center[![](pics/21/spark_master.png)]
+.center[![](pics/spark_master.png)]
 
 ---
 # Worker 0
-.center[![](pics/21/spark_worker0.png)]
+.center[![](pics/spark_worker0.png)]
 
 ---
 # Worker 1
-.center[![](pics/21/spark_worker1.png)]
+.center[![](pics/spark_worker1.png)]
 
 
 

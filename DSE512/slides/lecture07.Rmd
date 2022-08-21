@@ -44,7 +44,7 @@ options(htmltools.dir.version = FALSE)
 
 ---
 # Where's the Data Science?
-.center[![](pics/07/homer.jpeg)]
+.center[![](pics/homer.jpeg)]
 
 ---
 # So Your Software Is Slow
@@ -61,7 +61,7 @@ options(htmltools.dir.version = FALSE)
   - Are you using multi-threaded BLAS?
 * Can it be parallelized?
 ]
-.pull-right[![](pics/07/slow.jpg)]
+.pull-right[![](pics/slow.jpg)]
 
 ---
 # High Level Language Optimizations
@@ -101,7 +101,7 @@ options(htmltools.dir.version = FALSE)
   - Parallel hard to get right
   - lustre vs HDFS
 ]
-.pull-right[![](pics/07/datastream.jpg)]
+.pull-right[![](pics/datastream.jpg)]
 
 ---
 # Recall: Terminology
@@ -112,7 +112,7 @@ options(htmltools.dir.version = FALSE)
 * **LINPACK** - Solve `\\(Ax=b\\)`
 * **TOP500** - list of computers ranked by LINPACK benchmark
 ]
-.pull-right[![](pics/02/everest.jpg)]
+.pull-right[![](pics/everest.jpg)]
 
 ---
 # The LINPACK Benchmark
@@ -141,7 +141,7 @@ options(htmltools.dir.version = FALSE)
 * 2000's: PLASMA, MAGMA
 * 2010's: ~~DPLASMA~~ SLATE
 ]
-.pull-right[![](pics/02/manga_linalg.png)]
+.pull-right[![](pics/manga_linalg.png)]
 
 ---
 # GPGPU
@@ -158,7 +158,7 @@ Cons:
   - Hard to program
   - Expensive
 ]
-.pull-right[![](pics/02/kon_gpu.jpg)]
+.pull-right[![](pics/kon_gpu.jpg)]
 
 ---
 # "Low-Level" GPGPU Technologies
@@ -169,7 +169,7 @@ Cons:
 * OpenACC
 * OpenMP
 ]
-.pull-right[![](pics/07/cuda_cube.jpg)]
+.pull-right[![](pics/cuda_cube.jpg)]
 
 ---
 # "High-Level" GPGPU Technologies
@@ -181,7 +181,7 @@ Cons:
   - gpuR
 * Deep Learning frameworks
 ]
-.pull-right[![](pics/07/fml.png)]
+.pull-right[![](pics/fml.png)]
 
 ---
 # Using Compiled Code in a HLL
@@ -196,7 +196,7 @@ Cons:
   - multiple skillsets
 * Julia???
 ]
-.pull-right[![:scale 76%](pics/07/c.png)]
+.pull-right[![:scale 76%](pics/c.png)]
 
 ---
 class: clear, inverse, middle, center

@@ -67,7 +67,7 @@ class: clear, inverse, middle, center
 * Know NumPy? Know CuPy.
 * API reference https://docs.cupy.dev/en/stable/reference/index.html
 ]
-.pull-right[![](pics/12/cupy.png)]
+.pull-right[![](pics/cupy.png)]
 
 ---
 # Installing
@@ -126,7 +126,7 @@ CC=gcc NVCC=${CUDA_HOME}/bin/nvcc \
 
 ---
 # AND IT STILL DOESN'T WORK
-.center[![:scale 55%](pics/12/stop.jpg)]
+.center[![:scale 55%](pics/stop.jpg)]
 
 ---
 # Running CuPy on ISAAC
@@ -137,7 +137,7 @@ CC=gcc NVCC=${CUDA_HOME}/bin/nvcc \
     singularity exec --nv cupy.simg python3
     ```
 ]
-.pull-right[![](pics/12/cuda.jpg)]
+.pull-right[![](pics/cuda.jpg)]
 * Images
   - cuda https://hub.docker.com/r/nvidia/cuda/
   - CuPy https://hub.docker.com/r/cupy/cupy
@@ -167,7 +167,7 @@ INFO:    Could not find any nv files on this host!
 
 ---
 # That's a Real Pickle
-.center[![](pics/12/angry_homer.jpg)]
+.center[![](pics/angry_homer.jpg)]
 
 ---
 # Getting a GPU on ISAAC
@@ -278,7 +278,7 @@ class: clear, inverse, middle, center
 * Very different from base R
 * Documentation https://fml-fam.github.io/fmlr/html/index.html
 ]
-.pull-right[![](pics/07/fml.png)]
+.pull-right[![](pics/fml.png)]
 
 ---
 # Installation
@@ -333,7 +333,7 @@ install.packages("fmlr", configure.args=cfargs)
     singularity exec --nv r.simg R
     ```
 ]
-.pull-right[![](pics/12/cuda.jpg)]
+.pull-right[![](pics/cuda.jpg)]
 * Images
   - cuda https://hub.docker.com/r/nvidia/cuda/
 
@@ -597,7 +597,7 @@ fmlr::linalg_rsvd(seed, k, q, x, s, u = NULL, vt = NULL)
 * All data held externally to R
 * Single interface covers all types and backends - it Does The Right Thing (TM)
 ]
-.pull-right[.center[<img src="pics/07/fml.png" width="400"/>]]
+.pull-right[.center[<img src="pics/>]]
 
 ---
 # craze

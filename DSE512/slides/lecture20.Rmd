@@ -128,11 +128,11 @@ svd(A)
 
 ---
 # Comparing SVD Implementations
-.center[![:scale 55%](pics/20/svd_onenode.png)]
+.center[![:scale 55%](pics/svd_onenode.png)]
 
 ---
 # Comparing SVD Implementations
-.center[![:scale 55%](pics/20/svd.png)]
+.center[![:scale 55%](pics/svd.png)]
 
 ---
 # More Information
@@ -250,7 +250,7 @@ cost_logistic = function(theta, x, y)
 
 ---
 # Linear 2-Class SVM Benchmark
-.center[![](pics/20/svm.png)]
+.center[![](pics/svm.png)]
 
 
 
@@ -260,35 +260,35 @@ class: clear, inverse, middle, center
 
 ---
 # Distributing a Matrix
-.center[![:scale 75%](pics/20/bc0.png)]
+.center[![:scale 75%](pics/bc0.png)]
 
 ---
 # Distributing a Matrix: Blocking by Rows
-.center[![:scale 75%](pics/20/bc1.png)]
+.center[![:scale 75%](pics/bc1.png)]
 
 ---
 # Distributing a Matrix: Blocking by Columns
-.center[![:scale 75%](pics/20/bc2.png)]
+.center[![:scale 75%](pics/bc2.png)]
 
 ---
 # Distributing a Matrix: Cycling by Rows
-.center[![:scale 75%](pics/20/bc4.png)]
+.center[![:scale 75%](pics/bc4.png)]
 
 ---
 # Distributing a Matrix: Cycling by Columns
-.center[![:scale 75%](pics/20/bc5.png)]
+.center[![:scale 75%](pics/bc5.png)]
 
 ---
 # Distributing a Matrix: Blocking by Rows AND Columns
-.center[![:scale 75%](pics/20/bc3.png)]
+.center[![:scale 75%](pics/bc3.png)]
 
 ---
 # Distributing a Matrix: Cycling by Rows AND Columns
-.center[![:scale 75%](pics/20/bc6.png)]
+.center[![:scale 75%](pics/bc6.png)]
 
 ---
 # Distributing a Matrix: The 2-dimensional Block-Cyclic Layout
-.center[![](pics/20/bc7.png)]
+.center[![](pics/bc7.png)]
 
 ---
 # ScaLAPACK
@@ -367,7 +367,7 @@ mpirun -np 4 Rscript x.r
 
 ---
 # Comparing SVD Implementations
-.center[![:scale 55%](pics/20/svd_scalapack.png)]
+.center[![:scale 55%](pics/svd_scalapack.png)]
 
 
 

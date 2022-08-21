@@ -25,7 +25,7 @@ options(htmltools.dir.version = FALSE)
 
 ---
 # Revisiting Cholesky
-.center[![](pics/10/mvn.png)]
+.center[![](pics/mvn.png)]
 
 Gelman, A., Carlin, J.B., Stern, H.S. and Rubin, D.B., 1995. Bayesian data analysis. Chapman and Hall/CRC.
 
@@ -54,7 +54,7 @@ class: clear, inverse, middle, center
 ---
 # PCA
 
-![](pics/10/pca.png)
+![](pics/pca.png)
 
 ---
 # PCA: The Black Box
@@ -139,12 +139,12 @@ Schmidt, D., 2020, November. A Survey of Singular Value Decomposition Methods fo
 ---
 # Question
 .pull-left[What if we just want the first few components?]
-.pull-right[![](pics/09/big_think.png)]
+.pull-right[![](pics/big_think.png)]
 
 ---
 # PCA
 
-![](pics/10/pca.png)
+![](pics/pca.png)
 
 ---
 # Truncated SVD
@@ -173,14 +173,14 @@ function (x, nu = min(n, p), nv = min(n, p))
 
 ---
 # Randomized SVD
-.pull-left[![](pics/10/rsvd.png)]
+.pull-left[![](pics/rsvd.png)]
 .pull-right[
 Halko, N., Martinsson, P.G. and Tropp, J.A., 2009. Finding structure with randomness: Stochastic algorithms for constructing approximate matrix decompositions.
 ]
 
 ---
 # Randomized SVD
-.center[![](pics/10/rsvd_me.png)]
+.center[![](pics/rsvd_me.png)]
 
 ---
 # Randomized SVD

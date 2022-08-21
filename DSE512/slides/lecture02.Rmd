@@ -36,11 +36,11 @@ class: clear, inverse, middle, center
 * Your desktop???
 * Your phone?????
 ]
-.pull-right[![](pics/02/hpc.png)]
+.pull-right[![](pics/hpc.png)]
 
 ---
 # High Performance?
-.center[![](pics/02/high_performance.png)]
+.center[![](pics/high_performance.png)]
 
 ---
 # Supercomputing
@@ -56,7 +56,7 @@ Non-characteristics
 * Heterogeneous/homogeneous
 * Big FLOPS
 ]
-.pull-right[![](pics/02/iphone.jpg)]
+.pull-right[![](pics/iphone.jpg)]
 
 ---
 # Summit
@@ -70,7 +70,7 @@ Non-characteristics
   - Non-blocking fat-tree
 * 13 MW of power
 ]
-.pull-right[![](pics/02/summit.jpg)]
+.pull-right[![](pics/summit.jpg)]
 
 ---
 # Interactive vs Batch
@@ -102,10 +102,10 @@ $
 
 ---
 # "AI"
-.pull-left[![](pics/02/ai02.jpg)]
+.pull-left[![](pics/ai02.jpg)]
 .pull-right[
-![](pics/02/ai01.jpg)
-![](pics/02/ai03.jpg)
+![](pics/ai01.jpg)
+![](pics/ai03.jpg)
 ]
 
 ---
@@ -117,7 +117,7 @@ $
 * **LINPACK** - important benchmark
 * **TOP500** - list of computers ranked by LINPACK benchmark
 ]
-.pull-right[![](pics/02/everest.jpg)]
+.pull-right[![](pics/everest.jpg)]
 
 ---
 # Some Notable Benchmarks
@@ -127,7 +127,7 @@ $
 * **Graph500** - Graph benchmark; BFS and SSSP
 * **HPCG** - High Performance Conjugate Gradient; SpMV, dot product, ...
 ]
-.pull-right[![](pics/02/top500.png)]
+.pull-right[![](pics/top500.png)]
 
 ---
 # MPI
@@ -142,7 +142,7 @@ $
 * NCCL
 * HPC/Data convergence
 ]
-.pull-right[![](pics/02/comm.png)]
+.pull-right[![](pics/comm.png)]
 
 ---
 # Using Video Game Hardware to Multiply Matrices
@@ -160,7 +160,7 @@ Cons:
   - Hard to program
   - Expensive
 ]
-.pull-right[![](pics/02/kon_gpu.jpg)]
+.pull-right[![](pics/kon_gpu.jpg)]
 
 ---
 # DOE Jargon
@@ -173,7 +173,7 @@ Cons:
   - ALCC - things DOE likes
   - DD - small jobs the center likes
 ]
-.pull-right[![](pics/02/doe.png)]
+.pull-right[![](pics/doe.png)]
 
 ---
 # Some Resources
@@ -197,7 +197,7 @@ Cons:
 * 2000's: PLASMA, MAGMA
 * 2010's: ~~DPLASMA~~ SLATE
 ]
-.pull-right[![](pics/02/manga_linalg.png)]
+.pull-right[![](pics/manga_linalg.png)]
 
 ---
 # The LINPACK Benchmark
@@ -212,8 +212,8 @@ Cons:
 
 ---
 # Top 500 Rankings
-.pull-left[![](pics/02/top500_linear.png)]
-.pull-right[![](pics/02/top500_log.png)]
+.pull-left[![](pics/top500_linear.png)]
+.pull-right[![](pics/top500_log.png)]
 
 ---
 # LINPACK on my Desktop
@@ -238,16 +238,16 @@ This means Summit is 487,156x more powerful than my desktop!
 
 ---
 # LINPACK on my Desktop
-.center[![:scale 60%](pics/02/linpack_me.png )]
+.center[![:scale 60%](pics/linpack_me.png )]
 
 ---
 # How Do We Rank?
-.center[![:scale 60%](pics/02/top500_logo.png )]
+.center[![:scale 60%](pics/top500_logo.png )]
 
 ---
 # How Do We Rank?
-.pull-left[![](pics/02/top500_linear_me.png)]
-.pull-right[![](pics/02/top500_log_me.png)]
+.pull-left[![](pics/top500_linear_me.png)]
+.pull-right[![](pics/top500_log_me.png)]
 
 
 
@@ -264,7 +264,7 @@ class: clear, inverse, middle, center
 * 2006: AWS launched
 * 2015: Docker created
 ]
-.pull-right[![](pics/02/mainframe.jpeg)]
+.pull-right[![](pics/mainframe.jpeg)]
 
 We will discuss virtualization and Docker in depth in a later lesson.
 
@@ -272,16 +272,16 @@ We will discuss virtualization and Docker in depth in a later lesson.
 # So What Even Is The Cloud?
 .pull-left[
 ## Someone else's computer?
-![](pics/02/cloud1.png)
+![](pics/cloud1.png)
 ]
 .pull-right[
 ## Something else?
-![](pics/02/cloud2.jpg)
+![](pics/cloud2.jpg)
 ]
 
 ---
 # SERVICES, SERVICES, SERVICES!
-.center[![](pics/02/services.jpg)]
+.center[![](pics/services.jpg)]
 
 ---
 # SERVICES, SERVICES, SERVICES!
@@ -311,7 +311,7 @@ class: clear, inverse, middle, center
 * Can be hard to use
 * Tech stacks more similar than most realize
 ]
-.pull-right[![](pics/02/the_same.jpg)]
+.pull-right[![](pics/the_same.jpg)]
 
 ---
 # How Are They Different?

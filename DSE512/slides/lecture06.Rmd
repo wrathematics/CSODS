@@ -48,7 +48,7 @@ class: clear, inverse, middle, center
   - MPT
   - Spectrum
 ]
-.pull-right[![](pics/02/comm.png)]
+.pull-right[![](pics/comm.png)]
 
 ---
 # MPI
@@ -201,7 +201,7 @@ class: clear, inverse, middle, center
   - Singularity Hub
   - MPI can cause trouble
 ]
-.pull-right[![](pics/04/singularity.jpg)]
+.pull-right[![](pics/singularity.jpg)]
 
 ---
 # Creating Singularity Images

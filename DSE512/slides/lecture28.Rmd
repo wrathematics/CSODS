@@ -43,7 +43,7 @@ We will be using modifications of a horovod example
 .pull-left[
 * handwritten digits
 * 60,000 examples
-].pull-right[![](pics/27/MnistExamples.png)]
+].pull-right[![](pics/MnistExamples.png)]
 
 
 ---
@@ -194,11 +194,11 @@ class: clear, inverse, middle, center
 * Named after a Russian dance
 * Uses MPI!
 * Powered by `allreduce()`
-].pull-right[![](pics/28/horovod.png)]
+].pull-right[![](pics/horovod.png)]
 
 ---
 # Horovod Scaling
-.center[![](pics/28/scaling.png)]
+.center[![](pics/scaling.png)]
 
 .tiny[Source: https://horovod.readthedocs.io/en/stable/summary_include.html]
 

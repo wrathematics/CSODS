@@ -148,7 +148,7 @@ Peak:  832.301 MiB
 
 ---
 # Basic Memory Profiling
-.center[![](pics/24/memuse.png)]
+.center[![](pics/memuse.png)]
 https://cran.r-project.org/web/packages/memuse/vignettes/memuse-guide.pdf
 
 
@@ -250,11 +250,11 @@ profvis({
 
 ---
 # Using profvis
-.center[![:scale 75%](pics/24/profvis1.png)]
+.center[![:scale 75%](pics/profvis1.png)]
 
 ---
 # Using profvis
-.center[![:scale 75%](pics/24/profvis2.png)]
+.center[![:scale 75%](pics/profvis2.png)]
 
 ---
 # merkhet

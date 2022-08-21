@@ -109,7 +109,7 @@ $ ssh isaac
 
 ---
 # Accessing the Compute Nodes
-![](pics/05/slurm.jpg)
+![](pics/slurm.jpg)
 
 ---
 # Basic Slurm

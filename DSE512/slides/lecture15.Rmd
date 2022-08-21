@@ -67,38 +67,38 @@ class: clear, inverse, middle, center
 * Treated mostly as a "black box"
 * We'll get more familiar with implementing parallel algorithms
 ]
-.pull-right[![](pics/02/kon_gpu.jpg)]
+.pull-right[![](pics/kon_gpu.jpg)]
 
 ---
 # Hardware
-.center[![](pics/11/shmem2.png)]
+.center[![](pics/shmem2.png)]
 
 ---
 # Hardware
-.center[![](pics/11/dmem2.png)]
+.center[![](pics/dmem2.png)]
 
 ---
 # What Is Parallelism?
 .pull-left[
 Parallelism is about *independence*.
 ]
-.pull-right[![](pics/15/Declaration02.jpg)]
+.pull-right[![](pics/Declaration02.jpg)]
 
 ---
 # Serial Programming
-.center[![](pics/15/parallelism1.PNG)]
+.center[![](pics/parallelism1.PNG)]
 
 ---
 # Parallel Programming
-.center[![](pics/15/parallelism2.PNG)]
+.center[![](pics/parallelism2.PNG)]
 
 ---
 # Make Lunch: Serial
-.center[![](pics/15/analogy_serial.PNG)]
+.center[![](pics/analogy_serial.PNG)]
 
 ---
 # Make Lunch: Parallel
-.center[![](pics/15/analogy_parallel.PNG)]
+.center[![](pics/analogy_parallel.PNG)]
 
 ---
 # Kinds of Parallelism
@@ -111,21 +111,21 @@ Parallelism is about *independence*.
 
 ---
 # Task Parallelism
-.center[![:scale 70%](pics/15/parallelism_task.PNG)]
+.center[![:scale 70%](pics/parallelism_task.PNG)]
 
 ---
 # Data Parallelism
-.center[![:scale 70%](pics/15/parallelism_data.PNG)]
+.center[![:scale 70%](pics/parallelism_data.PNG)]
 
 ---
 # Scalability
 .pull-left[
 ## Strong Scaling
-![](pics/15/scaling_strong.png)
+![](pics/scaling_strong.png)
 ]
 .pull-right[
 ## Weak Scaling
-![](pics/15/scaling_weak.png)
+![](pics/scaling_weak.png)
 ]
 
 ---
@@ -135,7 +135,7 @@ Parallelism is about *independence*.
 * "scale out"
 * What do these mysterious phrases mean?
 ]
-.pull-right[![:scale 55%](pics/09/big_think.png)]
+.pull-right[![:scale 55%](pics/big_think.png)]
 
 ---
 # Forks and Threads
@@ -145,7 +145,7 @@ Parallelism is about *independence*.
   - R's parallel package
 * *Many* other interfaces
 ]
-.pull-right[![](pics/15/fork.jpg)]
+.pull-right[![](pics/fork.jpg)]
 
 ---
 # Forks and Threads
@@ -172,7 +172,7 @@ Parallelism is about *independence*.
   - MPT
   - Spectrum
 ]
-.pull-right[![](pics/02/comm.png)]
+.pull-right[![](pics/comm.png)]
 
 ---
 # HLL Hello World
@@ -250,7 +250,7 @@ We will have *a lot* to say about MPI...
   * MPI?!
 * Good for ETL; *atrocious* for analytics
 ]
-.pull-right[![](pics/15/hadoop.jpg)]
+.pull-right[![](pics/hadoop.jpg)]
 
 ---
 # Wrapup

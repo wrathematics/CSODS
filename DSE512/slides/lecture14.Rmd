@@ -40,7 +40,7 @@ Four choices:
 * People get PhD's in I/O!
 ]
 .pull-right[
-.center[![](pics/14/big-data.jpg)]
+.center[![](pics/big-data.jpg)]
 ]
 
 ---
@@ -213,11 +213,11 @@ class: clear, inverse, middle, center
 
 ---
 # THIS IS NOT FAST
-.center[![:scale 55%](pics/12/stop.jpg)]
+.center[![:scale 55%](pics/stop.jpg)]
 
 ---
 # Speed Comparisons
-.center[![](pics/14/latency.png)]
+.center[![](pics/latency.png)]
 .tiny[https://colin-scott.github.io/personal_website/research/interactive_latency.html]
 
 ---
@@ -235,7 +235,7 @@ class: clear, inverse, middle, center
 * Blocks of columns
 * 2-d block cyclic distributions
 ]
-.pull-right[![](pics/14/dmat_block.PNG)]
+.pull-right[![](pics/dmat_block.PNG)]
 
 We will only look at "blocks of rows".
 

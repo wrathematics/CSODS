@@ -88,11 +88,11 @@ class: clear, inverse, middle, center
   - ...
 * We are interested in *performance profiling*
 ]
-.pull-right[![](pics/22/mg.png)]
+.pull-right[![](pics/mg.png)]
 
 ---
 # How Does Profiling Work?
-.center[![:scale 55%](pics/09/big_think.png)]
+.center[![:scale 55%](pics/big_think.png)]
 
 ---
 # Performance Profiling Examples
@@ -108,13 +108,13 @@ class: clear, inverse, middle, center
   - Hardware counters
   - CUDA
 ]
-.pull-right[![](pics/22/stopwatch.jpg)]
+.pull-right[![](pics/stopwatch.jpg)]
 
 ---
 # What Can Profiling Do?
 ## FIXING the ENTIRE SM64 Source Code (INSANE N64 performance)
 .center[
-![:scale 70%](pics/22/vroom.jpg)
+![:scale 70%](pics/vroom.jpg)
 https://www.youtube.com/watch?v=t_rzYnXEQlE
 ]
 
@@ -302,7 +302,7 @@ $sampling.time
 
 ---
 # Profiling Overhead
-.center[![](pics/22/farnsworth.jpg)]
+.center[![](pics/farnsworth.jpg)]
 
 ---
 # Hardware counters
@@ -313,15 +313,15 @@ $sampling.time
 * Flops
 * Others
 ]
-.pull-right[![](pics/22/counter.jpg)]
+.pull-right[![](pics/counter.jpg)]
 
 ---
 # MPI Profiling
-.center[![](pics/22/mpi_profiler.png)]
+.center[![](pics/mpi_profiler.png)]
 
 ---
 # MPI Profiling
-.center[![](pics/22/stats1.png)]
+.center[![](pics/stats1.png)]
 
 
 
