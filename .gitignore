@@ -1,7 +1,10 @@
+_old
+LECTURES
+
 *.html
 *.pdf
 
 *.log
 
 *_files/
-
+*_cache/
