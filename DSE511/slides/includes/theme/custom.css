@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+body {
+  font-family: 'Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+
+.remark-code, .remark-inline-code {
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+}
+
+.remark-slide-content > h1 {
+  font-family: 'Yanone Kaffeesatz';
+}
+
+.remark-slide-content > h2 {
+  margin-bottom: -20px;
+}
+
+.remark-slide-content {
+  /* border-top: 80px solid #167c96; */
+  border-top: 80px solid #f27e02;
+}
+
+.remark-slide-number {
+  /* disable slide numbering */
+/*  opacity: 0;*/
+  font-family: 'Yanone Kaffeesatz';
+}
+
+.inverse .remark-slide-number {
+  /* disable slide numbering */
+/*  opacity: 0;*/
+  font-family: 'Yanone Kaffeesatz';
+}
+
+.clear{
+  border-top: 0px solid #FAFAFA;
+}
+
+.clear h1 {
+  font-size: 80px;
+}
+
+
+
+a, a > code {
+  color: #2776f7; /*default: rgb(249, 38, 114); || sets color of links */
+  text-decoration: none; /* turns off background coloring of links */
+}
+
+.title-slide {
+  background-color: #23373B;
+  border-top: 0px solid #FAFAFA;
+}
+
+.title-slide h1 {
+  color: #F7F8FA;
+  font-size: 80px;
+}
+
+.title-slide h2 {
+  font-size: 50px;
+  color: #e7e8e2; 
+  line-height: .5em;
+  margin-bottom: 0px;
+}
+
+.title-slide h3 {
+  font-size: 30px;
+  color: #e7e8e2; 
+  line-height: .75em;
+}
+
+.title-slide.remark-slide-content:before{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  top: 82%;
+  left: 5%;
+  content: "";
+  background: url("./pics/logos/logos.png") 0 0;
+  background-repeat: no-repeat;
+  background-size: 90%;
+}
+
+.remark-slide-content {
+  font-size: 28px;
+  padding: 1em 4em 1em 4em;
+}
+
+
+.small {
+  font-size: 22px;
+}
+
+.tiny {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 36px;
+}
+
+.huge {
+  font-size: 42px;
+}

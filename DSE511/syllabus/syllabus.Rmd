@@ -1,0 +1,80 @@
+---
+title: "DES 511 Course Syllabus"
+subtitle: "Fall 2022"
+output: 
+    - pdf_document
+urlcolor: blue
+linkcolor: blue
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{\begin{center}
+    \includegraphics[width=2in,height=2in]{logo.png}\LARGE\\}
+  - \posttitle{\end{center}}
+---
+
+Last updated: 2022-8-18
+
+* Meeting Time: TR 4:20 PM – 5:40 PM
+  - First day of class T 2022-8-24
+  - Holidays R 2022-10-6, R 2022-11-24
+  - Last day of class T 2022-12-6
+* Place: Canvas/Zoom
+* Credit Hours: 3
+* Instructors: Please add "[DSE511]" to the subject line
+    - Mr. Drew Schmidt mschmid3@utk.edu
+* Office Hours:
+    - Instructors: Online by appointment
+    - Slack: UTKDSE organization, #dse511 channel
+* Textbook: None
+
+### Course Description
+I view this course sequence (511-512) as something like "the computer science of data science." This takes on both some computer science theory -- for example, we will have some coverage of data structures and algorithmic complexity. But the primary focus is more the applied principles of modern software engineering -- for example, the use of git for version control.
+
+The goal of this sequence is not to turn you into a computer scientist; with only two courses, that would be very challenging. Instead, we hope to introduce you to a variety of topics that you would likely not otherwise ever be exposed, each of which should help you become more productive in your data science journey.
+
+Broadly speaking, 511 is an introduction to data science tooling and workflows. The followup course 512 is focused on profiling and performance optimization. For 511, we will cover: version control, scripting languages, relational and non-relational databases, proper use of data structures, introduction to data science work flows, introduction to project management, and applications.
+
+Registration Restriction: Minimum student level – graduate.
+
+### Assessments and Grading
+Course materials will be posted on Canvas. Your course grade will be determined by performance on homework assignments. We should have roughly 5 total assignments for the semester. Each assignment will cover the most recently completed module, and be due roughly a week laters.
+
+Late assignments will have a 10% penalty per day. If you anticipate requiring extra time to complete an assignment (e.g. a conference/paper deadline), notify the instructor as soon as possible, ideally at least one week in advance.
+
+Some limited coordination on the homeworks is fine. You can even credit your friend in the solution if you like -- giving credit to people who deserve it is a good thing! However, directly copying code is unacceptable.
+
+Your letter grade will be determined by the following table:
+
+| Letter Grade | Minimum percentage |
+|:--------------:|:--------------------:|
+| A | 90 |
+| B | 80 |
+| C | 70 |
+| D | 60 |
+| F | 0 |
+
+### Attendance and Participation
+Important announcements will be given in class, and we will regularly use class time to collaboratively work on tasks as demonstrations of key concepts from the lecture. As such, attendance is strongly encouraged. No make-up assessments can be scheduled for non-emergency absences. See the university's policy on valid/excused absences here: https://dos.utk.edu/absence-notifications/
+
+### Academic Integrity
+"An essential feature of the University of Tennessee, Knoxville is a commitment to maintaining an atmosphere of intellectual integrity and academic honesty. As a student of the university, I pledge that I will neither knowingly give nor receive any inappropriate assistance in academic work, thus affirming my own personal commitment to honor and integrity."
+
+Cheating, plagiarism, or any other type of academic dishonesty will result in a failing grade.
+
+### Disability Services
+Any student who feels s/he may need an accommodation based on the
+impact of a disability should contact Student Disability Services in Dunford Hall, at 865-974-6087, or by video relay at, 865-622-6566, to coordinate reasonable academic accommodations.
+
+### University Civility Statement
+Civility is genuine respect and regard for others: politeness, consideration, tact, good manners, graciousness, cordiality, affability, amiability and courteousness. Civility enhances academic freedom and integrity, and is a prerequisite to the free exchange of ideas and knowledge in the learning community. Our community consists of students, faculty, staff, alumni, and campus visitors. Community members affect each other’s well-being and have a shared interest in creating and sustaining an environment where all community members and their points of view are valued and respected. Affirming the value of each member of the university community, the campus asks that all its members adhere to the principles of civility and community adopted by the campus: http://civility.utk.edu/.
+
+### Your Role in Improving Teaching and Learning Through Course Assessment
+At UT, it is our collective responsibility to improve the state of teaching and learning. During the semester, you may be requested to assess aspects of this course either during class or at the completion of the class. You are encouraged to respond to these various forms of assessment as a means of continuing to improve the quality of the UT learning experience.
+
+### Key Campus Resources for Students
+* [Center for Career Development](career.utk.edu): Career counseling and resources
+* [Hilltopics](hilltopics.utk.edu): Campus and academic policies, procedures and standards of conduct
+* [Student Success Center](studentsuccess.utk.edu): Academic support resources
+* [University Libraries](www.lib.utk.edu): Library resources, databases, course reserves, and services
+
+The instructor reserves the right to revise, alter or amend this syllabus as necessary. Students will be notified of any such changes.
