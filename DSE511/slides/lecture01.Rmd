@@ -19,12 +19,27 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
+class: clear, inverse, middle, center
+# Introductions
+
+---
 # About Me
 * Taught Math/Stats many years ago
-* Worked in supercomputing for 10 years
-* Supported hundreds of projects at large scale
-* Currently work at small startup
-* Very active R developer
+* Academic Researcher
+    * UTK (2011-2017)
+    * ORNL (2017-2021)
+* Currently work at private company
+* Professional interests:
+    * R
+    * Computational linear algebra
+    * HPC
+
+---
+# Contacting Me
+* Email
+    * Drew Schmidt mschmid3@utk.edu
+    * Please add [DSE511] to the subject line
+* Slack - UTKDSE organization (I will invite you)
 
 ---
 # Software
@@ -41,47 +56,41 @@ options(htmltools.dir.version = FALSE)
 * Hasan, S.S., Schmidt, D., Kannan, R. and Imam, N., 2019, December. A Scalable Graph Analytics Framework for Programming with Big Data in R (pbdR). In 2019 [IEEE International Conference on Big Data (Big Data) (pp. 4783-4792)](https://ieeexplore.ieee.org/abstract/document/9006155/). IEEE.
 * Schmidt, D., Chen, W.C., Matheson, M.A. and Ostrouchov, G., 2017. Programming with BIG data in R: Scaling analytics from one to thousands of nodes. [Big Data Research, 8, pp.1-11.](https://www.sciencedirect.com/science/article/abs/pii/S221457961630065X)
 
+
+
+---
+class: clear, inverse, middle, center
+# Course Structure
+
 ---
 # Course Files
-* Syllabus, slides, assignments posted on Canvas
+* Course content will be posted on Canvas
+    * Syllabus
+    * Slides
+    * Assignments
+* Also on GitHub if you can find it
 * Assignment 1 is live (it's short)
 * Slides will be posted after presentation
-* 2021's files including recordings (different instructor) are also available
 
 ---
 # About the Course
-* Title: Introduction to Data Science and Computing II
-* Description: Topics include: platforms for scalable computing including Map Reduce, Hadoop, Spark, and HPC, setting up computing in cloud, and modern data science work flows.
+* Introduction to Data Science and Computing (511-512)
+* 511: version control, scripting languages, relational and non-relational databases, proper use of data structures, introduction to data science work flows, introduction to project management, and applications.
+* 512: platforms for scalable computing including Map Reduce, Hadoop, Spark, and HPC, setting up computing in cloud, and modern data science work flows.
 
 ---
 # About the Course
-*The computer science of data science.*
+* *The computer science of data science*
+* 511: introduction to data science tooling and workflows
+* 512: profiling and performance optimization (and remote computing)
 
 ---
 # Course Content
-* HPC and the Cloud
-  - Remote computing
-  - Shared file systems
-  - Batch programming
-* Software Management and Running Jobs
-  - Modules
-  - Containers
-* Performance Acceleration and Parallelism
-  - GPGPU
-  - Distributed Programming
-
----
-# Technologies
-* Assume you're comfortable with
-  - a HLL (probably R or Python)
-  - basic shell stuff
-* Homeworks can use any *reasonable* programming language (I strongly recommend R or Python)
-* Some things we will use in various capacities:
-  - ssh, sftp/scp, parallel file systems, job schedulers, ...
-  - AWS EC2 and ISAAC
-  - Containers: Docker and Singularity
-  - Some basic GPGPU
-  - MPI
+* Module 1: Version Control
+* Module 2: Basic Programming with R and Python
+* Module 3: Introduction to the Shell
+* Module 4: Databases
+* Module 5: Course Wrapup
 
 ---
 # Course Structure
@@ -89,18 +98,22 @@ options(htmltools.dir.version = FALSE)
 * Lecture component
 * Interactive component
 
+## Content
+* Some "theory"
+* Lots of direct exposure to technologies
+
 ## Outside of Class
-* ~4 homework assignments
-* No projects, etc.
+* ~5 homework assignments
+* No projects, exams, etc.
 
 
 ---
-class: clear, inverse, middle, center
-# Wrapup
+# Assignments
+* Daily late penalties
+* Some collaboration with other students ok - but there is a line!
+* More info in syllabus
 
----
-# Wrapup
-* 
+> Some limited coordination on the homeworks is fine. You can even credit your friend in the solution if you like - giving credit to people who deserve it is a good thing! However, directly copying code is unacceptable.
 
 ---
 class: clear, inverse, middle, center
