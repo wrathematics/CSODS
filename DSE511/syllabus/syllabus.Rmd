@@ -14,14 +14,14 @@ header-includes:
 
 Last updated: 2022-8-18
 
-* Meeting Time: TR 4:20 PM – 5:40 PM
+* Meeting Time: TR 4:20 PM - 5:40 PM
   - First day of class T 2022-8-24
   - Holidays R 2022-10-6, R 2022-11-24
   - Last day of class T 2022-12-6
 * Place: Canvas/Zoom
 * Credit Hours: 3
 * Instructors: Please add "[DSE511]" to the subject line
-    - Mr. Drew Schmidt mschmid3@utk.edu
+    - Drew Schmidt mschmid3@utk.edu
 * Office Hours:
     - Instructors: Online by appointment
     - Slack: UTKDSE organization, #dse511 channel
