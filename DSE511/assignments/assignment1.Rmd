@@ -1,0 +1,41 @@
+---
+title: "Assignment 1"
+subtitle: "DSE 512"
+date: "Assigned 2022-8-25 --- Due 2022-8-29 11:59pm"
+output: 
+    - pdf_document
+urlcolor: blue
+linkcolor: blue
+---
+
+Prepare your answers in a presentable document (Word, LaTeX, pdf generated from markdown, ...). When you are completed, submit your final document on Canvas.
+
+## Response
+
+For each question, give a brief response (no more than a paragraph). Generally a sentence or two is all I'm looking for.
+
+1. (Background) What is your 
+    * current area of study
+    * undergraduate degree
+    
+    Feel free to provide any other relevant information you think I need.
+
+2. (Computing Experience) Briefly describe your background with computing, programming, operating systems, ...
+
+3. What are you most hoping to learn about from this course? If you don't know or are unsure, that's fine; just say that.
+
+## Accounts and Software
+
+1. You will need an account with GitHub https://github.com/. Once you register, tell me your GitHub user name.
+2. Install git https://git-scm.com/downloads
+2. You will need a \*nix environment. You *may* be able to use some kind of online resource like https://www.onlinegdb.com/online_bash_shell or https://www.tutorialspoint.com/linux_terminal_online.php However, I ***very very*** strongly recommend you do at least one of the following:
+    1. Install a local environment
+        1. Windows - I recommend WSL https://docs.microsoft.com/en-us/windows/wsl/install
+        2. Mac - I think you're good to go, but you may need to install Xcode from the app store. I'm not sure!
+        3. Linux/BSD - You're good to go.
+    2. Install a VM
+        1. Download VirtualBox for your platform
+        2. Install Ubuntu 22.04
+    
+    Tell me which of these you plan to use this semester.
+3. Install R https://www.r-project.org/ and Python https://www.python.org/
