@@ -1,5 +1,5 @@
 ---
-title: Lecture 3 -
+title: Lecture 3 - CANCELED
 subtitle: "DSE 511"
 author: "Drew Schmidt"
 date: "2022-09-01"
@@ -19,23 +19,5 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-# First Slide
-Content
-
----
-# Second Slide
-Content
-
-
-
----
-class: clear, inverse, middle, center
-# Wrapup
-
----
-# Wrapup
-* 
-
----
-class: clear, inverse, middle, center
-# Questions?
+# No Class Today
+Canceled for football 🏈

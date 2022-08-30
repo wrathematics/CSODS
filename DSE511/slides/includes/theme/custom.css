@@ -113,3 +113,18 @@ a, a > code {
 .huge {
   font-size: 42px;
 }
+
+div.footer {
+  position: absolute;
+  bottom: 4px;
+  right: 0px;
+  height: 25px;
+  width: 20%;
+}
+div.footer span {
+  font-size: 7pt; /*  */ 
+  color: #23373B;
+  position: absolute;
+  right: 15px;
+  bottom: 1px;
+}
