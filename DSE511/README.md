@@ -10,10 +10,16 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 2 - Introduction to VMs [[src](slides/lecture02.Rmd) | [pdf](slides/lecture02.pdf)]
 * Lecture 3 - CANCELED [[src](slides/lecture03.Rmd) | [pdf](slides/lecture03.pdf)]
 
+
 ## Module 2: Version Control
+* Lecture 4 - Introduction to Version Control [[src](slides/lecture04.Rmd) | [pdf](slides/lecture04.pdf)]
+* Lecture 5 - Basic git [[src](slides/lecture05.Rmd) | [pdf](slides/lecture05.pdf)]
+
 
 ## Module 3: Basic Programming with R and Python
 
+
 ## Module 4: Databases
+
 
 ## Module 5: Wrapup
