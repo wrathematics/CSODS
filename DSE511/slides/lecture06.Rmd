@@ -1,0 +1,405 @@
+---
+title: Lecture 6 - Working with Remotes
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-09-13"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Announcements
+* Nothing unresolved from last time
+* Questions?
+
+
+---
+# Today's Lecture
+* Refresher: Remotes
+* Credentialing
+* GitHub
+
+
+
+---
+class: clear, inverse, middle, center
+# Refresher: Remotes
+
+---
+# What Is a Remote?
+* A copy of your git repository on another computer, accessible via the internet
+* Usually with extra tools/utilities/services built around git
+* Use is not strictly necessary (but why wouldn't you?)
+
+---
+# Example Remotes
+* GitHub
+* Bitbucket
+* GitLab
+* Run the git server yourself (don't recommend)
+* ...
+
+---
+# Why Remotes?
+* Enables collaboration
+* Free backups!
+* Graphical (via web browser) interface to git's worst parts
+    * Merging
+    * Searching
+* Offers 
+    * Bug tracking
+    * Feature requests
+
+---
+# Collaborating
+* Using remotes (e.g. GitHub)
+* Usual pipeline (distributed model)
+    1. fork
+    2. make changes
+    3. create pull request (PR)
+* For centralized codebases (e.g. proprietary ones), forking may be blocked
+    1. branch
+    2. make changes
+    3. create PR
+
+
+
+---
+class: clear, inverse, middle, center
+# Credentialing
+
+---
+# Credentialing
+* Remotes need a way of authenticating you
+* Options
+    * Username/password
+    * ssh keys (passwordless!)
+* Setting up ssh keys is extremely helpful!
+
+---
+# What Are ssh Keys?
+* ssh: secure shell
+* keys: a passwordless identification system
+* key pair
+    * private key: used to "sign"
+    * public key: used to verify a "signature"
+* Public key cryptography https://en.wikipedia.org/wiki/Public-key_cryptography
+
+---
+# Public vs Private
+* Never reveal your private key!
+* Public key can be given away safely (assuming your private key doesn't leak)
+* Public keys use file extension `.pub`
+* Private keys use no extension
+
+.pull-left[
+## Public key
+```
+ssh-ed25519 publicKeyGoesHere your@email.com
+```
+].pull-right[
+## Private key
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+privateKeyGoesHere
+-----END OPENSSH PRIVATE KEY-----
+```
+]
+
+---
+# Setting Up ssh Keys
+* Generate ssh key https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+* Adding ssh key to GitHub account https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+---
+# Generating
+1. Open terminal
+2. `ssh-keygen -t ed25519 -C "your_email@example.com"`
+3. Use default file location (press enter)
+4. Add a passphrase if you want
+5. Add to ssh agent `ssh-add ~/.ssh/id_ed25519`
+
+---
+# Adding to GitHub
+.pull-left[
+1. Go to GitHub settings (see right)
+2. Select `SSH and GPG keys`
+3. Click `New SSH key`
+4. Add the key
+    1. Copy the contents of your ***PUBLIC*** key: `cat ~/.ssh/id_ed25519.pub`
+    2. Paste into the key box
+    3. Give it a name
+    4. Click `Add SSH key`
+].pull-right[![](pics/gh_ssh1.png)]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# GitHub
+
+---
+# Many Features
+* Public and private repos
+* Issues
+* Fork/PR
+* Organizational accounts
+* Wikis https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis
+* Running a website! https://pages.github.com/
+
+---
+# GitHub Pages Example
+https://fml-fam.github.io/blog/
+.center[![](pics/fml_blog.png)]
+
+
+---
+# Creating a New Repository
+.center[![](pics/gh_repo1.png)]
+
+---
+# Creating a New Repository
+.center[![](pics/gh_repo2.png)]
+
+---
+# Creating a New Repository
+.center[![](pics/gh_repo3.png)]
+
+---
+# Putting Our Demo Repo on GitHub
+
+
+
+
+---
+# Checking Available Remotes
+```bash
+git st
+```
+```
+On branch master
+nothing to commit, working tree clean
+```
+```bash
+git remote
+```
+```bash
+git remote add origin git@github.com:wrathematics/demo.git
+```
+
+---
+# Syncing
+```bash
+git push origin master
+```
+```
+To github.com:wrathematics/demo.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'github.com:wrathematics/demo.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+---
+# Oh! We need to pull first
+.center[![](pics/homer.jpeg)]
+
+---
+# ...Syncing?
+```bash
+git pull origin master
+```
+```
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 1.24 KiB | 1.24 MiB/s, done.
+From github.com:wrathematics/demo
+ * branch            master     -> FETCH_HEAD
+ + b76a2cb...5db35fe master     -> origin/master  (forced update)
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+---
+# Yes, that's a real pickle
+.center[![](pics/angry_homer.jpg)]
+
+
+---
+# Syncing!
+```bash
+git config pull.rebase false
+git pull --allow-unrelated-histories origin master
+```
+```
+From github.com:wrathematics/demo
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ LICENSE | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 LICENSE
+```
+
+---
+# Syncing!
+```bash
+git push origin master 
+```
+```
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (7/7), 742 bytes | 742.00 KiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:wrathematics/demo.git
+   5db35fe..b62f530  master -> master
+```
+
+---
+# Syncing
+```bash
+git log
+```
+```
+commit b62f530d2563a7fa2245f510ee705a2f6e25bf51 (HEAD -> master, origin/master)
+Merge: b76a2cb 5db35fe
+Author: Drew Schmidt <wrathematics@gmail.com>
+Date:   Sun Sep 11 17:17:08 2022 -0400
+
+    Merge branch 'master' of github.com:wrathematics/demo
+
+commit 5db35fe0c40b3616e664eb4f41718b5c6dc9e565
+Author: Drew Schmidt <wrathematics@gmail.com>
+Date:   Sun Sep 11 17:13:12 2022 -0400
+
+    Initial commit
+
+commit b76a2cba88bb731d7a5b47e34dfb15dd01580f3f
+Author: Drew Schmidt <wrathematics@gmail.com>
+Date:   Sun Sep 4 09:37:17 2022 -0400
+
+    added cool new feature
+```
+
+---
+# Checking Available Remotes
+```bash
+git remote
+```
+```
+origin
+```
+
+---
+# Quick Comment
+.pull-left[
+That's probably one of the more complicated merges you'll ever have to do. And it wasn't *that* bad.
+].pull-right[![](pics/party.png)]
+
+---
+# Finally!
+.center[![](pics/gh_repo5.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo6.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo7.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo8.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo9.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo10.png)]
+
+---
+# Let's Add a Readme!
+.center[![](pics/gh_repo11.png)]
+
+---
+# Syncing
+```bash
+git pull origin master
+```
+```
+From github.com:wrathematics/demo
+ * branch            master     -> FETCH_HEAD
+Updating b62f530..78f0473
+Fast-forward
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+```
+
+---
+# Syncing
+```bash
+git log
+```
+```
+commit 78f04733b322f40b648d8c743efee43043d182d9 (HEAD -> master, origin/master)
+Author: Drew Schmidt <wrathematics@gmail.com>
+Date:   Sun Sep 11 17:26:14 2022 -0400
+
+    Create README.md
+```
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Ungraded Homework
+* You already have a GitHub account (right?)
+* Set up ssh keys
+* Add ssh keys to GitHub
+* Learn some basic markdown https://www.markdownguide.org/basic-syntax/
+
+---
+# Wrapup
+* Working with remotes is a small extension of what we've seen so far
+* Mostly straightforward, but be careful with divergent histories!
+* You probably want to use ssh keys!
+* Next time: Collaborating on GitHub
+
+---
+class: clear, inverse, middle, center
+# Questions?
