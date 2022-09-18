@@ -21,6 +21,10 @@ options(htmltools.dir.version = FALSE)
 
 # Announcements
 * Nothing unresolved from last time
+* Homework soon (some time next week)
+    * Probably 2 parts
+    * "Give the command(s) to ..."
+    * A set of git tasks, published to GH
 * Questions?
 
 
@@ -29,6 +33,7 @@ options(htmltools.dir.version = FALSE)
 * Refresher: Remotes
 * Credentialing
 * GitHub
+* Working With a GitHub Repository
 
 
 
@@ -164,6 +169,27 @@ class: clear, inverse, middle, center
 https://fml-fam.github.io/blog/
 .center[![](pics/fml_blog.png)]
 
+---
+# Features
+* Feature we care about for now
+    * private repos
+    * issues
+    * fork/PR
+* We'll talk about these *next time*
+* For now, GH is just a place to put stuff!
+
+---
+# Advanced Features
+GitHub is a very powerful tool with lots of advanced features we can't really get into.
+* GitHub Actions (e.g. CI) https://github.com/features/actions
+* Org secrets (e.g. integrating with AWS services)
+* Project views for issue tracking (Jira-lite)
+
+
+
+---
+class: clear, inverse, middle, center
+# Working With a GitHub Repository
 
 ---
 # Creating a New Repository
@@ -179,9 +205,10 @@ https://fml-fam.github.io/blog/
 
 ---
 # Putting Our Demo Repo on GitHub
-
-
-
+* Example repo from Lecture 05 (`/tmp/demo`)
+* Let's put it on GitHub
+    * Add remote to local repo
+    * Push changes
 
 ---
 # Checking Available Remotes
@@ -196,7 +223,10 @@ nothing to commit, working tree clean
 git remote
 ```
 ```bash
+# ssh keys
 git remote add origin git@github.com:wrathematics/demo.git
+# without ssh keys
+git remote add origin https://github.com/wrathematics/demo.git
 ```
 
 ---

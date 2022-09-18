@@ -1,0 +1,403 @@
+---
+title: Lecture 7 - Collaborating on GitHub
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-09-15"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Announcements
+* Nothing unresolved from last time
+* Homework soon (some time next week)
+    * Probably 2 parts
+    * "Give the command(s) to ..."
+    * A set of git tasks, published to GH
+    * **SET UP SSH KEYS NOW** (Lecture 6)
+* Questions?
+
+
+
+---
+# Collaboration
+* With others
+* _With yourself_!
+
+---
+# Content
+* Public vs Private Repos
+* Licensing
+* Issues
+* Pull requests
+
+
+
+---
+class: clear, inverse, middle, center
+# Public vs Private Repos
+
+---
+# Private Repos
+* GitHub (and others) offer "private" repos
+* You can see it, others can't
+
+.pull-left[
+## Pros
+* Only work with who you want to work with
+* Release to the public when you want (including never!)
+* Develop proprietary codebases even!
+].pull-right[
+## Cons
+* No opportunistic collaborations
+* No dopamine hits
+]
+
+---
+# Not a Strict Binary Choice
+Many people use both
+
+* Start private
+* Project reaches a desired level of maturity
+* Released to the public
+
+---
+# Open Science
+* "Publication" jobs
+* Open source is *the standard*
+* Many editors/journals will reject out of hand papers with no (appropriately licensed) software!
+* **I am one of them**
+
+
+
+---
+class: clear, inverse, middle, center
+# Licensing
+
+---
+# Licensing
+* This is an unpleasant topic (at least imo)
+* But it's very important!
+* First, some misconceptions...
+
+---
+# Some Misconceptions
+* *Source available* not the same as *open source*
+* *Open source* and *free software* are basically the same thing
+* *Open source* is **not** the same as *public domain*
+
+---
+# So What Is Open Source?
+> Open source software is software with source code that anyone can inspect, modify, and enhance.
+
+.small[Source: https://opensource.com/resources/what-open-source]
+
+---
+# What Is Free Software?
+> Free software is software that gives you the user the freedom to share, study and modify it. We call this free software because the user is free.
+
+.small[Source: https://www.fsf.org/about/what-is-free-software]
+
+---
+# Open Source vs Source Available
+* Open source
+    * Linux kernel
+    * R
+    * Python
+    * ...
+* Source available (proprietary)
+    * Numerical Recipes
+    * Any public GitHub repo without a license!
+
+---
+# Open Source vs Free Software
+* A philosophical spat that nobody cares about anymore
+* Strictly speaking, Open Source encompasses Free Software (and more)
+* "Copyleft"
+    * "Free" as in beer (gratis)
+    * "Free" as in speech (libre)
+* Free Software Foundation (FSF) vs Open Source Initiative (OSI)
+
+---
+# Open Source
+.pull-left[
+## Why?
+* You want to
+* Your job requires it
+* Good for your resume
+].pull-right[
+## Why not?
+* You don't want to
+* Your job won't let you
+* Bad for your resume?
+]
+
+---
+# Some Example Licenses by Restrictiveness
+* Public domain
+    * Unlicense
+    * "True" public domain
+* Permissive licenses
+    * MIT
+    * BSD (2- or 3-clause, not 4-clause)
+    * LGPL
+    * Boost Software License (BSL)
+    * Apache
+* Non-permissive Free Software licenses
+    * GPL and AGPL
+* Non-free/non-open source licenses
+    * Proprietary
+
+---
+# Did You Know?
+* Stack Overflow posts are copyrighted https://stackoverflow.com/help/licensing
+* All content is one variety of CC-BY-SA
+* **Be very careful when copy/pasting from stack overflow**
+    * I would generally recommend against it
+    * Also most of their code is wrong/bad anyway
+
+---
+# Choosing a License
+* Ultimately, up to you and your collagues
+* What do you want to allow? Restrict?
+* What is the purpose of the software?
+    * Is this a prototype for a paper?
+    * Real production software? 
+    * Something you want to build a business around?
+
+---
+# Why License At All?
+* ***LIABILITY***
+* Share only what/how you want
+* You may actually be **required** to use an open source license in some circumstances
+    * Journals/companies
+    * "Infecting" licenses in dependencies!
+
+---
+# What About Non-Software Artifacts?
+* So far we've focused on software
+* All intellectual property products can be licensed
+* The slides for this course are publicly available as CC-BY-SA 4.0
+
+.center[![](pics/ccbysa4.png)]
+
+
+
+---
+class: clear, inverse, middle, center
+# Issues
+
+---
+# Issues
+.pull-left[
+* All GitHub repos have an issue tracker
+    * Bugs
+    * Tasks
+    * Future features
+* Searchable, taggable, ...
+].pull-right[![](pics/issues1.png)]
+
+---
+# Social/Community Management
+.pull-left[
+* Can generally create issues on any repo
+    * Sometimes these are disabled
+    * Usually only unavailable for "read-only" repos
+* Tag other users ("@" them)
+* Use the search feature!
+].pull-right[![](pics/issues1.png)]
+
+---
+# Searching Issues
+.center[![](pics/issues2.png)]
+
+---
+# General Advice
+* Treat GitHub like you would your work/office/job
+    * Don't be a jerk
+    * Careful with your language
+    * Don't use a stupid username like "wrathematics"
+* Not all help is wanted
+* Use markdown! Especially code snippets!
+* Search!!!
+
+---
+# Creating a New Issue
+.center[![](pics/issues3.png)]
+
+---
+# Applying Labels
+.pull-left[
+* Organize issues by topics
+* Probably don't set them on someone else's repo
+* Highly recommend using them on your own!
+].pull-right[![](pics/issues4.png)]
+
+---
+# Other Features
+* Projects
+* Milestones
+* Linking issues to PR's
+* Issue templates https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+
+
+
+---
+class: clear, inverse, middle, center
+# Pull Requests
+
+---
+# What Is a Pull Request?
+.pull-left[
+A pull request (PR) is a process for integrating a change to a repo's codebase.
+].pull-right[![](pics/big_think.png)]
+
+---
+# Pull Request Etiquette
+* Not all PR's are wanted
+* Some people NEVER want PR's (don't get me started)
+* Usually best to start with an issue
+    * Identify bug/missing feature
+    * Create issue
+    * Discuss with repo owner
+    * Agree on solution
+    * Implement it!
+* Not strictly necessary, but may save you a lot of time!
+
+---
+# Pull Request Workflow
+* Usual pipeline (distributed model)
+    1. fork
+    2. make changes
+    3. create pull request (PR)
+* For centralized codebases (e.g. proprietary ones), forking may be blocked
+    1. branch
+    2. make changes
+    3. create PR
+
+---
+# More Detail
+1. Fork the repository (copy repo to your account)
+2. Clone *your* fork of the repo
+3. Create changes (bug fix, new feature, ...)
+4. Push to *your* fork of the repo
+5. Initiate pull request
+
+---
+# Step 1: Fork the repo
+.center[![](pics/pr1.png)]
+
+---
+# Step 2: Clone the fork
+```bash
+git clone https://github.com/wrathematics/devilutionX
+```
+```
+Cloning into 'devilutionX'...
+remote: Enumerating objects: 60099, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 60099 (delta 2), reused 2 (delta 0), pack-reused 60091
+Receiving objects: 100% (60099/60099), 47.00 MiB | 7.92 MiB/s, done.
+Resolving deltas: 100% (47003/47003), done.
+```
+
+---
+# Step 3: Make changes
+* This is just the git workflow from Lecture 5
+* Repeat until done:
+    * Add/modify/delete file(s)
+    * `git add ...`
+    * `git commit -m "relevant commit message"`
+
+---
+# Step 4: Push changes
+```bash
+git remote -v
+```
+```
+origin	https://github.com/wrathematics/devilutionX (fetch)
+origin	https://github.com/wrathematics/devilutionX (push)
+```
+```bash
+git push origin master
+```
+```
+Username for 'https://github.com': wrathematics
+Password for 'https://wrathematics@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/wrathematics/devilutionX/'
+```
+```bash
+vim .git/config
+```
+
+---
+# Step 4: Push changes
+```bash
+git remote -v
+```
+```
+origin	git@github.com:wrathematics/devilutionX (fetch)
+origin	git@github.com:wrathematics/devilutionX (push)
+```
+```bash
+git push origin master
+```
+```
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 750 bytes | 750.00 KiB/s, done.
+Total 8 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), completed with 4 local objects.
+To github.com:wrathematics/devilutionX
+   1484b4d8..fc522826  master -> master
+```
+
+---
+# Step 4: Push changes
+.center[![](pics/pr2.png)]
+
+---
+# Step 5: Open the PR
+.center[![](pics/pr3.png)]
+
+---
+# Step 5: Open the PR
+.center[![](pics/pr4.png)]
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* Licensing is complicated.
+* Open source (and/or free software)
+    * Usually expected for "publication" jobs.
+    * But not always! Double check!
+* GitHub issues are a great way to
+    * Report bugs
+    * See if bugs are already reported
+    * Track features/work
+* Pull requests are how you actually get your work into a repo.
+
+---
+class: clear, inverse, middle, center
+# Questions?
