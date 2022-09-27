@@ -1,0 +1,86 @@
+---
+title: Lecture 11 - Data Structures (Part 1)
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-09-29"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Announcements
+* Nothing unresolved from last time
+* Homework is live!
+* Questions?
+
+---
+# Content
+* Data Structures and Algorithms
+* Arrays
+
+
+
+---
+# Abstract Data Types
+
+
+---
+# Specification vs Implementation
+* Example: a dictionary
+    * Abstract data type
+    * Can be implemented via hash table
+
+
+
+---
+class: clear, inverse, middle, center
+# Arrays
+
+---
+# What Is An Array?
+
+
+
+---
+# C Arrays
+.center[![](pics/array1.png)]
+
+---
+# C Arrays
+.center[![](pics/array2.png)]
+
+---
+# Major Ordering
+
+.pull-left[
+## Column Major
+![](pics/colmajor.png)
+].pull-right[
+## Row Major
+![](pics/rowmajor.png)
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* 
+
+---
+class: clear, inverse, middle, center
+# Questions?

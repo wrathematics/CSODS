@@ -14,9 +14,17 @@ Course materials for: The Computer Science of Data Science. Course content is li
 ## Module 2: Version Control
 * Lecture 4 - Introduction to Version Control [[src](slides/lecture04.Rmd) | [pdf](slides/lecture04.pdf)]
 * Lecture 5 - Basic git [[src](slides/lecture05.Rmd) | [pdf](slides/lecture05.pdf)]
+* Lecture 6 - Working with Remotes [[src](slides/lecture06.Rmd) | [pdf](slides/lecture06.pdf)]
+* Lecture 7 - Collaborating on GitHub [[src](slides/lecture07.Rmd) | [pdf](slides/lecture07.pdf)]
+* Lecture 8 - When Things Go Wrong [[src](slides/lecture08.Rmd) | [pdf](slides/lecture08.pdf)]
+* Lecture 8 - When Things Go Wrong [[src](slides/lecture08.Rmd) | [pdf](slides/lecture08.pdf)]
+* Assignment 2 [[src](assignments/assignment2.Rmd) | [pdf](assignments/assignment2.pdf)]
 
 
 ## Module 3: Basic Programming with R and Python
+* Lecture 9 - Basic Programming with R and Python [[src](slides/lecture09.Rmd) | [pdf](slides/lecture09.pdf)]
+* Lecture 10 - Basic Programming [[src](slides/lecture10.Rmd) | [pdf](slides/lecture10.pdf)]
+* Lecture 11 - Data Structures (Part 1) [[src](slides/lecture11.Rmd) | [pdf](slides/lecture11.pdf)]
 
 
 ## Module 4: Databases

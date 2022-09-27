@@ -1,0 +1,53 @@
+---
+title: "Assignment 2"
+subtitle: "DSE 511"
+date: "Assigned 2022-9-26 --- Due 2022-10-3 11:59pm"
+output: 
+    - pdf_document
+urlcolor: blue
+linkcolor: blue
+---
+
+Prepare your answers in a presentable document (Word, LaTeX, pdf generated from markdown, ...). When you are completed, submit your final document on Canvas.
+
+For this homework, please keep your discussions among each other minimized. Everything you need is in the lecture slides. You can also refer to the [Flight Rules for git](https://github.com/k88hudson/git-flight-rules). You should not need any other resources.
+
+Reminder that you ***may not*** copy code from each other. Doing so will be considered academic dishonesty; please refer to the syllabus.
+
+# Comprehension (10% total)
+
+1. (5%) One of the following is true about git; which?
+    a. It is a tool for code organization.
+    b. It is a distributed version control system.
+    c. It is a tool for code correctness.
+2. (5%) One of the following is true about GitHub; which?
+    a. It is a web service that offers cloud hosting/backups and add-on features for git.
+    b. It is a necessary tool used in conjunction with git.
+    c. It is a service used to create git.
+
+# Basic Commands (40% total)
+
+1. (5%) Give the command(s) for showing the status of the local git repository.
+2. (10%) Give the command(s) to stage and then commit a new file named `new_file` (choose a reasonable commit message).
+3. (5%) Give command(s) for unstaging a file named `modified_file` that has been modified and then staged.
+4. (5%) Give the command(s) to create a branch named `my-new-branch`.
+5. (5%) Give the command(s) to delete a branch names `my-new-branch`.
+6. (5%) Give the command(s) to send local changes on branch `my-branch` to the remote named `origin`.
+7. (5%) Give the command(s) to retrieve remote changes on branch `my-branch` from the remote named `origin`.
+
+# GitHub (50% total)
+
+Please read all of the instructions carefully before proceeding.
+
+1. (10%) Create a GitHub repo on your account titled `dse511_homework`. It should ***not*** be private. If it is private, you get a 0 for this entire section. ***DO NOT MAKE IT PRIVATE***.
+2. (15%) Add a readme. 
+    * The readme file should be at the root directory of the repo, and be named `README.md`. You can create it locally (use whatever text editor you want) or you can create it on GitHub (careful with primary branch naming if you do!).
+    * Add some basic markdown-formatted text explaining what the repo is.
+    * Commit the readme to your primary branch (and if working locally, push it to GitHub).
+3. (15%) Create a feature branch
+    1. Branch off of your primary branch (this should include the readme). Call the feature branch `new-feature`.
+    2. Add a file called `new_feature` that contains some text (you choose), and commit this to your feature branch.
+    3. Push your feature branch to GitHub.
+4. (10%) Create (**BUT DO NOT MERGE**) a PR from the feature branch of your repo into the primary branch of your repo.
+
+Once the homework is graded, you may delete the repo. But do not delete it until you have received your grade.

@@ -1,0 +1,679 @@
+---
+title: Lecture 10 - Basic Programming
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-09-27"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Announcements
+* Nothing unresolved from last time
+* Homework is live!
+* Questions?
+
+---
+# Content
+* Introduction to R and Python
+* Basic Math
+* Control Flow
+* Functions
+* Classes and Objects
+
+
+
+---
+class: clear, inverse, middle, center
+# Introduction to R and Python
+
+---
+# R and Python
+.pull-left[
+## R
+* *Lingua franca* for statistical computing
+* Part programming language, part data analysis package
+* Dialect of S (May 5, 1976, Bell Labs)
+* Notable names: Ross Ihaka, Robert Gentleman, **John Chambers**
+* Free software (GPL >= 2)
+].pull-right[
+## Python
+* General purpose programming language
+* Created late 80's / early 90's 
+* Notable names: Guido Van Rossum
+* Reference to Monty Python's Flying Circus
+* Python Software Foundation License
+]
+
+---
+# Similarities
+* Interactive languages
+* Can be used in batch (not considered the default)
+* Extensible via add-on packages
+* Mostly similar syntax
+
+---
+# Important Differences
+.pull-left[
+## R
+* Indexing is 1-based
+* Whitespace not semantic; use braces for multi-line blocks
+* Assignment often done via `<-`
+* Copyleft licensed
+* Data science package with programming language tacked on
+].pull-right[
+## Python
+* Indexing is 0-based
+* Whitespace is semantic; use indentation for multi-line blocks
+* Assignment done via `=`
+* Non-copyleft licensed
+* Programming language with data science package tacked on
+]
+
+---
+# Popular Editors/IDE's
+.pull-left[
+## R
+* RStudio
+].pull-right[
+## Python
+* Pycharm
+]
+## Universal
+* Jupyter
+* VSCode, Atom
+* vim
+* ...
+
+---
+# Core Data Science Packages
+.pull-left[
+## R
+* Base R
+* data.table
+* dplyr
+* ggplot2
+* caret
+].pull-right[
+## Python
+* Pandas
+* Numpy
+* Scipy
+* Matplotlib
+* scikit-learn
+]
+
+---
+# "Killer Apps"
+.pull-left[
+## R
+* Tidyverse
+* Rmarkdown
+* Shiny
+].pull-right[
+## Python
+* Numba
+* Tensorflow
+* JAX
+]
+
+---
+# Installing Packages
+.pull-left[
+## R
+* CRAN
+* BioConductor
+* ...
+```r
+install.packages("data.table")
+```
+].pull-right[
+## Python
+* PyPI
+* pip
+* conda
+```bash
+pip install pandas
+```
+]
+
+---
+# Help
+.pull-left[
+R
+```r
+help(print)
+?print
+??print
+```
+].pull-right[
+## Python
+```python
+help(print)
+```
+]
+
+---
+# Assignment
+.pull-left[
+## R
+```r
+x <- 1
+y <<- 2
+z = 3
+4 -> w
+```
+].pull-right[
+## Python
+```python
+x = 1
+```
+]
+
+
+---
+# Variable Naming
+.pull-left[
+## R
+* Technically you can do (almost) anything - no really
+* You should probably stick to reasonable conventions
+* Certain keywords restricted (e.g. `function`)
+```{r, cache = TRUE}
+rm(list=ls())
+` 1 2 3 a b c` = 1
+ls()
+```
+].pull-right[
+## Python
+* Start with a letter or underscore
+* Letters, numbers, understores
+* Certain keywords restricted (e.g. `class`)
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Basic Math
+
+---
+# Basic Math
+.pull-left[
+## R
+```{r, cache = TRUE}
+3 + 2
+3 - 2
+3 * 2
+3 / 2
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+3 + 2
+3 - 2
+3 * 2
+3 / 2
+```
+]
+
+---
+# Basic Math
+.pull-left[
+## R
+```{r, cache = TRUE}
+3 ^ 2
+3 %% 2
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+3 ** 2
+3 % 2
+```
+]
+
+---
+# Basic Math
+.pull-left[
+## R
+```{r, cache = TRUE}
+abs(-1)
+round(1.2345, 3)
+max(c(1, 2, 3))
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+abs(-1)
+round(1.2345, 3)
+max([1, 2, 3])
+```
+]
+
+---
+# Basic Math
+.pull-left[
+## R
+```{r, cache = TRUE}
+sqrt(2)
+exp(1)
+sin(pi)
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+import math
+math.sqrt(2)
+math.exp(1)
+math.sin(math.pi)
+```
+]
+
+---
+# Basic Math
+.pull-left[
+## R
+```{r, cache = TRUE}
+dnorm(.75)
+pnorm(.75)
+qnorm(.75)
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+import scipy.stats
+scipy.stats.norm.pdf(.75)
+scipy.stats.norm.cdf(.75)
+scipy.stats.norm.ppf(.75)
+```
+]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Control Flow
+
+---
+# Control Flow
+* Loops
+    * `for`
+    * `while`
+* Conditionals
+    * `if`
+    * `else if` / `elif`
+    * `else`
+* Transfer
+    * `break`
+    * `next` / `continue`
+
+---
+# General Rules
+.pull-left[
+## R
+```
+keyword (conditions) {
+  body
+}
+```
+].pull-right[
+## Python
+```
+keyword conditions :
+  body
+```
+]
+
+---
+# For Loops
+.pull-left[
+## R
+```{r, cache = TRUE}
+X = 1:5
+for (x in X) {
+  print(x)
+}
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+X = range(1, 5+1)
+for x in X:
+  print(x)
+```
+]
+
+---
+# While Loops
+.pull-left[
+## R
+```{r, cache = TRUE}
+x = 1
+while (x <= 5) {
+  print(x)
+  x = x + 1
+}
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+x = 1
+while x <= 5:
+  print(x)
+  x += 1
+```
+]
+
+---
+# Conditionals
+.pull-left[
+## R
+```{r, cache = TRUE}
+x = 1
+if (x < 5) {
+  print("x is less than 5")
+} else {
+  print("x is not less than 5")
+}
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+x = 1
+if x < 5:
+  print("x is less than 5")
+else:
+  print("x is not less than 5")
+```
+]
+
+---
+# Transfer
+.pull-left[
+## R
+```{r, cache = TRUE}
+set.seed(1234)
+for (i in 1:10) {
+  if (runif(1) < 0.5) {
+    break
+  }
+}
+print(i)
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+import random
+random.seed(1234)
+for i in range(1, 10+1):
+  if random.uniform(0, 1) < 0.5:
+    break
+
+print(i)
+```
+]
+
+---
+# Function Programming
+Both languages have support for FP
+.pull-left[
+## R
+```{r, cache = TRUE}
+X = 1:3
+sapply(X, sqrt)
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+import math
+X = range(1, 3+1)
+list(map(math.sqrt, X))
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Functions
+
+---
+# Functions
+* An encapsulated block of code
+* Mandatory for proper code organization
+* Well-named functions can often mitigate need for comments
+```python
+x = read_data("myfile.csv")
+x_processed = process(x)
+mdl = fit_model(x_processed)
+```
+
+---
+# Function Syntax
+.pull-left[
+## R
+```{r, cache = TRUE}
+f = function(x) {
+  return(x+1)
+}
+f(1)
+```
+].pull-right[
+## Python - Not Optional
+```{python, cache = TRUE}
+def f(x):
+  return x+1
+
+print(f(1))
+```
+]
+
+---
+# Named Returns
+.pull-left[
+## R - Optional
+```{r, cache = TRUE}
+f = function(x) {
+  x+1
+}
+f(1)
+```
+].pull-right[
+## Python - Not Optional
+```{python, cache = TRUE}
+def f(x):
+  x+1
+
+print(f(1))
+```
+]
+
+---
+# Scoping
+.pull-left[
+## R
+```{r, cache = TRUE}
+x = 1
+f = function() {
+  return(x+1)
+}
+f()
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+x = 1
+def f():
+  return x+1
+
+print(f())
+```
+]
+
+---
+# Copy Semantics
+.pull-left[
+## R
+```{r, cache = TRUE}
+f = function(x) {
+  x = x + 1
+  return(x)
+}
+x = 1
+f(x)
+print(x)
+```
+].pull-right[
+## Python
+```{python, cache = TRUE}
+def f(x):
+  x += 1
+  return x
+
+x = 1
+f(x)
+print(x)
+```
+]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Classes and Objects
+
+---
+# Classes and Objects
+.pull-left[
+* Object Oriented Programming (OOP)
+  * Useful organizational strategy
+  * Not the only paradigm
+* A *class* is a custom data type
+    * Describes the data
+    * Defines the methods
+* It describes an *object*, or instantiation of the class
+* The methods operate on the objects
+* Methods may use side-effects
+].pull-right[
+## Pseudocode
+```python
+x = create_class_object()
+x.compute()
+y = x.get_result()
+```
+]
+
+---
+# Why OOP?
+.pull-left[
+## What is "x"?
+```
+x+1
+write_to_disk(x)
+compute_svd(x)
+```
+].pull-right[![](pics/big_think.png)]
+
+
+---
+# OOP Systems
+.pull-left[
+## R
+* S3
+* S4
+* R6 (CRAN package)
+].pull-right[
+## Python
+* The `class` system
+]
+
+---
+# Classes -- R6
+.pull-left[
+```{r, rtimeclass, cache=TRUE}
+Timer = R6::R6Class(
+  public = list(
+    start = function() {
+      private$t0 = proc.time()
+      invisible(self)
+    },
+    stop = function() {
+      runtime = (proc.time() - private$t0)[["elapsed"]]
+      print(runtime)
+    }
+  ),
+  private = list(
+    t0 = NULL
+  )
+)
+```
+].pull-right[
+```{r, dependson="rtimeclass", cache=TRUE}
+t = Timer$new()
+
+t$start()
+Sys.sleep(.63)
+t$stop()
+```
+]
+
+---
+# Classes -- Python
+.pull-left[
+```{python pytimeclass, cache=TRUE}
+import time
+
+class Timer(object):
+  def start(self):
+    self.t0 = time.perf_counter()
+  
+  def stop(self):
+    t1 = time.perf_counter()
+    print(t1-self.t0)
+```
+]
+.pull-right[
+```{python, dependson="pytimeclass", cache=TRUE}
+t = Timer()
+
+t.start()
+time.sleep(.63)
+t.stop()
+```
+]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* In most ways, these languages are very similar.
+    * Basic math
+    * Loops
+    * Functions
+    * Even classes!
+* Differences materialize at the extremes
+    * HPC
+    * Neural networks
+    * (Very) modern statistics
+
+---
+class: clear, inverse, middle, center
+# Questions?
