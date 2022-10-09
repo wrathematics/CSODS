@@ -1,0 +1,505 @@
+---
+title: Lecture 12 - Data Structures (Part 2)
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-10-04"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+# Announcements
+* Nothing unresolved from last time
+* Homework is live!
+    * Due date moved to Wed Oct 5 (midnight)
+    * New homework *next* week!
+* No class Thursday Oct 6
+* Questions?
+
+---
+# What's The Goal
+* Better code organization
+* Engineering over scripting
+* Encapsulation over globals
+
+---
+# Content
+* Lists
+* Classes
+* Dictionaries
+
+
+
+---
+class: clear, inverse, middle, center
+# Lists
+
+---
+# Lists
+* An ordered collection of *objects*
+* Can store anything
+    * Arrays
+    * Dataframes
+    * Other lists
+    * Custom class objects
+* Can be implemented in different ways
+
+---
+# Lists vs Arrays
+.pull-left[
+## Lists
+Ordered collection of a objects.
+].pull-right[
+## Arrays
+Ordered collection of a values from a single fundamental type.
+]
+
+---
+# Lists in R and Python
+.pull-left[
+## R
+```{r}
+x = list(1, "2", list(a=1, b=2))
+x
+```
+].pull-right[
+## Python
+```python
+x = [1, '2', {'a':1, 'b':2}]
+```
+```
+[1, '2', {'a': 1, 'b': 2}]
+```
+]
+
+---
+# Lists
+* Extremely important in R
+    * Easy way to handle multi-value returns
+    * S3 class decorator/generics
+    * ...
+* A place to put things
+* Helpful for managing lots of things programmatically
+
+
+
+---
+class: clear, inverse, middle, center
+# Classes
+
+---
+# Classes and Objects
+.pull-left[
+* Object Oriented Programming (OOP)
+  * Useful organizational strategy
+  * Not the only paradigm
+* A *class* is a custom data type
+    * Describes the data
+    * Defines the methods
+* It describes an *object*, or instantiation of the class
+* The methods operate on the objects
+* Methods may use side-effects
+].pull-right[
+## Pseudocode
+```python
+x = create_class_object()
+x.compute()
+y = x.get_result()
+```
+]
+
+---
+# OOP Systems
+.pull-left[
+## R
+* S3
+* S4
+* R6 (CRAN package)
+].pull-right[
+## Python
+* The `class` system
+]
+
+---
+# Why Classes?
+* Encapsulation
+* No ambiguity over function arguments
+* Solves the "state problem"
+
+---
+# Encapsulation
+* Only an object has access to class methods
+* Same method name across different classes do different things
+* Don't have to worry about unifying different objects under one API
+* Useful if you're bad at naming things!
+
+---
+# Function Arguments
+.pull-left[
+## Without OO
+```r
+x = construct_object()
+
+f = function(x) {
+  # ...
+}
+x = f(x)
+```
+].pull-right[
+## With OO
+```r
+x = NewObject()
+x$f()
+```
+]
+
+---
+# State
+* Try not to use global variables
+* But what if you have a lot of "moving pieces"
+    ```r
+    my_fun(x, y, z, w, a, b, c, d, e, ...)
+    ```
+* Maybe you can re-organize as a class
+    * Stuff the data into the object
+    * Operate on options internally
+    ```r
+    x$my_fun()
+    ```
+
+---
+# Customer Class
+.pull-left[
+```{r, customer_class, cache=TRUE}
+Customer = R6::R6Class(
+  public = list(
+    initialize = function() {
+      self$id = private$create_id()
+      self$orders = 0
+      self$spend = 0
+    },
+    increment_orders = function() {
+      self$orders = self$orders + 1
+    },
+    increment_spend = function(spend) {
+      self$spend = self$spend + spend
+    },
+    id = NULL, orders = NULL, spend = NULL
+  ),
+  private = list(
+    create_id = function() {
+      httr::GET(url = "https://www.uuidgenerator.net/api/version4") |>
+        httr::content()
+    }
+  )
+)
+```
+].pull-right[
+```{r, dependson="customer_class", cache=TRUE}
+customer = Customer$new()
+customer$id
+customer$increment_orders()
+customer$orders
+new_spend = 12.34
+customer$increment_spend(new_spend)
+customer$spend
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Dictionaries
+
+---
+# Dictionaries
+* Key/value storage
+* Like an in-memory json
+* Indexed by keys (not necessarily numbers)
+* Major operations
+    * Insertion
+    * Deletion
+    * Retrieval
+* Often implemented as a hash table
+
+---
+# Hash Table vs Lists
+What's the value for the key `"434c8fb1-c329-4234-891d-60bf0a14791e"` ?
+.pull-left[
+## List
+* Check the first element
+* Check the second element
+* ...
+].pull-right[
+## Hash Table
+* Run key through "hash function"
+* Get value at index output by hash function
+]
+
+---
+# Hash Table vs Lists
+What's the value for the key `"434c8fb1-c329-4234-891d-60bf0a14791e"` ?
+.pull-left[
+## List
+Runtime scales with the number of elements in the list
+].pull-right[
+## Hash Table
+Runtime is fixed regardless of the size of the hash table
+]
+
+---
+# Dictionaries in Python
+```python
+d = {}
+d['key1'] = 'val1'
+d['key2'] = 'val2'
+d
+```
+```
+{'key1': 'val1', 'key2': 'val2'}
+```
+```python
+d['key1']
+d['key1'] = 'newval'
+d
+```
+```
+{'key1': 'newval', 'key2': 'val2'}
+```
+
+---
+# Building a Dictionary in R
+* R has no "dictionary" built in
+* It does have hash tables (environments)
+* We can implement a dictionary using a hash table...
+
+---
+# Dictionary
+```{r, dict, echo=FALSE, cache=TRUE}
+Dictionary = R6::R6Class(
+  public = list(
+    initialize = function() {
+      private$env = new.env()
+      invisible(self)
+    },
+    length = function() {
+      base::length(private$env)
+    },
+    print = function() {
+      cat("A dictionary with", self$length(), "elements\n\n")
+    },
+    insert = function(key, value) {
+      private$env[[key]] = value
+      invisible(self)
+    },
+    update = function(dict) {
+      keys_new = dict$keys()
+      for (key in keys_new)
+        self$insert(key, dict$get(key))
+    },
+    get = function(key) {
+      private$env[[key]]
+    },
+    clear = function() {
+      private$env = NULL
+      invisible(gc())
+      private$env = new.env()
+    },
+    keys = function() {
+      ls(private$env)
+    },
+    values = function() {
+      as.list(private$env)
+    }
+  ),
+  private = list(
+    env = NULL
+  )
+)
+```
+
+.pull-left[
+```r
+Dictionary = R6::R6Class(
+  public = list(
+    initialize = function() {
+      private$env = new.env()
+      invisible(self)
+    },
+    length = function() {
+      base::length(private$env)
+    },
+    print = function() {
+      cat("## A dictionary with", self$length(), "elements\n\n")
+    }
+  ),
+  private = list(
+    env = NULL
+  )
+)
+```
+].pull-right[
+```{r, dependson="dict", cache=TRUE}
+d = Dictionary$new()
+d
+```
+]
+
+---
+# Dictionary
+.pull-left[
+```r
+    # ...
+    insert = function(key, value) {
+      private$env[[key]] = value
+      invisible(self)
+    },
+    get = function(key) {
+      private$env[[key]]
+    },
+    # ...
+```
+].pull-right[
+```{r, dependson="dict", cache=TRUE}
+d = Dictionary$new()
+d
+d$insert("x", 1)
+d$get("x")
+d
+```
+]
+
+---
+# Dictionary
+.pull-left[
+```r
+    # ..
+    keys = function() {
+      ls(private$env)
+    },
+    values = function() {
+      as.list(private$env)
+    }
+    # ..
+```
+].pull-right[
+```{r, dependson="dict", cache=TRUE}
+d = Dictionary$new()
+d$insert("x", 1)
+d$values()
+```
+]
+
+---
+# Dictionary
+.pull-left[
+```r
+    # ...
+    update = function(dict) {
+      keys_new = dict$keys()
+      for (key in keys_new)
+        self$insert(key, dict$get(key))
+    },
+    # ...
+```
+].pull-right[
+```{r, dependson="dict", cache=TRUE}
+d = Dictionary$new()
+d$insert("x", 1)
+
+new_dict = Dictionary$new()
+new_dict$insert("y", 2)
+d$update(new_dict)
+
+d
+d$values()
+```
+]
+
+---
+# Dictionary
+.pull-left[
+```r
+    # ...
+    clear = function() {
+      rm(private$env)
+      invisible(gc())
+      private$env = new.env()
+    },
+    # ...
+```
+].pull-right[
+```{r, dependson="dict", cache=TRUE}
+d = Dictionary$new()
+d$insert("x", 1)
+d
+d$clear()
+d
+d$values()
+```
+]
+
+---
+# A Dictionary of Customers
+```{r, customers_dict, dependson=c("dict", "customer_class"), cache=TRUE}
+create_customer = function(customers) {
+  customer = Customer$new()
+  customers$insert(customer$id, customer)
+  customers
+}
+
+customers = Dictionary$new()
+for (i in 1:5) {
+  customers = create_customer(customers)
+}
+
+keys = customers$keys()
+keys
+```
+
+---
+# A Dictionary of Customers
+```{r, dependson=c("dict", "customer_class", "customers_dict"), cache=TRUE}
+customer_id = keys[1]
+customer = customers$get(customer_id)
+
+customer$increment_orders()
+customer$orders
+
+new_spend = 7.89
+customer$increment_spend(new_spend)
+customer$spend
+
+customers$insert(customer_id, customer)
+customers$get(customer_id)$spend
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* Classes
+    * Can be a helpful way of organizing code
+    * Not a "suicide pact"
+* Lists and dictionaries are useful data structures
+
+---
+class: clear, inverse, middle, center
+# Questions?
