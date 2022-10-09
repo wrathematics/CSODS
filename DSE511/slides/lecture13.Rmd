@@ -1,0 +1,155 @@
+---
+title: Lecture 13 - Data Structures (Part 3)
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-10-11"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+# Announcements
+* Nothing unresolved from last time
+* Questions?
+
+---
+# What's The Goal
+* Better code organization
+* Engineering over scripting
+* Encapsulation over globals
+
+---
+# Content
+* Complexity
+
+
+
+---
+class: clear, inverse, middle, center
+# Complexity
+
+---
+# Complexity
+* "Big O" - literally upper case O
+* Mathematical notation
+* Describes *asymptotic behavior* of a function
+    * Sometimes called *asymptotic complexity*
+    * Other models of "complexity" exist
+* Used in CS to understand runtime behavior as data grows
+
+---
+# Big O
+* Describes an upper bound for a function
+* Formally: $f(x) = O(g(x)) \rvert_{x\rightarrow\infty} \iff \exists (M, x_0)\in\mathbb{R^2} : \lvert f(x)\rvert \leq M\cdot g(x) \forall x\geq x_0$
+* Said another way: $f(x) = O(g(x)) \rvert_{x\rightarrow\infty} \iff \limsup_{x\rightarrow\infty} \frac{\lvert f(x) \rvert}{g(x)} < \infty$
+* In CS, we usually talk about $f(n)$
+* See also: "little o"
+
+---
+# Common Functions
+.pull-left[
+* Constant - $O(1)$
+* Logarithmic - $O(\log(n))$
+* Linear - $O(n)$
+* Quadratic - $O(n^2)$
+* Polynomial - $O(n^a)$ for some $a>0$
+* Exponential - $O(\exp(n))$
+* Factorial - $O(n!)$
+].pull-right[
+```{r, cache=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+library(ggplot2)
+
+f0 = function(x) 1
+f1 = function(x) x
+f2 = function(x) x^2
+f3 = function(x) x^3
+f4 = function(x) log(x)
+f5 = function(x) exp(x)
+f6 = function(x) factorial(x)
+g = ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
+  xlim(0.01, 100) + ylim(0, 5000) + xlab("") + ylab("") + theme_minimal() + 
+  labs(color = "Function") + 
+  theme(axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
+  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+g = g +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f0), mapping = aes(color = "Constant")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f4), mapping = aes(color = "Logarithmic")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f1), mapping = aes(color = "Linear")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f2), mapping = aes(color = "Quadratic")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f3), mapping = aes(color = "Cubic")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f5), mapping = aes(color = "Exponential")) +
+  layer(geom = "path", stat = "function", position = "identity", params=list(fun = f6), mapping = aes(color = "Factorial"))
+g
+```
+]
+
+---
+# Calculation Example
+**Fact**: $3n^2 + 2n + 1 = O(n^2)$
+
+**Proof**: Notice that $3n^2 + 2n + 1 \leq 3n^2 + n^2 = 4n^2$ whenever $n^2 \geq 2n + 1$.
+By inspection, $n \geq \sqrt{2n+1}$ whenever $n\geq 3$, since $\sqrt{7} \approx 2.65$.
+So let $M=4$ and $x_0 = 3$ QED.
+
+---
+# Big O Properties
+* You can ignore constant factors: $\forall c>0, f(n) = cg(n) \implies O(f(n)) = O(g(n))$
+* $O$ of a sum is $O$ of the "most expensive" summand
+    * Corollary: $a_mn^n + a_{n-1}n^{m-1} \dots + a_1n^1 + a_0 = O(n^m)$
+* It is multiplicative: $f_1 = O(g_1)$ and $f_2 = O(g_2)$ then $f_1\cdot f_2 = O(g_1 \cdot g_2)$
+* All logarithms grow at the same rate (change of basis + constant factor)
+* Constant < Logarithmic < Polynomial < Exponential < Factorial
+
+---
+# Some Common Algorithms - Searches and Sorts
+* Bubblesort $O(n^2)$
+* Quicksort $O(n\cdot \log n)$
+* Binary search $O(\log n)$
+* Linear search $O(n)$
+* Hash table lookup $O(1)$
+
+---
+# Some Common Algorithms - Graphs
+* BFS $O(V+E)$
+* SSSP (Dijkstra) $O((V+E) \log V)$
+* ASSP (Floyd-Warshall) $O(V^3)$
+
+---
+# Some Common Algorithms - Data Science
+* Square matrix multiplication (gemm) FLOPs: $2n^3$
+* Cholesky FLOPs: $\frac{1}{3} n^3$
+* PCA FLOPs: $6mn^2 + 20n^3 + 2mn^2 + 2mn + n$
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Homework
+* Coming "soon" (tm)
+* What to ask?
+    * Some basic R/Python tasks
+    * Implement some basic thing using classes (R or Python)
+    * A few questions about "Big O"
+
+---
+# Wrapup
+* 
+
+---
+class: clear, inverse, middle, center
+# Questions?
