@@ -25,6 +25,8 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 9 - Basic Programming with R and Python [[src](slides/lecture09.Rmd) | [pdf](slides/lecture09.pdf)]
 * Lecture 10 - Basic Programming [[src](slides/lecture10.Rmd) | [pdf](slides/lecture10.pdf)]
 * Lecture 11 - Data Structures (Part 1) [[src](slides/lecture11.Rmd) | [pdf](slides/lecture11.pdf)]
+* Lecture 12 - Data Structures (Part 2) [[src](slides/lecture12.Rmd) | [pdf](slides/lecture12.pdf)]
+* Lecture 13 - Data Structures (Part 3) [[src](slides/lecture13.Rmd) | [pdf](slides/lecture13.pdf)]
 
 
 ## Module 4: Databases
