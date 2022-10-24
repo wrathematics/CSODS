@@ -1,0 +1,393 @@
+---
+title: Lecture 17 - Some Helpful Utilities
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-10-25"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+# Announcements
+* New homework
+* Questions?
+
+---
+# Today's Lecture
+* We'll be looking at *many* utilities
+* Lots of examples
+* Probably less stories/opining
+* More boring? Less boring? Different...
+
+---
+# Major Utilities
+.pull-left[
+## Printing / File Inspection
+* `echo`
+* `head` and `tail`
+* `cat`
+* `less`
+## File Info
+* `wc`
+* `du` and `df`
+* `locate`
+* `which`
+* `find`
+].pull-right[
+## Editors
+* `nano`
+* `vim`
+## Diffing Files
+* `cmp`
+* `diff`
+* `md5sum`
+## Calculators
+* `R` and `Python`
+* `bc`
+]
+
+---
+# Content
+* Printing and File Inspection
+* File Info
+* Editors
+* Diffing Files
+* Calculators
+
+
+---
+class: clear, inverse, middle, center
+# Printing and File Inspection
+
+---
+# Printing / File Inspection
+* `echo` - print a string
+* `head` and `tail` - see first/last "few" lines of a file
+* `cat` - print a file to stdout
+* `less` - interactively view a file
+
+---
+# echo
+```{bash}
+echo hello world
+```
+```{bash}
+echo a b c
+```
+```{bash}
+echo "d e f"
+```
+```{bash}
+echo \"g h i\"
+```
+
+---
+# echo
+```{bash}
+echo $LANG
+```
+```{bash}
+x=1
+echo $x
+```
+```{bash}
+echo "a\nb"
+```
+```{bash}
+echo -e "a\nb"
+```
+
+---
+# head and tail
+```{bash}
+echo -e "a\nb\nc\nd\ne" > /tmp/x.txt
+```
+.pull-left[
+```{bash}
+head -n1 /tmp/x.txt
+```
+```{bash}
+head -n3 /tmp/x.txt 
+```
+].pull-right[
+```{bash}
+tail -n1 /tmp/x.txt
+```
+```{bash}
+tail -n3 /tmp/x.txt 
+```
+]
+
+---
+# head and tail
+```{bash}
+echo -e "a\nb\nc\nd\ne" > /tmp/x.txt
+```
+```{bash}
+cat /tmp/x.txt
+```
+```{bash}
+cat -n /tmp/x.txt
+```
+
+---
+# less
+* We've seen this in class
+* How does it work?
+* `less some_file`
+* Search with `/` e.g. `/my_search_string<enter>`
+* Exit with `q`
+
+
+
+
+---
+class: clear, inverse, middle, center
+# File Info
+
+---
+# File Info
+* `wc` - char/word/line counting
+* `du` and `df` - "disk usage" and "disk free"
+* `locate` - find files by name
+* `which` - locate a *command*
+* `find` - a better `locate`
+
+---
+# wc
+```{bash}
+echo -e "a\nb\nc\nd\ne" > /tmp/x.txt
+```
+```{bash}
+wc /tmp/x.txt
+```
+```{bash}
+wc -l /tmp/x.txt
+```
+
+---
+# du and df
+```{bash}
+echo -e "a\nb\nc\nd\ne" > /tmp/x.txt
+```
+```{bash}
+du /tmp/x.txt
+```
+```{bash}
+du -h /tmp/x.txt
+```
+
+---
+# du and df
+```{bash}
+echo -e "a\nb\nc\nd\ne" > /tmp/x.txt
+```
+```{bash}
+df | head -n 4
+```
+```{bash}
+df /tmp
+```
+
+---
+# locate
+```{bash}
+locate Rscript | grep ^/usr/lib
+```
+```{bash}
+locate libR.so | grep ^/usr/lib
+```
+
+---
+# which
+```{bash}
+which Rscript
+```
+```{bash}
+which python
+```
+
+---
+# find
+```{bash}
+cd /tmp && mkdir -p /tmp/example && cd example
+touch x.txt
+touch y.txt
+touch a && chmod +x a
+```
+```{bash}
+find /tmp/example -name *.txt
+```
+```{bash}
+find /tmp/example -name x.*
+```
+```{bash}
+find /tmp/example -executable
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Editors
+
+---
+# Editors
+* `nano`
+* `vim`
+* And the rest...
+
+---
+# nano
+* `nano some_file.txt`
+* How to use it? Read the bar at the bottom!
+* `ctrl`+`x` - exit
+* `ctrl`+`o` - save file
+* `ctrl`+`r` - open file
+* etc.
+
+---
+# vim
+* A "modal" editor
+* Difficult to learn, but very powerful
+* Not for everyone
+* You aren't "bad" for not liking it
+
+---
+# vim
+* `vim some_file.txt`
+* `i` to enter "insert" mode
+* `Esc` or `ctrl`+`c` to exit current mode
+* `:w` to save
+* `:q` to quit
+
+
+
+---
+class: clear, inverse, middle, center
+# Diffing Files
+
+---
+# Diffing Files
+* `cmp` - concisely compare files
+* `diff` - verbosely compare files
+* `md5sum` - check if two files are identical
+
+---
+# Setup
+```{bash}
+cd /tmp && mkdir -p /tmp/example2 && cd example2
+echo "a\nb" > x.txt
+echo -e "a\nb" > y.txt
+```
+
+---
+# cmp
+```{bash, error=TRUE}
+cd /tmp/example2/
+cmp x.txt x.txt
+```
+```{bash, error=TRUE}
+cd /tmp/example2
+cmp x.txt y.txt
+```
+
+---
+# diff
+```{bash, error=TRUE}
+cd /tmp/example2/
+diff x.txt x.txt
+```
+```{bash, error=TRUE}
+cd /tmp/example2
+diff x.txt y.txt
+```
+
+---
+# md5sum
+```{bash, error=TRUE}
+cd /tmp/example2
+md5sum x.txt y.txt
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Calculators
+
+---
+# Calculators
+* `R` and `Python`
+* `bc` - "basic calculator"
+
+---
+# R and Python
+```{bash}
+Rscript -e "cat(1+1, '\n')"
+```
+```{bash}
+python -c "print(1+1)"
+```
+```{bash}
+python -c "import math; print(math.pow(10, 20))"
+```
+
+---
+# bc
+```{bash}
+echo "1+1" | bc
+```
+```{bash}
+echo "10^20" | bc
+```
+```{bash}
+echo "1/3" | bc
+```
+```{bash}
+echo "scale=17; 1/3" | bc
+```
+
+---
+# bc
+```{bash}
+echo 'ibase=10; obase=2; 12345' | bc
+```
+```{bash}
+echo 'ibase=F; obase=2; 12345' | bc
+```
+
+---
+# bc
+.huge[🎃🎃🎃🎃🎃]
+```{bash}
+echo 'ibase=8; obase=12; 31' | bc
+```
+.huge[🎄🎄🎄🎄🎄]
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* 
+
+---
+class: clear, inverse, middle, center
+# Questions?
+.huge[🎃🎃🎃]
