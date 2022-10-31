@@ -1,0 +1,50 @@
+---
+title: "Assignment 3"
+subtitle: "DSE 511"
+date: "Assigned 2022-10-25 --- Due 2022-11-7 11:59pm"
+output: 
+    - pdf_document
+urlcolor: blue
+linkcolor: blue
+---
+
+## Instructions
+
+Prepare your answers in a presentable document (Word, LaTeX, pdf generated from markdown, ...). When you are completed, submit your final document on Canvas.
+
+For coding problems, you can not use any add-on packages unless explicitly allowed by the problem.
+
+For the purposes of this homework, don't worry about "sanitizing inputs." So if I say "write a function that accepts an integer `n`", you don't have to worry about receiving a string or something else.
+
+Reminder that you ***may not*** copy code from each other. Doing so will be considered academic dishonesty; please refer to the syllabus.
+
+## Problems
+
+1. (25%) In R or Python (your choice) write a program that prints the numbers from 1
+to 100, one per line. But for multiples of 3 print "A" instead of the number and for the multiples of five print "B". For numbers which are multiples of both three
+and five print "AB".
+**Hint**: Use `%%` (R) or `%` (Python).
+
+2. (25%) An integer is a **palindrome** if the digits are the same forwards as backards. So for example, 123321 is a palindrome but 1231 is not. In R or Python (your choice) implement a function `is_palindrome()` that takes a positive integer input `n` and (correctly) returns `TRUE`/`True` if `n` is a palindrome and `FALSE`/`False` otherwise.
+
+3. (20%) These expressions represent the number of operations required by an algorithm, each of size $n$. Find each expression's Big O:
+    a. $n^2 - 2n + 1$
+    b. $n^3 - 1000000000000\cdot n^2\log n$
+
+4. (10%) Prove that for the purposes of Big O, choice of logarithm base is irrelevant.
+**Hint**: use the change of base formula $\log_b(a) = \frac{\log_c(a)}{\log_c(b)}$
+
+4. (10%) What is the Big O of this R program as a function of the number of elements $n$?
+    
+    ```r
+    for (i in 1:n) {
+        j <- 1
+        while (j < n) {
+            j <- j + 2
+        }
+    }
+    ```
+
+5. (10%) In our discussions about Big O, we focused on the "runtime" aspect, looking at the "number of operations" performed. But we can also use it to describe the "storage" used. In problem 2, let `n` represent the number of digits of the input number. What is the Big O of the intermediate storage of your solution? Loosely speaking, the question is "what is the scale of which you are allocating as a function of the number of digits in the input number".
+
+6. (0% - ungraded challenge problem) Solve problem 2 with $O(1)$ storage.

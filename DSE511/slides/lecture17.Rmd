@@ -25,13 +25,6 @@ options(htmltools.dir.version = FALSE)
 * Questions?
 
 ---
-# Today's Lecture
-* We'll be looking at *many* utilities
-* Lots of examples
-* Probably less stories/opining
-* More boring? Less boring? Different...
-
----
 # Major Utilities
 .pull-left[
 ## Printing / File Inspection
@@ -371,11 +364,11 @@ echo 'ibase=F; obase=2; 12345' | bc
 
 ---
 # bc
-.huge[🎃🎃🎃🎃🎃]
+.huge[🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃🎃]
 ```{bash}
 echo 'ibase=8; obase=12; 31' | bc
 ```
-.huge[🎄🎄🎄🎄🎄]
+.huge[🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄]
 
 
 
@@ -385,7 +378,10 @@ class: clear, inverse, middle, center
 
 ---
 # Wrapup
-* 
+* Lots of utilities...
+* We'll be using these *a lot* as we build on the shell.
+* Get very comfortable with `echo`, pipes, redirection...
+* 🎃 Oct 31 = Dec 25 🎄
 
 ---
 class: clear, inverse, middle, center
