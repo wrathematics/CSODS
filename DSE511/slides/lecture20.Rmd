@@ -1,0 +1,301 @@
+---
+title: Lecture 20 - sed
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-11-03"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+layout:true
+<div class="footer"><span>Drew Schmidt 2022</span></div>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+---
+# Announcements
+* Homework due Monday Nov 7
+    * Problem 6: 
+        1. You may assume the input is an integer
+        2. IF YOU USE STRINGS: treat a string as a vector of chars
+* Questions?
+```{r}
+as.integer(2^31)
+```
+
+---
+# Content
+* Background
+* Basic sed
+* Examples
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Background
+
+---
+# sed
+* CLI tool
+* What does it do?
+    * Frankly, a lot...
+    * Commonly: find/replace
+* Very powerful!
+
+---
+# The Name
+* Stream EDitor
+* It edits text
+* An extremely powerful "find/replace" (and more)
+
+---
+# Common Uses for sed
+* Software engineering
+    * Find/replace
+* Data science
+    * Find/replace
+        * Convert tsv to csv
+        * Substitute client/model/... in script
+        * ...
+
+
+
+---
+# My Personal Tier List
+1. `git`
+2. `grep`
+
+* Big drop off from here!
+* A notable contender: `sed`
+    * Probably top 5
+    * Definitely top 10
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Basic sed
+
+---
+# Basic sed
+* `sed <flags> pattern file(s)`
+* `sed -e` - expression
+* `sed -i` - in-place editing
+* And more...
+
+---
+# Chaining sed Commands
+* Normal command
+    ```bash
+    cmd arg1 | cmd arg2 | cmd arg3 | ...
+    ```
+* `sed`
+    ```bash
+    sed -e arg1 -e arg2 -e arg3 ...
+    ```
+
+---
+# The Typical sed Commands
+* Replace the first instance of `a` per line with `b`
+    ```bash
+    sed -e 's/a/b/' some_file.txt
+    ```
+* Replace the every instance of `a` with `b`
+    ```bash
+    sed -e 's/a/b/g' some_file.txt
+    ```
+* More complicated things are possible...
+
+---
+# Basic sed
+```{bash}
+echo "hello world" > /tmp/example.txt
+cat /tmp/example.txt
+```
+```{bash}
+sed -e s/h/H/ /tmp/example.txt 
+```
+```{bash}
+sed -e s/hello/goodbye/ /tmp/example.txt
+```
+
+---
+# Basic sed
+```{bash}
+sed -e s/o/0/ /tmp/example.txt
+```
+```{bash}
+sed -e s/o/0/g /tmp/example.txt
+```
+```{bash}
+sed -e s/^h/H/ -e 's/ w/ W/' /tmp/example.txt
+```
+
+---
+# Basic sed
+```{bash}
+echo -e "aa\nab\naa" > /tmp/new_example.txt
+cat /tmp/new_example.txt
+```
+```{bash}
+sed -e s/a/x/ /tmp/new_example.txt
+```
+```{bash}
+sed -e s/a/x/g /tmp/new_example.txt
+```
+
+---
+# Basic sed
+```{bash}
+sed -e '3s/a/x/' /tmp/new_example.txt
+```
+```{bash}
+sed -e '2,3s/a/x/' /tmp/new_example.txt
+```
+```{bash}
+sed -e '1s/a/x/g' -e '3s/a/x/g' /tmp/new_example.txt
+```
+
+---
+# Basic sed
+```{bash}
+sed -e 's/a/x/2g' /tmp/new_example.txt
+```
+```{bash}
+sed -e 's/a/x/3g' /tmp/new_example.txt
+```
+
+---
+# Neat Tricks
+```{bash}
+sed -e 's/\(\b[a-z]\)/\(\1\)/g' /tmp/example.txt
+```
+```{bash}
+sed -e 's/\(\b[a-z]\)/\(\1\)/g' /tmp/new_example.txt
+```
+
+---
+# Other Uses for sed
+```{bash}
+sed -n -e 1,2p /tmp/new_example.txt
+```
+```{bash}
+sed -n -e 1p -e 3p /tmp/new_example.txt
+```
+
+---
+# Other Uses for sed
+```{bash}
+sed -e '2d' /tmp/new_example.txt
+```
+```{bash}
+sed -e '1,3d' /tmp/new_example.txt
+```
+```{bash}
+sed -e '2,3d' -e 's/a/x/' /tmp/new_example.txt
+```
+
+---
+# Other Uses for sed
+```{bash}
+sed -n -e 1p -e 3p -e s/a/x/ /tmp/new_example.txt
+```
+```{bash}
+sed -e s/a/x/ -n -e 1p -e 3p /tmp/new_example.txt
+```
+```bash
+sed -i -e s/a/x/ -n -e 1p -e 3p /tmp/new_example.txt
+```
+```bash
+cat /tmp/new_example.txt 
+```
+```
+xa
+xa
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Examples
+
+---
+# Example: The Airlines Dataset
+.center[![](pics/airlines.png)]
+.tiny[https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HG7NV7]
+
+---
+# Example: The Airlines Dataset
+```{bash}
+head ~/sw/data/airlines/csv/1987.csv | sed -e 's/,/\t/g'
+```
+
+---
+# Example: The Airlines Dataset
+```{bash}
+head ~/sw/data/airlines/csv/1987.csv | sed -e 's/,/\t/g' -e 's/NA/__NA__/g'
+```
+
+---
+# Example: The Airlines Dataset
+```{bash}
+head -n 3 ~/sw/data/airlines/csv/1987.csv | sed -e 's/,/  /g'
+```
+```{bash}
+head -n 3 ~/sw/data/airlines/csv/1987.csv | sed -e 's/,/  /g' -e 's/-[0-9]/NA/g'
+```
+```{bash}
+head -n 3 ~/sw/data/airlines/csv/1987.csv | sed -e 's/,/  /g' -e 's/-[0-9]/0/g'
+```
+
+---
+# Question
+.pull-left[
+But what about $SOME_ADDITIONAL_COMPLEXITY?
+].pull-right[![](pics/big_think.png)]
+
+---
+# Example: The Airlines Dataset
+```{bash}
+grep "[0-9],TYS," ~/sw/data/airlines/csv/1987.csv | \
+    sed -e 's/^.*TYS,//' -e 's/,.*//' | sort | uniq -c
+```
+
+---
+# Example: The Airlines Dataset
+```{bash}
+grep "[0-9],TYS," ~/sw/data/airlines/csv/2005.csv | \
+    sed -e 's/^.*TYS,//' -e 's/,.*//' | sort | uniq -c
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* `sed` is a very powerful find/replace tool
+* It does significantly more as well
+* Regular expressions aren't perfect!
+* You now know what someone means when they say "Sorry s/a/b/".
+* We've only worked on "lines"; how do we work on "columns"? 🤔
+
+---
+class: clear, inverse, middle, center
+# Questions?

@@ -27,9 +27,20 @@ Course materials for: The Computer Science of Data Science. Course content is li
 * Lecture 11 - Data Structures (Part 1) [[src](slides/lecture11.Rmd) | [pdf](slides/lecture11.pdf)]
 * Lecture 12 - Data Structures (Part 2) [[src](slides/lecture12.Rmd) | [pdf](slides/lecture12.pdf)]
 * Lecture 13 - Data Structures (Part 3) [[src](slides/lecture13.Rmd) | [pdf](slides/lecture13.pdf)]
+* Assignment 3 [[src](assignments/assignment3.Rmd) | [pdf](assignments/assignment3.pdf)]
 
 
-## Module 4: Databases
+## Module 4: Introduction to the Shell
+* Lecture 14 - CANCELED [[src](slides/lecture14.Rmd) | [pdf](slides/lecture14.pdf)]
+* Lecture 15 - Introduction to the Shell [[src](slides/lecture15.Rmd) | [pdf](slides/lecture15.pdf)]
+* Lecture 16 - Basic Shell [[src](slides/lecture16.Rmd) | [pdf](slides/lecture16.pdf)]
+* Lecture 17 - Some Helpful Utilities [[src](slides/lecture17.Rmd) | [pdf](slides/lecture17.pdf)]
+* Lecture 18 - Interacting with the
+Internet [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
+* Lecture 19 - grep [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
+* Lecture 20 - sed [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
+
+## Module 5: Databases
 
 
-## Module 5: Wrapup
+## Module 6: Wrapup
