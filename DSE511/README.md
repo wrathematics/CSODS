@@ -39,6 +39,7 @@ Course materials for: The Computer Science of Data Science. Course content is li
 Internet [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
 * Lecture 19 - grep [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
 * Lecture 20 - sed [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
+* Lecture 21 - awk and make [[src](slides/lecture21.Rmd) | [pdf](slides/lecture21.pdf)]
 
 ## Module 5: Databases
 

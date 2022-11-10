@@ -1,0 +1,361 @@
+---
+title: Lecture 21 - awk and make
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-11-08"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+layout:true
+<div class="footer"><span>Drew Schmidt 2022</span></div>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+---
+# Announcements
+* Nothing unresolved from last time
+* Homework:
+    * Deadline extended to 11:59pm Wed Nov 9
+* Hard cutoff today 5:35pm
+* Questions?
+
+---
+# Content
+* awk
+* make
+
+
+
+
+---
+class: clear, inverse, middle, center
+# awk
+
+---
+# awk
+* A very powerful tool!
+* If you can figure out how to use it...
+* Named after its authors Aho, Weinberger, and Kernighan.
+* Technically its own DSL
+
+---
+# awk
+.pull-left[
+## CLI Tool
+```bash
+awk 'BEGIN{print "hello world"}'
+```
+].pull-right[
+## Programs
+```bash
+cat hw.awk
+```
+```
+BEGIN {
+  print "hello world"
+}
+```
+```bash
+awk -f hw.awk
+```
+```
+hello world
+```
+]
+
+---
+# awk
+```{bash}
+awk '$0 ~ /,TYS,/' ~/sw/data/airlines/csv/1987.csv | head
+```
+
+---
+# awk
+```{bash}
+awk 'BEGIN{FS=",";OFS="\t"}{$1=$1; print}' ~/sw/data/airlines/csv/1987.csv | head
+```
+
+---
+# awk
+```{bash}
+awk 'BEGIN{FS=",";OFS="\t"}{$1=$1;print $17, $18}' ~/sw/data/airlines/csv/1987.csv | head
+```
+
+---
+# awk
+```{bash}
+awk 'BEGIN{FS=",";OFS="\t"}{$1=$1;print $17, $18}' ~/sw/data/airlines/csv/1987.csv | \
+  grep TYS | head
+```
+
+---
+# awk
+```{bash}
+awk 'BEGIN{FS=",";OFS="\t"}{$1=$1;print $17, $18}' ~/sw/data/airlines/csv/1987.csv | \
+  grep TYS | sort | uniq -c
+```
+
+---
+# awk
+* Can do A LOT more
+* We're not going to show that off
+* My take:
+    * Can be helpful for some quick CLI operations
+    * For data science: usually better off using R or Pandas
+* Where to learn more:
+    * AWK https://en.wikipedia.org/wiki/AWK
+    * The GNU AWK (gawk) User's Guide https://www.gnu.org/software/gawk/manual/gawk.html
+
+
+
+---
+class: clear, inverse, middle, center
+# make
+
+---
+# make
+* "[A] build automation tool" - Wikipedia
+* A workflow tool
+* Often reserved for compiled languages
+    * C
+    * Fortran
+    * ...
+* Has many uses though!
+
+---
+# Example
+```makefile
+hello:
+	Rscript -e "cat('hello world\n')"
+```
+```bash
+make
+```
+```
+Rscript -e "cat('hello world\n')"
+hello world
+```
+
+---
+# Some Rules
+* A makefile is made up of *rules*
+* A rule is made up of *targets*, *pre-requisites*, and *recipes*
+* Rules should go into `Makefile`
+    * Must be named *exactly* `Makefile`
+    * Or specify the file name `make -f mymakefile`
+* All rules must look like this
+    ```makefile
+    target: pre-requisite
+    TAB recipe
+    ```
+* A recipe can be basically anything
+* To make a specific target type `make target_name`
+* The first line will automatically run if you just type `make`
+
+---
+# A Quote (Paraphrasing)
+.pull-left[
+> Makefiles are the sourdough starters of software.
+
+Jenny Bryan (I think?)
+].pull-right[![](pics/homer.jpeg)]
+
+---
+# Example
+```makefile
+export SHELL=/usr/bin/bash
+all: print_results
+
+write:
+	Rscript -e "write.csv(iris, file = 'iris.csv')"
+
+extract: write
+	awk 'BEGIN{FS=","}{if(NR!=1){print $$6}}' iris.csv > col.txt
+
+summarize: extract
+	cat col.txt | sort | uniq -c > summary.txt
+
+print_results: summarize
+	cat summary.txt
+
+clean:
+	rm -rf iris.csv summary.txt col.txt
+```
+
+---
+# Example
+```bash
+make
+```
+```
+Rscript -e "write.csv(iris, file = 'iris.csv')"
+awk 'BEGIN{FS=","}{if(NR!=1){print $6}}' iris.csv > col.txt
+cat col.txt | sort | uniq -c > summary.txt
+cat summary.txt
+     50 "setosa"
+     50 "versicolor"
+     50 "virginica"
+```
+```bash
+ls
+```
+```
+col.txt  iris.csv  Makefile  summary.txt
+```
+```bash
+make clean && ls
+```
+```
+rm -rf iris.csv summary.txt col.txt
+Makefile
+```
+
+---
+# Some Observations
+* Each rule is like a little function
+* Rules probably shouldn't be *overly* complicated
+* `make` automatically resolves the execution order, once pre-requisites are specified
+* We're not yet taking advantage of one of its best features...
+
+---
+# (Re-)Generating Targets
+* `make` can automatically check if a file needs to be re-generated
+* Based on timestamps (if output older than modification...)
+* One of its best features!
+* But you have to name things "correctly"
+    * An output is a target is an output
+* Can force rebuilds with `.PHONY`
+    * `.PHONY: all clean`
+
+---
+# Example
+```makefile
+export SHELL=/usr/bin/bash
+all: print_results
+
+iris.csv:
+	Rscript -e "write.csv(iris, file = 'iris.csv')"
+
+col.txt: iris.csv
+	awk 'BEGIN{FS=","}{if(NR!=1){print $$6}}' iris.csv > col.txt
+
+summary.txt: col.txt
+	cat col.txt | sort | uniq -c > summary.txt
+
+print_results: summary.txt
+	cat summary.txt
+
+clean:
+	rm -rf iris.csv summary.txt col.txt
+```
+
+---
+# Example
+```bash
+make
+```
+```
+Rscript -e "write.csv(iris, file = 'iris.csv')"
+awk 'BEGIN{FS=","}{if(NR!=1){print $6}}' iris.csv > col.txt
+cat col.txt | sort | uniq -c > summary.txt
+cat summary.txt
+     50 "setosa"
+     50 "versicolor"
+     50 "virginica"
+```
+```bash
+make
+```
+```
+cat summary.txt
+     50 "setosa"
+     50 "versicolor"
+     50 "virginica"
+```
+
+---
+# Other Features
+* Variables
+* Sourcing other makefiles
+* Wildcards
+* Built-in and automatic recursion!
+* Can even run things in parallel! (`make -j`)
+
+---
+# My Slides Makefile
+.pull-left[
+```makefile
+SRCS=$(wildcard *.Rmd)
+HTML=$(SRCS:.Rmd=.html )
+PDF=$(SRCS:.Rmd=.pdf )
+
+%.html: %.Rmd
+	./bin/build.r $<
+html: $(HTML)
+	
+%.pdf: %.html
+	./bin/topdf.r $<
+pdf: $(PDF)
+
+all: html
+
+clean:
+	rm -rf *.pdf *.html
+```
+].pull-right[
+```bash
+make
+```
+```
+# ...
+output file: lecture21.knit.md
+# ...
+Output created: lecture21.html
+```
+```bash
+make
+```
+```
+make: 'html' is up to date.
+```
+```bash
+make pdf
+```
+```
+./bin/topdf.r lecture21.html
+```
+```bash
+make pdf
+```
+```
+make: Nothing to be done for 'pdf'.
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* `awk` is very powerful, but you're probably better off just using R/Python most of the time.
+* Your workflow tool probably isn't as good as `make`
+* Next time: Shell Scripting (Part 1 of 2)
+
+---
+class: clear, inverse, middle, center
+# Questions?

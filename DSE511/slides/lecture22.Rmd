@@ -1,0 +1,595 @@
+---
+title: Lecture 22 - Programming and Scripting (Part 1)
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-11-10"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+layout:true
+<div class="footer"><span>Drew Schmidt 2022</span></div>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+---
+# Announcements
+* Nothing unresolved from last time
+* Schedule:
+    * Nov 10 and 15 - shell
+    * Nov 17 and 22 - databases
+    * Nov 24 - No class for US Thanksgiving
+    * Nov 29 and Dec 1 - more databases
+    * Dec 6 - course wrapup
+* New homework (last one)
+    * Coming "soon" (late next week?)
+    * Due Mon Dec 5? (fairly hard last date)
+    * No homework on last modeule (databases)
+* Questions?
+
+---
+# Content
+* Background
+* Variables
+* Exit Codes
+* Logic
+
+
+
+---
+class: clear, inverse, middle, center
+# Background
+
+---
+# Scripting
+* Commands we've used interactively can be put into a *script*.
+* Just like R, or Python, or Matlab, or ...
+* There are a few differences here.
+
+---
+# Why Script?
+.pull-left[
+* Reproducibility
+* Automation
+* ...
+].pull-right[![](pics/big_think.png)]
+
+---
+# Content of a Shell Script
+* Comment with `#`
+* First Line
+    * The top line should indicate which shell runs the file
+    * It should look like `#!/bin/sh` or `#!/bin/bash`
+    * This is sometimes called a "shebang" or "hashbang" (hash symbol + exclamation mark)
+    * Looks like a comment *but it isn't*!
+* Body
+    * Can be anything you run interactively
+    * Variables, logic, commands, ...
+
+---
+# Permissions
+* The file should be executable e.g. `chmod +x my_script.sh`
+* How to execute:
+    * Relative path: `./my_script.sh`
+    * Absolute path: `/full/path/to/my_script.sh`
+* Can also do `bash my_script.sh` which *ignores the shebang*!
+
+---
+# Example
+.pull-left[
+```bash
+cat hw.sh
+```
+```
+#!/bin/bash
+
+# this is a comment
+echo "hello world"
+```
+```bash
+./hw.sh
+```
+```
+bash: ./hw.sh: Permission denied
+```
+```bash
+chmod +x hw.sh
+```
+].pull-right[
+```bash
+./hw.sh 
+```
+```
+hello world
+```
+```bash
+pwd
+```
+```
+/tmp
+```
+```bash
+/tmp/hw.sh
+```
+```
+hello world
+```
+```bash
+./tmp/hw.sh
+```
+```
+bash: ./tmp/hw.sh: No such file or directory
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Variables
+
+---
+# Variables
+* A named symbol containing some programmatic information
+* Just like variables in R, Python, ...
+* Because *the shell is your environment*, these are sometimes called environment variables
+
+---
+# Assignment and Expansion
+.pull-left[
+## Assignment
+* Use `=`
+* Naming is very conservative
+    * Start with letter
+    * letters + numbers + underscores
+* *Don't* include spaces around the `=`
+* For strings, use quotes if there are spaces
+* For commands, use backticks
+].pull-right[
+## Expansion
+* Retrieve the value with `$`
+* Put squiggly brackets around the var name for safety (optional)
+* Arithmetic is a little tricky...
+* Single and double quotes *do different things*
+* Undefined variables expand to `""`
+]
+
+---
+# Example: Basics
+```bash
+x=1
+echo $x
+```
+```
+1
+```
+```bash
+y=2
+echo $y
+```
+```
+2
+```
+```bash
+echo $x $y
+```
+```
+1 2
+```
+```bash
+echo $x $y $z
+```
+```
+1 2
+```
+
+---
+# Example: Brackets
+```bash
+x=1
+xx=2
+echo $xx
+```
+```
+2
+```
+```bash
+echo $x
+```
+```
+1
+```
+```bash
+echo ${x}x
+```
+```
+1x
+```
+
+---
+# Example: Quotes
+```bash
+x=1
+echo $x
+```
+```
+1
+```
+```bash
+echo "$x"
+```
+```
+1
+```
+```bash
+echo '$x'
+```
+```
+$x
+```
+```bash
+echo '$x='$x
+```
+```
+$x=1
+```
+
+---
+# Example: Commands
+```bash
+ARCH=`uname -m`
+echo "My computer's architecture is $ARCH"
+```
+```
+My computer's architecture is x86_64
+```
+```bash
+NUM_DIRS=`ls -d */ | wc -l`
+WD=`pwd`
+echo "My $WD has $NUM_DIRS directories"
+```
+```
+My /tmp has 33 directories
+```
+
+---
+# Example: Arithmetic
+```bash
+x=1
+y=2
+echo $(( $x + $y ))
+```
+```
+3
+```
+```bash
+echo $(( $x / $y ))
+```
+```
+0
+```
+```bash
+echo "scale=1; ($x / $y)" | bc
+```
+```
+.5
+```
+
+---
+# Example: Environment Variables
+.pull-left[
+## R
+```bash
+x=1 Rscript -e "print(Sys.getenv('x'))"
+```
+```
+[1] "1"
+```
+```bash
+y=1 Rscript -e "print($y)"
+```
+```
+[1] 1
+```
+```bash
+z=3 Rscript -e 'print($z)'
+```
+```
+Error: unexpected '$' in "print($"
+Execution halted
+```
+].pull-right[
+## Python
+```bash
+x=1 python -c "import os; print(os.environ['x'])"
+```
+```
+1
+```
+```bash
+y=1 python -c "print($y)"
+```
+```
+
+```
+```bash
+export y=1
+python -c "print($y)"
+```
+```
+1
+```
+]
+
+---
+# Scoping
+.pull-left[
+* By default, variables are local to the executing shell
+* If you start a new shell, the variable will be gone
+].pull-right[
+```bash
+myvar=1
+echo $myvar
+```
+```
+1
+```
+```bash
+bash
+echo $myvar
+```
+```
+
+```
+```bash
+exit
+export myvar=$myvar
+bash
+echo $myvar
+```
+```
+1
+```
+]
+
+
+
+---
+class: clear, inverse, middle, center
+# Exit Codes
+
+---
+# Exit Codes
+* Every command has an *exit code*
+* Exit code:
+    * An integer between 0 and 255 (8-bit unsigned)
+    * 0 means ok
+    * Non-zero means not ok
+* Exit code always stored in `$?`
+* You can utilize this in your scripts
+    * `exit` defaults to 0
+    * `exit 1` quits with error code 1
+
+---
+# Example
+```bash
+bash
+exit 255
+echo $?
+```
+```
+255
+```
+```bash
+bash
+exit 911
+echo $?
+```
+```
+143
+```
+```bash
+echo "911 % 256" | bc
+```
+```
+143
+```
+
+---
+# Example
+```bash
+uname -m
+```
+```
+x86_64
+```
+```bash
+echo $?
+```
+```
+0
+```
+```bash
+command-definitely-does-not-exist
+```
+```
+command-definitely-does-not-exist: command not found
+```
+```bash
+echo $?
+```
+```
+127
+```
+
+---
+# Example
+```bash
+Rscript -e "1+1"
+```
+```
+[1] 2
+```
+```bash
+echo $?
+```
+```
+0
+```
+```bash
+Rscript -e "stop()"
+```
+```
+Error: 
+Execution halted
+```
+```bash
+echo $?
+```
+```
+1
+```
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Logic
+
+---
+# Logic Syntax
+.pull-left[
+```bash
+if [ condition ]; then
+  
+elif [ condition ]; then
+  
+else
+  alternate
+fi
+```
+].pull-right[
+* There is also `test`
+* It's mostly like bracket syntax
+]
+
+---
+# Some Logical Operators
+.pull-left[
+## Strings
+* `==` - Same
+* `!=` - Different
+* `<` and `>` - lexicographic ordering
+
+## Files
+* `-e` - File exists?
+* `-d` - Exists and is a dir?
+* `-f` - Exists and is a regular file?
+* `-r` - Exists and is readable?
+* And many, many more...
+].pull-right[
+## Integers
+* `-eq` - Equal
+* `-ne` - Not equal
+* `-lt` - Less than
+* `-le` - Less than or equal to
+* `-gt` - Greater than
+* `-ge` - Greater than or equal to
+
+See also `man test`
+]
+
+---
+# Example
+```{bash}
+ARCH=`uname -m`
+if [ "X$ARCH" == "X" ]; then
+  echo "Unable to determine arch!"
+  exit 1
+elif [ "X$ARCH" == "Xx86_64" ]; then
+  echo "Your computer is x86"
+elif [ "X$ARCH" == "Xaarch64" ]; then
+  echo "Your computer is ARM"
+else
+  echo "Unknown arch!"
+fi
+```
+
+---
+# Example
+```{bash}
+LN2=`echo "l(2)" | bc -l`
+if [ "$LN2" = "1" ]; then
+  echo "ln(2) > 1"
+else
+  echo "ln(2) <= 1"
+fi
+```
+
+---
+# A Warning
+* When testing a variable, make sure it's not empty!
+* Common pattern `if [ "X$MYVAR" == "X" ]`
+* In bash `if [ -z "$MYVAR" ]` does the same
+* Each of these checks to see if the string is empty!
+
+---
+# Example: Empty Strings
+.pull-left[
+```bash
+x=1
+echo "#$x-$MYVAR#"
+```
+```
+#1-#
+```
+```bash
+test -z "$x"
+echo $?
+```
+```
+1
+```
+].pull-right[
+```bash
+test -z "$MYVAR"
+echo $?
+```
+```
+0
+```
+```bash
+test ! -z "$MYVAR"
+echo $?
+```
+```
+1
+```
+]
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* 
+
+---
+class: clear, inverse, middle, center
+# Questions?

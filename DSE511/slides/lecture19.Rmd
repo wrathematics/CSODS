@@ -236,7 +236,7 @@ grep -R "^AB" /tmp/example | wc -l
 grep -R -l "^AB" /tmp/example
 ```
 ```{bash}
-grep -o '^.\{3\}' /tmp/example/I/O/s
+grep -o '^.\{3\}' /tmp/example/D/H/w
 ```
 
 
