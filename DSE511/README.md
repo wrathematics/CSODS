@@ -40,6 +40,9 @@ Internet [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
 * Lecture 19 - grep [[src](slides/lecture19.Rmd) | [pdf](slides/lecture19.pdf)]
 * Lecture 20 - sed [[src](slides/lecture20.Rmd) | [pdf](slides/lecture20.pdf)]
 * Lecture 21 - awk and make [[src](slides/lecture21.Rmd) | [pdf](slides/lecture21.pdf)]
+* Lecture 22 - Programming and Scripting (Part 1) [[src](slides/lecture22.Rmd) | [pdf](slides/lecture22.pdf)]
+* Lecture 23 - Programming and Scripting (Part 2) [[src](slides/lecture23.Rmd) | [pdf](slides/lecture23.pdf)]
+* Lecture 24 - Introduction to Databases [[src](slides/lecture24.Rmd) | [pdf](slides/lecture24.pdf)]
 
 ## Module 5: Databases
 

@@ -1,0 +1,381 @@
+---
+title: Lecture 23 - Programming and Scripting (Part 2)
+subtitle: "DSE 511"
+author: "Drew Schmidt"
+date: "2022-11-15"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+layout:true
+<div class="footer"><span>Drew Schmidt 2022</span></div>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+---
+# Announcements
+* Schedule:
+    * Nov 15 - shell wrapup
+    * Nov 17 and 22 - databases
+    * Nov 24 - No class for US Thanksgiving
+    * Nov 29 and Dec 1 - more databases
+    * Dec 6 - course wrapup
+* Old homework
+    * Graded by next class period
+* New homework (last one!)
+    * Coming soon
+    * Due Mon Dec 5? (fairly hard last date)
+    * No homework on last modeule (databases)
+* Questions?
+
+---
+# Content
+* Loops
+* Functions and Arguments
+
+
+
+---
+class: clear, inverse, middle, center
+# Loops
+
+---
+# Loops
+* `for`
+* `while`
+* Some others not worth mentioning
+
+---
+# Loop Syntax
+.pull-left[
+```bash
+for loopvar in $loopvars; do
+  # ...
+done
+```
+].pull-right[
+```bash
+while [ condition ]; do
+  # ...
+done
+```
+]
+
+---
+# Example
+```{bash}
+for i in 1 2 3; do
+  echo $i
+done
+```
+```{bash}
+for i in `seq 1 3`; do
+  echo $i
+done
+```
+
+---
+# Example
+```{bash}
+seq 1 3
+```
+```{bash}
+seq 0 2 6
+```
+```{bash}
+seq 0 6 2
+```
+
+---
+# Example
+```{bash}
+root="/tmp/example"
+mkdir -p $root
+files="a b c"
+for file in $files; do
+  echo "Writing to $root/$file"
+  touch $root/$file
+done
+```
+```{bash}
+ls /tmp/example
+```
+
+---
+# Example
+```bash
+ls
+```
+```
+data1.txt  data2.txt  data3.txt  data4.txt  data5.txt
+```
+```bash
+for f in `ls *.txt`; do
+  newf=`echo $f | sed -e 's/txt$/csv/'`
+  mv $f $newf
+  # or:
+  # f_noext=${f%.*}
+  # mv $f ${f_noext}.csv
+done
+
+ls
+```
+```
+data1.csv  data2.csv  data3.csv  data4.csv  data5.csv
+```
+
+
+---
+# While Loops
+* Not that useful in shell most of the time
+* One exception is this pattern:
+```bash
+while true; do
+  if [ condition_is_met ]; then
+    do_whatever()
+    break
+  fi
+done
+```
+
+---
+# Example
+```{bash}
+counter=1
+while [ $counter -le 5 ]; do
+  echo "counter=$counter"
+  counter=$(( $counter + 1 ))
+done
+echo "Final value: $counter"
+```
+
+---
+# Example
+```bash
+RANDOM=1234
+while true; do
+  f="/tmp/myfile"
+  if [ -e $f ]; then
+    echo "Your file is ready at $f"
+    break
+  fi
+  if [ $(( $RANDOM % 2 + 1 )) -eq 2 ]; then
+    echo "Operation Succeeded!"
+    touch $f
+  else
+    echo "Operation FAILED: trying again..."
+    sleep 0.5
+  fi
+done
+```
+```
+Operation FAILED: trying again...
+Operation FAILED: trying again...
+Operation Succeeded!
+Your file is ready at /tmp/myfile
+```
+
+
+---
+class: clear, inverse, middle, center
+# Functions and Arguments
+
+---
+# Functions and Arguments
+* Repeated operations within a script can be placed in a function
+* Idea the same as every other language
+* The implementation is *very* shell...
+
+---
+# Syntax
+.pull-left[
+## Functions
+```bash
+function_name() {
+  # commands go here
+}
+
+# call like this
+function_name
+```
+].pull-right[
+## Arguments
+* Enumerated `$1`, `$2`, `$3`, ...
+* "All" args is special: `$@`
+]
+
+---
+# Example
+```bash
+hello() {
+  echo "Hello $1!"
+}
+hello world
+```
+```
+Hello world!
+```
+```bash
+hello universe
+```
+```
+Hello universe!
+```
+```bash
+hello to everyone out there
+```
+```
+Hello to!
+```
+
+---
+# Example
+```bash
+hello() {
+  echo "Hello $@!"
+}
+hello to everyone out there
+```
+```
+Hello to everyone out there!
+```
+
+---
+# Example
+```bash
+hello() {
+  echo "Hello to $1, $2, and $3"
+}
+hello you you you
+```
+```
+Hello to you, you, and you
+```
+```bash
+hello a b c d e
+```
+```
+Hello to a, b, and c
+```
+```bash
+hello x
+```
+```
+Hello to x, , and 
+```
+
+---
+# Example
+```bash
+only_one_arg() {
+  if [ "$#" -ne 1 ]; then
+    echo ERROR: only one argument should be provided
+    exit 1
+  fi
+  echo You requested: $1
+}
+only_one_arg x
+```
+```
+You requested: x
+```
+```bash
+only_one_arg x y z w
+```
+```
+ERROR: only one argument should be provided
+```
+
+---
+# Example
+```bash
+list_three() {
+  ls $@ | sort | tail -n3
+}
+list_three /tmp
+```
+```
+systemd-private-f79f97409b59440ca7d2f74fa98dc2ef-vnstat.service-DVWaXZ
+tracker-extract-3-files.1000
+tracker-extract-3-files.109
+```
+```bash
+list_three /proc
+```
+```
+vmallocinfo
+vmstat
+zoneinfo
+```
+
+---
+# Scoping
+* Mostly works like you would expect
+* Actually pretty similar to R and Python
+* You can specify a local variable with `local`
+
+---
+# Example
+```{bash}
+printer() {
+  echo "$1 function: x=\"$x\" y=\"$y\""
+}
+
+scope_example() {
+  local x="local x"
+  printer During
+  x="modified x"
+  y="modified y"
+}
+
+x="global x"
+y="global y"
+printer Before
+scope_example
+printer After
+```
+
+---
+# Redefining Commands
+* Can (re-)define commands
+* Usually not a good idea
+* Opinion: bash aliases are usually the better approach
+    ```bash
+    alias R='R --no-save --quiet'
+    ```
+
+---
+# Example
+```{bash}
+ls() {
+  command ls -al $1 | head -n3
+}
+ls /proc
+```
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* Loops, functions, and scoping basically work like you would expect
+* There are some peculiarities particular to the shell though...
+* That's it for the shell!
+* Next time: Introduction to Databases
+
+---
+class: clear, inverse, middle, center
+# Questions?

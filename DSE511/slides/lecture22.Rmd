@@ -133,6 +133,14 @@ bash: ./tmp/hw.sh: No such file or directory
 ```
 ]
 
+---
+# Scripting
+.pull-left[
+* You know how to do some things at the command line
+* You know how to run a shell script
+* We just need to learn the programming syntax for shell
+].pull-right[![](pics/homer.jpeg)]
+
 
 
 ---
@@ -588,7 +596,10 @@ class: clear, inverse, middle, center
 
 ---
 # Wrapup
-* 
+* Scripting in the shell is just like scripting in R/Python/etc
+* Well...mostly...
+* Check your exit codes!
+* Next time: more shell scripting
 
 ---
 class: clear, inverse, middle, center
