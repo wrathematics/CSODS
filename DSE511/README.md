@@ -42,9 +42,14 @@ Internet [[src](slides/lecture18.Rmd) | [pdf](slides/lecture18.pdf)]
 * Lecture 21 - awk and make [[src](slides/lecture21.Rmd) | [pdf](slides/lecture21.pdf)]
 * Lecture 22 - Programming and Scripting (Part 1) [[src](slides/lecture22.Rmd) | [pdf](slides/lecture22.pdf)]
 * Lecture 23 - Programming and Scripting (Part 2) [[src](slides/lecture23.Rmd) | [pdf](slides/lecture23.pdf)]
-* Lecture 24 - Introduction to Databases [[src](slides/lecture24.Rmd) | [pdf](slides/lecture24.pdf)]
+
 
 ## Module 5: Databases
+* Lecture 24 - Introduction to Databases [[src](slides/lecture24.Rmd) | [pdf](slides/lecture24.pdf)]
+* Lecture 25 - Introduction to SQL with SQLite [[src](slides/lecture25.Rmd) | [pdf](slides/lecture25.pdf)]
+* Lecture 26 - More SQL with SQLite [[src](slides/lecture26.Rmd) | [pdf](slides/lecture26.pdf)]
+* Lecture 27 - A Brief Discussion of Non-Relational Databases [[src](slides/lecture27.Rmd) | [pdf](slides/lecture27.pdf)]
 
 
 ## Module 6: Wrapup
+* Lecture 28 - Course Wrapup [src | pdf]
