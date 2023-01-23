@@ -1,0 +1,73 @@
+```r
+rf = function(n)
+{
+  A = matrix(0, n, n)
+  for (i in 1:n)
+    for (j in 1:n){
+      A[i, j] = exp(-(i+j)/(i*j))
+  }
+  A
+}
+
+cf = function(n)
+{
+  A = matrix(0, n, n)
+  for (j in 1:n){
+    for (i in 1:n)
+      A[i, j] = exp(-(i+j)/(i*j))
+  }
+  A
+}
+
+cf_sym = function(n)
+{
+  A = matrix(0, n, n)
+  for (j in 1:n){
+    for (i in 1:j)
+      A[i, j] = exp(-(i+j)/(i*j))
+  }
+  A[lower.tri(A)] = t(A)[lower.tri(A)]
+  A
+}
+
+n = 10000
+microbenchmark::microbenchmark(rf(n), cf(n), times=5)
+```
+
+
+```python
+import numpy as np
+import math
+from numba import jit
+
+@jit(nopython = True)
+def rf(n):
+  A = np.zeros((n, n))
+  for i in range(0, n):
+    for j in range(0, n):
+      A[i, j] = math.exp(-((i+1)+(j+1))/((i+1)*(j+1)))
+  return A
+
+@jit(nopython = True)
+def cf(n):
+  A = np.zeros((n, n))
+  for j in range(0, n):
+    for i in range(0, n):
+      A[i, j] = math.exp(-((i+1)+(j+1))/((i+1)*(j+1)))
+  return A
+
+A = rf(10)
+A = cf(10)
+
+import time
+n = 10000
+t0 = time.perf_counter()
+A = rf(n)
+t1 = time.perf_counter()
+t1 - t0
+
+t0 = time.perf_counter()
+A = cf(n)
+t1 = time.perf_counter()
+t1 - t0
+```

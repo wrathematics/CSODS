@@ -1,0 +1,12 @@
+#!/bin/sh
+
+PICS=`find DSE512/slides/pics -name "*.*"`
+for file in $PICS; do
+  mv $file DSE512/slides/pics
+done
+
+PICS_512=`find DSE512/slides/pics -name "*.*"`
+SLIDES_512=`find DSE512/slides/ -name *.Rmd`
+for slides in $SLIDES_512; do
+  sed -i -e 's/pics\/.*\//pics\//g' $slides
+done

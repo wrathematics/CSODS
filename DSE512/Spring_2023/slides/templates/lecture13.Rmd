@@ -1,0 +1,56 @@
+---
+title: Lecture 13 -
+subtitle: "DSE 512"
+author: "Drew Schmidt"
+date: "2023-03-07"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "includes/theme/custom.css", "includes/theme/2col.css"]
+    lib_dir: includes/libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "includes/theme/macros.js"
+---
+
+layout:true
+<div class="footer"><span>Drew Schmidt 2022</span></div>
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+---
+# Announcements
+* 
+
+---
+# Content
+* 
+
+
+
+---
+class: clear, inverse, middle, center
+# First
+
+---
+# TODO
+
+
+
+
+---
+class: clear, inverse, middle, center
+# Wrapup
+
+---
+# Wrapup
+* TODO
+
+---
+class: clear, inverse, middle, center
+# Questions?
